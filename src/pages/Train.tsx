@@ -1,5 +1,7 @@
 import { useMemo, useState } from "react";
+import { Navigate } from "react-router-dom";
 import { QuestionCard } from "@/components/QuestionCard";
+import { SkillSidebar } from "@/components/SkillSidebar";
 import { allQuestions } from "@/questions";
 import { useStore } from "@/store";
 import { pickNextQuestion } from "@/engine/selector";
@@ -8,6 +10,7 @@ export function Train() {
   const skills = useStore((s) => s.skills);
   const history = useStore((s) => s.history);
   const recordAnswer = useStore((s) => s.recordAnswer);
+  const diagnosticCompleted = useStore((s) => s.diagnosticCompleted);
   const bank = useMemo(() => allQuestions(), []);
   const recentIds = useMemo(() => history.slice(-20).map((h) => h.qid), [history]);
 
@@ -29,8 +32,16 @@ export function Train() {
   function handleNext() {
     const fresh = useStore.getState();
     const recent = fresh.history.slice(-20).map((h) => h.qid);
-    const next = pickNextQuestion(bank, fresh.skills, recent);
+    let next = pickNextQuestion(bank, fresh.skills, recent);
+    if (next && next.id === currentId && bank.length > 1) {
+      const filteredBank = bank.filter((q) => q.id !== currentId);
+      next = pickNextQuestion(filteredBank, fresh.skills, recent);
+    }
     setCurrentId(next?.id ?? null);
+  }
+
+  if (!diagnosticCompleted && history.length === 0) {
+    return <Navigate to="/diagnose" replace />;
   }
 
   if (!current) {
@@ -42,8 +53,9 @@ export function Train() {
   }
 
   return (
-    <section className="max-w-4xl mx-auto px-6 py-12">
+    <section className="max-w-6xl mx-auto px-6 py-12 grid gap-6 lg:grid-cols-[1fr_240px]">
       <QuestionCard key={current.id} question={current} onAnswered={handleAnswered} onNext={handleNext} />
+      <SkillSidebar skillIds={current.skills} />
     </section>
   );
 }

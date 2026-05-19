@@ -17,6 +17,9 @@
   --brand-muted-foreground: oklch(0.45 0.015 250);
   /* Light text on accent / wrong (light mode: accent is dark teal, so light text). */
   --brand-on-accent: oklch(0.98 0.012 85);
+  --heat-cold: oklch(0.92 0.05 85);
+  --heat-hot: oklch(0.60 0.18 30);
+  --heat-ink: oklch(0.22 0.020 250);
 }
 
 .dark {
@@ -30,6 +33,9 @@
   --brand-muted-foreground: oklch(0.70 0.015 260);
   /* In dark mode the accent is brighter, so contrast text is dark. */
   --brand-on-accent: oklch(0.14 0.025 260);
+  --heat-cold: oklch(0.22 0.04 260);
+  --heat-hot: oklch(0.65 0.18 30);
+  --heat-ink: oklch(0.94 0.010 85);
 }
 
 @theme inline {

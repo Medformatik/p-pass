@@ -4,6 +4,10 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { GaltonBoard } from "@/viz/GaltonBoard";
 import { cn } from "@/lib/cn";
+import { SolutionReveal } from "./SolutionReveal";
+import { burstConfetti } from "@/lib/confetti";
+import { playCorrectChime } from "@/lib/sound";
+import { useStore } from "@/store";
 
 export type QuestionCardProps = {
   question: Question;
@@ -11,9 +15,22 @@ export type QuestionCardProps = {
   onNext?: () => void;
 };
 
+function shuffledIndices(n: number): number[] {
+  const arr = Array.from({ length: n }, (_, i) => i);
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
 export function QuestionCard({ question, onAnswered, onNext }: QuestionCardProps) {
   const [selected, setSelected] = useState<number | null>(null);
   const [submitted, setSubmitted] = useState(false);
+  const [order] = useState<number[]>(() =>
+    question.type === "mc" ? shuffledIndices(question.options.length) : [],
+  );
+  const soundEnabled = useStore((s) => s.preferences.soundEnabled);
 
   if (question.type !== "mc") {
     return (
@@ -28,6 +45,10 @@ export function QuestionCard({ question, onAnswered, onNext }: QuestionCardProps
     const correct = selected === question.correct;
     setSubmitted(true);
     onAnswered(correct);
+    if (correct) {
+      burstConfetti(60, 1200);
+      if (soundEnabled) playCorrectChime();
+    }
   }
 
   const wasCorrect = submitted && selected === question.correct;
@@ -37,50 +58,55 @@ export function QuestionCard({ question, onAnswered, onNext }: QuestionCardProps
       <div>
         <p className="font-display text-xl mb-4">{question.stem}</p>
         <ul className="space-y-2">
-          {question.options.map((opt, i) => (
-            <li key={i}>
-              <label
-                className={cn(
-                  "flex items-center gap-3 px-3 py-2 rounded-md border-2 cursor-pointer transition-colors",
-                  "border-border",
-                  selected === i && !submitted && "border-accent bg-accent/10",
-                  submitted &&
-                    i === question.correct &&
-                    "border-correct bg-correct/15",
-                  submitted &&
-                    selected === i &&
-                    i !== question.correct &&
-                    "border-wrong bg-wrong/15",
-                )}
-              >
-                <input
-                  type="radio"
-                  name={`q-${question.id}`}
-                  value={i}
-                  checked={selected === i}
-                  onChange={() => setSelected(i)}
-                  disabled={submitted}
-                  className="sr-only"
-                />
-                <span
+          {order.map((originalIdx, displayIdx) => {
+            const opt = question.options[originalIdx];
+            return (
+              <li key={originalIdx}>
+                <label
                   className={cn(
-                    "size-4 rounded-full border-2 border-border flex-shrink-0 transition-colors",
-                    selected === i && !submitted && "border-accent bg-accent",
-                    submitted && i === question.correct && "border-correct bg-correct",
+                    "flex items-center gap-3 px-3 py-2 rounded-md border-2 cursor-pointer transition-colors",
+                    "border-border",
+                    selected === originalIdx && !submitted && "border-accent bg-accent/10",
                     submitted &&
-                      selected === i &&
-                      i !== question.correct &&
-                      "border-wrong bg-wrong",
+                      originalIdx === question.correct &&
+                      "border-correct bg-correct/15",
+                    submitted &&
+                      selected === originalIdx &&
+                      originalIdx !== question.correct &&
+                      "border-wrong bg-wrong/15",
                   )}
-                  aria-hidden="true"
-                />
-                <span className="font-mono text-sm text-muted-foreground">
-                  {String.fromCharCode(97 + i)})
-                </span>
-                <span>{opt}</span>
-              </label>
-            </li>
-          ))}
+                >
+                  <input
+                    type="radio"
+                    name={`q-${question.id}`}
+                    value={originalIdx}
+                    checked={selected === originalIdx}
+                    onChange={() => setSelected(originalIdx)}
+                    disabled={submitted}
+                    className="sr-only"
+                  />
+                  <span
+                    className={cn(
+                      "size-4 rounded-full border-2 border-border flex-shrink-0 transition-colors",
+                      selected === originalIdx && !submitted && "border-accent bg-accent",
+                      submitted &&
+                        originalIdx === question.correct &&
+                        "border-correct bg-correct",
+                      submitted &&
+                        selected === originalIdx &&
+                        originalIdx !== question.correct &&
+                        "border-wrong bg-wrong",
+                    )}
+                    aria-hidden="true"
+                  />
+                  <span className="font-mono text-sm text-muted-foreground">
+                    {String.fromCharCode(97 + displayIdx)})
+                  </span>
+                  <span>{opt}</span>
+                </label>
+              </li>
+            );
+          })}
         </ul>
 
         {!submitted ? (
@@ -98,6 +124,9 @@ export function QuestionCard({ question, onAnswered, onNext }: QuestionCardProps
               {wasCorrect ? "Richtig." : "Falsch."}
             </p>
             <p className="text-sm">{question.explanation}</p>
+            {question.solutionSteps && question.solutionSteps.length > 0 && (
+              <SolutionReveal steps={question.solutionSteps} />
+            )}
             {onNext && (
               <Button onClick={onNext} variant="outline">
                 Nächste Frage
