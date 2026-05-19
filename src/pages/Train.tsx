@@ -1,10 +1,12 @@
 import { useMemo, useState } from "react";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { QuestionCard } from "@/components/QuestionCard";
 import { SkillSidebar } from "@/components/SkillSidebar";
+import { Button } from "@/components/ui/button";
 import { allQuestions } from "@/questions";
 import { useStore } from "@/store";
 import { pickNextQuestion } from "@/engine/selector";
+import { SKILLS } from "@/engine/skills";
 
 export function Train() {
   const skills = useStore((s) => s.skills);
@@ -22,6 +24,11 @@ export function Train() {
   const current = useMemo(
     () => bank.find((q) => q.id === currentId),
     [bank, currentId],
+  );
+
+  const allMastered = useMemo(
+    () => SKILLS.every((s) => (skills[s.id] ?? 0) > 0.9),
+    [skills],
   );
 
   function handleAnswered(correct: boolean) {
@@ -42,6 +49,26 @@ export function Train() {
 
   if (!entryTestCompleted && history.length === 0) {
     return <Navigate to="/entry-test" replace />;
+  }
+
+  if (allMastered) {
+    return (
+      <section className="max-w-2xl mx-auto px-6 py-16 text-center space-y-4">
+        <h2 className="font-display text-4xl">Glückwunsch!</h2>
+        <p className="text-muted-foreground">
+          Du beherrschst alle 20 Skills mit über 90% Sicherheit laut Bayes-Schätzung.
+          Bereit für eine echte Klausur?
+        </p>
+        <div className="flex items-center justify-center gap-3 mt-4">
+          <Button asChild size="lg">
+            <Link to="/mock">Mock-Klausur starten</Link>
+          </Button>
+          <Button asChild variant="outline">
+            <Link to="/dashboard">Zum Dashboard</Link>
+          </Button>
+        </div>
+      </section>
+    );
   }
 
   if (!current) {

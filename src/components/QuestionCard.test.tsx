@@ -43,6 +43,14 @@ describe("QuestionCard", () => {
     fireEvent.click(screen.getByText(/prüfen/i));
     expect(screen.getByText("Trivial.")).toBeInTheDocument();
   });
+
+  it("submits MC via Enter key after selecting", () => {
+    const onAnswered = vi.fn();
+    render(<QuestionCard question={q} onAnswered={onAnswered} />);
+    fireEvent.click(screen.getByLabelText(/2$/));
+    fireEvent.keyDown(window, { key: "Enter" });
+    expect(onAnswered).toHaveBeenCalled();
+  });
 });
 
 const numericQ: Question = {

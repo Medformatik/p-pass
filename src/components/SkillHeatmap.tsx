@@ -33,7 +33,12 @@ export function SkillHeatmap() {
             {grouped[block].map((s) => {
               const pL = skills[s.id] ?? 0;
               return (
-                <Link key={s.id} to={`/dive/${s.id}`} className="block">
+                <Link
+                  key={s.id}
+                  to={`/dive/${s.id}`}
+                  className="block"
+                  aria-label={`Deep-Dive für ${s.label}, aktueller Stand ${(pL * 100).toFixed(0)}%`}
+                >
                   <div
                     data-skill={s.id}
                     className="rounded-md border border-border p-3 transition-colors hover:opacity-90 cursor-pointer"

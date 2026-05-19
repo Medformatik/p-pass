@@ -1,5 +1,7 @@
 import { useState } from "react";
-import * as d3 from "d3";
+import { scaleLinear } from "d3-scale";
+import { line as d3line } from "d3-shape";
+import { range as d3range } from "d3-array";
 import { normalPDF, normalCDF } from "@/stats/distributions";
 import { getAccentColor, getWrongColor } from "./shared/colors";
 import type { BaseVizProps } from "./shared/types";
@@ -49,14 +51,13 @@ export function HypothesisTest({
 
   const xMin = Math.min(mu0, mu1) - 4 * sigma;
   const xMax = Math.max(mu0, mu1) + 4 * sigma;
-  const xs = d3.range(xMin, xMax, (xMax - xMin) / 200);
+  const xs = d3range(xMin, xMax, (xMax - xMin) / 200);
   const peakDensity = normalPDF(mu0, mu0, sigma);
   const yMax = peakDensity * 1.05;
 
-  const xScale = d3.scaleLinear().domain([xMin, xMax]).range([0, innerW]);
-  const yScale = d3.scaleLinear().domain([0, yMax]).range([innerH, 0]);
-  const line = d3
-    .line<[number, number]>()
+  const xScale = scaleLinear().domain([xMin, xMax]).range([0, innerW]);
+  const yScale = scaleLinear().domain([0, yMax]).range([innerH, 0]);
+  const line = d3line<[number, number]>()
     .x((d) => xScale(d[0]))
     .y((d) => yScale(d[1]));
 

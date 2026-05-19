@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { GaltonBoard } from "@/viz/GaltonBoard";
+import { VizSlot } from "@/viz/VizSlot";
 
 export function Landing() {
   return (
@@ -11,7 +11,15 @@ export function Landing() {
         Das Tool nutzt Bayes-Inferenz, um deine Schwächen zu finden und gezielt zu trainieren.
       </p>
       <div className="my-8 flex justify-center">
-        <GaltonBoard n={14} p={0.5} balls={2000} width={600} height={360} />
+        <VizSlot
+          spec={{
+            component: "GaltonBoard",
+            props: { n: 14, p: 0.5, balls: 2000 },
+          }}
+          width={600}
+          height={360}
+          controlled={false}
+        />
       </div>
       <Button asChild>
         <Link to="/train">Loslegen</Link>

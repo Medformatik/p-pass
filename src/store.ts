@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { SKILLS, DEFAULT_BKT_PARAMS, type SkillId } from "@/engine/skills";
+import { SKILLS, getSkill, type SkillId } from "@/engine/skills";
 import { bktUpdateMulti } from "@/engine/bkt";
 import { computeEntryTestPriors, type EntryTestResponse } from "@/engine/entryTest";
 
@@ -99,7 +99,7 @@ export const useStore = create<StoreState & StoreActions>((set, get) => ({
   ...loadPersisted(),
   recordAnswer(qid, skills, correct) {
     const before = get().skills;
-    const after = bktUpdateMulti(before, skills, correct, DEFAULT_BKT_PARAMS);
+    const after = bktUpdateMulti(before, skills, correct, (sid) => getSkill(sid).bktParams);
     const entry: HistoryEntry = {
       qid,
       skills,

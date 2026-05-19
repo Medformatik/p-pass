@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { Question } from "@/questions/types";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { VizSlot } from "@/viz/VizSlot";
 import { cn } from "@/lib/cn";
 import { SolutionReveal } from "./SolutionReveal";
+import { InkUnderline } from "./InkUnderline";
 import { burstConfetti } from "@/lib/confetti";
 import { playCorrectChime } from "@/lib/sound";
 import { useStore } from "@/store";
@@ -71,6 +72,63 @@ export function QuestionCard({ question, onAnswered, onNext }: QuestionCardProps
     }
     return false;
   })();
+
+  useEffect(() => {
+    function onKey(e: KeyboardEvent) {
+      const t = e.target as HTMLElement | null;
+      // Skip when typing in inputs/textareas, but Enter still submits numeric type
+      if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable)) {
+        if (e.key === "Enter" && question.type === "numeric" && !submitted) {
+          e.preventDefault();
+          handleSubmit();
+        }
+        return;
+      }
+
+      if (submitted) {
+        if ((e.key === "Enter" || e.key === "ArrowRight") && onNext) {
+          e.preventDefault();
+          onNext();
+        }
+        return;
+      }
+
+      if (question.type === "mc") {
+        const code = e.key.toLowerCase();
+        if (code >= "a" && code <= "e") {
+          const displayIdx = code.charCodeAt(0) - "a".charCodeAt(0);
+          if (displayIdx < order.length) {
+            e.preventDefault();
+            setSelected(order[displayIdx]);
+          }
+        } else if (e.key === "Enter" && selected !== null) {
+          e.preventDefault();
+          handleSubmit();
+        }
+      } else if (question.type === "numeric") {
+        // Enter on numeric handled above (it's typed in an input)
+      } else if (question.type === "multi-mc") {
+        const code = e.key.toLowerCase();
+        if (code >= "a" && code <= "e") {
+          const displayIdx = code.charCodeAt(0) - "a".charCodeAt(0);
+          if (displayIdx < order.length) {
+            e.preventDefault();
+            const origIdx = order[displayIdx];
+            setSelectedMulti((prev) =>
+              prev.includes(origIdx) ? prev.filter((i) => i !== origIdx) : [...prev, origIdx],
+            );
+          }
+        } else if (e.key === "Enter" && selectedMulti.length > 0) {
+          e.preventDefault();
+          handleSubmit();
+        }
+      }
+    }
+
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [question, order, selected, selectedMulti, submitted, onNext]);
 
   const hasViz = !!question.viz;
 
@@ -144,6 +202,7 @@ export function QuestionCard({ question, onAnswered, onNext }: QuestionCardProps
               }
               disabled={submitted}
               placeholder="Antwort eingeben"
+              aria-label="Numerische Antwort"
               className="border-2 border-border rounded-md px-3 py-2 w-48 bg-bg"
               inputMode="decimal"
             />
@@ -223,7 +282,7 @@ export function QuestionCard({ question, onAnswered, onNext }: QuestionCardProps
             }
             className="mt-4"
           >
-            Prüfen
+            Prüfen <kbd className="ml-2 text-xs opacity-60 font-mono">↵</kbd>
           </Button>
         ) : (
           <div className="mt-4 space-y-3">
@@ -233,7 +292,7 @@ export function QuestionCard({ question, onAnswered, onNext }: QuestionCardProps
                 wasCorrect ? "text-correct" : "text-wrong",
               )}
             >
-              {wasCorrect ? "Richtig." : "Falsch."}
+              {wasCorrect ? <InkUnderline>Richtig.</InkUnderline> : "Falsch."}
             </p>
             <p className="text-sm">{question.explanation}</p>
             {!wasCorrect && question.type === "numeric" && (
@@ -246,7 +305,7 @@ export function QuestionCard({ question, onAnswered, onNext }: QuestionCardProps
             )}
             {onNext && (
               <Button onClick={onNext} variant="outline">
-                Nächste Frage
+                Nächste Frage <kbd className="ml-2 text-xs opacity-60 font-mono">→</kbd>
               </Button>
             )}
           </div>

@@ -44,14 +44,15 @@ export function bktUpdateMulti<K extends string>(
   current: Record<K, number>,
   skills: K[],
   correct: boolean,
-  params: BKTParams,
+  getParams: (skill: K) => BKTParams,
 ): Record<K, number> {
   const next = { ...current };
   for (let i = 0; i < skills.length; i++) {
     const sid = skills[i];
     if (!(sid in next)) continue;
-    const effectiveParams = i === 0 ? params : { ...params, pT: params.pT * 0.5 };
-    next[sid] = bktUpdate(next[sid], correct, effectiveParams);
+    const baseParams = getParams(sid);
+    const effective = i === 0 ? baseParams : { ...baseParams, pT: baseParams.pT * 0.5 };
+    next[sid] = bktUpdate(next[sid], correct, effective);
   }
   return next;
 }

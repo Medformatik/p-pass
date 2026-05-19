@@ -1,5 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import * as d3 from "d3";
+import { scaleBand, scaleLinear } from "d3-scale";
+import { axisBottom, axisLeft } from "d3-axis";
+import { select } from "d3-selection";
+import { format } from "d3-format";
 import { binomialPMF } from "@/stats/distributions";
 import { getAccentColor } from "./shared/colors";
 import type { BaseVizProps } from "./shared/types";
@@ -31,21 +34,20 @@ export function BinomialPMF({
   const probs = ks.map((k) => binomialPMF(n, k, p));
   const maxP = Math.max(...probs, 0.01);
 
-  const x = d3.scaleBand<number>().domain(ks).range([0, innerW]).padding(0.1);
-  const y = d3.scaleLinear().domain([0, maxP]).nice().range([innerH, 0]);
+  const x = scaleBand<number>().domain(ks).range([0, innerW]).padding(0.1);
+  const y = scaleLinear().domain([0, maxP]).nice().range([innerH, 0]);
 
   useEffect(() => {
     if (xAxisRef.current) {
       const tickEvery = n > 15 ? 2 : 1;
-      const ax = d3
-        .axisBottom(x)
+      const ax = axisBottom(x)
         .tickValues(ks.filter((k) => k % tickEvery === 0))
         .tickFormat((k) => String(k));
-      d3.select(xAxisRef.current).call(ax as never);
+      select(xAxisRef.current).call(ax as never);
     }
     if (yAxisRef.current) {
-      const ay = d3.axisLeft(y).ticks(4).tickFormat(d3.format(".2f"));
-      d3.select(yAxisRef.current).call(ay as never);
+      const ay = axisLeft(y).ticks(4).tickFormat(format(".2f"));
+      select(yAxisRef.current).call(ay as never);
     }
   }, [n, p, x, y, ks]);
 

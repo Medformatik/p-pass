@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import type { ReactNode } from "react";
 import { Sun, Moon, Flame, Volume2, VolumeX } from "lucide-react";
 import { cn } from "@/lib/cn";
+import { NumberTicker } from "./NumberTicker";
 
 export function Layout() {
   const darkMode = useStore((s) => s.preferences.darkMode);
@@ -19,11 +20,11 @@ export function Layout() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <header className="px-6 py-4 flex items-center justify-between border-b border-border">
-        <Link to="/" className="font-display text-2xl">
+      <header className="px-3 sm:px-6 py-3 sm:py-4 flex items-center justify-between border-b border-border gap-2">
+        <Link to="/" className="font-display text-xl sm:text-2xl shrink-0">
           P(Pass)
         </Link>
-        <nav className="flex items-center gap-4 text-sm">
+        <nav className="flex items-center gap-2 sm:gap-4 text-sm overflow-x-auto">
           <NavLink to="/train" active={location.pathname.startsWith("/train")}>
             Trainieren
           </NavLink>
@@ -33,6 +34,9 @@ export function Layout() {
           <NavLink to="/dashboard" active={location.pathname.startsWith("/dashboard")}>
             Dashboard
           </NavLink>
+          <NavLink to="/inspector" active={location.pathname.startsWith("/inspector")}>
+            Bayes
+          </NavLink>
           {streakCurrent > 0 && (
             <span
               className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-accent/10 text-accent text-xs font-medium"
@@ -40,19 +44,19 @@ export function Layout() {
               title={`${streakCurrent}-Tage-Streak`}
             >
               <Flame className="size-3" aria-hidden="true" />
-              {streakCurrent}
+              <NumberTicker value={streakCurrent} />
             </span>
           )}
           <button
             onClick={toggleSound}
-            className="p-2 rounded-md hover:bg-muted"
+            className="p-2.5 rounded-md hover:bg-muted"
             aria-label="Sound umschalten"
           >
             {soundEnabled ? <Volume2 className="size-4" /> : <VolumeX className="size-4" />}
           </button>
           <button
             onClick={toggleDarkMode}
-            className="p-2 rounded-md hover:bg-muted"
+            className="p-2.5 rounded-md hover:bg-muted"
             aria-label="Theme umschalten"
           >
             {darkMode ? <Sun className="size-4" /> : <Moon className="size-4" />}

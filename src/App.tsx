@@ -6,6 +6,7 @@ import { Dashboard } from "@/pages/Dashboard";
 import { EntryTest } from "@/pages/EntryTest";
 import { DeepDive } from "@/pages/DeepDive";
 import { MockExam } from "@/pages/MockExam";
+import { Inspector } from "@/pages/Inspector";
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
           <Route path="entry-test" element={<EntryTest />} />
           <Route path="dive/:skill" element={<DeepDive />} />
           <Route path="mock" element={<MockExam />} />
+          <Route path="inspector" element={<Inspector />} />
         </Route>
       </Routes>
     </HashRouter>

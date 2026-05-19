@@ -6,6 +6,7 @@ import { SKILLS } from "@/engine/skills";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { SkillHeatmap } from "@/components/SkillHeatmap";
+import { NumberTicker } from "@/components/NumberTicker";
 
 export function Dashboard() {
   const skills = useStore((s) => s.skills);
@@ -57,7 +58,7 @@ export function Dashboard() {
     <section className="max-w-4xl mx-auto px-6 py-12">
       <h2 className="font-display text-3xl mb-2">Dashboard</h2>
       <p className="text-muted-foreground mb-8">
-        Klausur-Bereitschaft (Durchschnitt): {(overall * 100).toFixed(0)}% — basierend auf{" "}
+        Klausur-Bereitschaft (Durchschnitt): <NumberTicker value={overall} format={(n) => `${(n * 100).toFixed(0)}%`} /> — basierend auf{" "}
         {history.length} Antworten.
       </p>
 

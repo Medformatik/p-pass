@@ -65,7 +65,8 @@ describe("bktPredict", () => {
 describe("bktUpdateMulti", () => {
   it("updates primary with full T, secondary with halved T", () => {
     const initial = { bayes: 0.4, bedingt: 0.4 };
-    const next = bktUpdateMulti(initial, ["bayes", "bedingt"], true, DEFAULT_BKT_PARAMS);
+    const getParams = () => DEFAULT_BKT_PARAMS;
+    const next = bktUpdateMulti(initial, ["bayes", "bedingt"], true, getParams);
     expect(next.bayes).toBeGreaterThan(initial.bayes);
     expect(next.bedingt).toBeGreaterThan(initial.bedingt);
     // primary should have moved more
@@ -74,7 +75,23 @@ describe("bktUpdateMulti", () => {
   it("leaves untouched skills unchanged", () => {
     const initial: Record<"bayes" | "normal", number> = { bayes: 0.4, normal: 0.5 };
     const skills: ("bayes" | "normal")[] = ["bayes"];
-    const next = bktUpdateMulti(initial, skills, true, DEFAULT_BKT_PARAMS);
+    const getParams = () => DEFAULT_BKT_PARAMS;
+    const next = bktUpdateMulti(initial, skills, true, getParams);
     expect(next.normal).toBe(0.5);
+  });
+});
+
+import type { BKTParams } from "./skills";
+
+describe("bktUpdateMulti per-skill params", () => {
+  it("honors different params per skill via resolver", () => {
+    const initial = { bayes: 0.5, clt: 0.5 };
+    const customParams = (skill: string): BKTParams => {
+      if (skill === "bayes") return { ...DEFAULT_BKT_PARAMS, pT: 0.5 };
+      return DEFAULT_BKT_PARAMS;
+    };
+    const next = bktUpdateMulti(initial, ["bayes", "clt"], true, customParams);
+    // bayes (primary, pT=0.5) should end higher than clt (secondary, pT=0.15*0.5)
+    expect(next.bayes).toBeGreaterThan(next.clt);
   });
 });
