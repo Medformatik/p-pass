@@ -16,8 +16,13 @@ export function Dashboard() {
   const importState = useStore((s) => s.importState);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const overall =
-    SKILLS.reduce((sum, s) => sum + (skills[s.id] ?? 0), 0) / SKILLS.length;
+  // Geometric mean of P(L) across skills — penalizes any weak skill more
+  // than the arithmetic mean would; reflects that you cannot skip topics
+  // in the actual exam. Computed in log space for numerical stability.
+  const overall = Math.exp(
+    SKILLS.reduce((s, sk) => s + Math.log(Math.max(skills[sk.id] ?? 0.001, 0.001)), 0) /
+      SKILLS.length,
+  );
 
   const recommended = useMemo(() => {
     return SKILLS.reduce<{ id: string; label: string; pL: number } | null>(
@@ -58,8 +63,14 @@ export function Dashboard() {
     <section className="max-w-4xl mx-auto px-6 py-12">
       <h2 className="font-display text-3xl mb-2">Dashboard</h2>
       <p className="text-muted-foreground mb-8">
-        Klausur-Bereitschaft (Durchschnitt): <NumberTicker value={overall} format={(n) => `${(n * 100).toFixed(0)}%`} /> — basierend auf{" "}
-        {history.length} Antworten.
+        Klausur-Bereitschaft:{" "}
+        <span
+          className="text-ink font-medium"
+          title="Geometrisches Mittel der Skill-Wahrscheinlichkeiten — bestraft schwache Skills stärker als das arithmetische Mittel, da man in der Klausur keine Themen überspringen kann."
+        >
+          <NumberTicker value={overall} format={(n) => `${(n * 100).toFixed(0)}%`} />
+        </span>{" "}
+        — basierend auf {history.length} Antworten.
       </p>
 
       {recommended && (
@@ -83,30 +94,29 @@ export function Dashboard() {
 
       <SkillHeatmap />
 
-      <div className="mt-12 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <Button variant="outline" onClick={handleExport}>
-            Fortschritt exportieren
-          </Button>
-          <Button variant="outline" onClick={() => fileInputRef.current?.click()}>
-            Fortschritt importieren
-          </Button>
-          <input
-            ref={fileInputRef}
-            type="file"
-            accept="application/json,.json"
-            onChange={handleImport}
-            className="hidden"
-          />
-        </div>
-        <button
+      <div className="mt-12 flex flex-wrap items-center gap-2">
+        <Button variant="outline" onClick={handleExport}>
+          Fortschritt exportieren
+        </Button>
+        <Button variant="outline" onClick={() => fileInputRef.current?.click()}>
+          Fortschritt importieren
+        </Button>
+        <input
+          ref={fileInputRef}
+          type="file"
+          accept="application/json,.json"
+          onChange={handleImport}
+          className="hidden"
+        />
+        <Button
+          variant="outline"
           onClick={() => {
             if (confirm("Wirklich Fortschritt löschen?")) reset();
           }}
-          className="text-sm text-wrong underline"
+          className="text-wrong border-wrong/40 hover:bg-wrong/10 sm:ml-auto"
         >
           Fortschritt zurücksetzen
-        </button>
+        </Button>
       </div>
     </section>
   );
