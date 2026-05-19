@@ -92,3 +92,15 @@
     border-radius: 2px;
   }
 }
+
+/* KaTeX: avoid horizontal overflow on narrow screens */
+.katex-display {
+  margin: 0.5em 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+@media (max-width: 480px) {
+  .katex-display > .katex {
+    font-size: 0.88em;
+  }
+}

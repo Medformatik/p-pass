@@ -23,5 +23,12 @@ export function Math({ tex, display, className }: Props) {
     }
   }, [tex, display]);
 
+  if (display) {
+    return (
+      <div className={`overflow-x-auto ${className ?? ""}`}>
+        <span ref={ref} aria-label={tex} />
+      </div>
+    );
+  }
   return <span ref={ref} className={className} aria-label={tex} />;
 }
