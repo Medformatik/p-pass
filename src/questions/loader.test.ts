@@ -43,13 +43,8 @@ describe("loadBank", () => {
 
 import { QUESTION_BANK } from "./index";
 
-describe("seed bank", () => {
-  it("loads all seed questions without validation errors", () => {
-    expect(QUESTION_BANK.size).toBeGreaterThanOrEqual(3);
-  });
-  it("seed has the expected question ids", () => {
-    expect(QUESTION_BANK.has("q-bayes-seed-001")).toBe(true);
-    expect(QUESTION_BANK.has("q-binomial-seed-001")).toBe(true);
-    expect(QUESTION_BANK.has("q-clt-seed-001")).toBe(true);
+describe("question bank", () => {
+  it("loads all bank questions without validation errors", () => {
+    expect(QUESTION_BANK.size).toBeGreaterThanOrEqual(60);
   });
 });

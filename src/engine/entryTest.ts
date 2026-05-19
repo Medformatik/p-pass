@@ -1,6 +1,6 @@
 import { SKILLS, type SkillId } from "./skills";
 
-export type DiagnosticResponse = {
+export type EntryTestResponse = {
   skill: SkillId;
   correct: boolean;
 };
@@ -8,8 +8,8 @@ export type DiagnosticResponse = {
 const MIN_P = 0.1;
 const MAX_P = 0.85;
 
-export function computeDiagnosticPriors(
-  responses: DiagnosticResponse[],
+export function computeEntryTestPriors(
+  responses: EntryTestResponse[],
 ): Record<SkillId, number> {
   const counts: Record<string, { correct: number; total: number }> = {};
   for (const r of responses) {

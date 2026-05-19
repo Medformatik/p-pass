@@ -6,44 +6,46 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/cn";
 import type { Question } from "@/questions/types";
-import type { DiagnosticResponse } from "@/engine/diagnose";
-import { computeDiagnosticPriors } from "@/engine/diagnose";
+import type { EntryTestResponse } from "@/engine/entryTest";
+import { computeEntryTestPriors } from "@/engine/entryTest";
 import { SKILLS } from "@/engine/skills";
 
 const TARGET_SKILLS = ["bayes", "binomial-poisson", "clt", "bedingt", "normal-exp"] as const;
-const DIAGNOSTIC_COUNT = 5;
+const ENTRY_TEST_COUNT = 5;
 
-function pickDiagnostic(bank: Question[]): Question[] {
+function pickEntryTest(bank: Question[]): Question[] {
+  // Entry test UI renders MC questions only. Filter, then pick by target skills.
+  const mcOnly = bank.filter((q) => q.type === "mc");
   const chosen: Question[] = [];
   const used = new Set<string>();
   for (const target of TARGET_SKILLS) {
-    const q = bank.find((q) => q.skills.includes(target) && !used.has(q.id));
+    const q = mcOnly.find((q) => q.skills.includes(target) && !used.has(q.id));
     if (q) {
       chosen.push(q);
       used.add(q.id);
     }
   }
-  for (const q of bank) {
-    if (chosen.length >= DIAGNOSTIC_COUNT) break;
+  for (const q of mcOnly) {
+    if (chosen.length >= ENTRY_TEST_COUNT) break;
     if (!used.has(q.id)) {
       chosen.push(q);
       used.add(q.id);
     }
   }
-  while (chosen.length < DIAGNOSTIC_COUNT && bank.length > 0) {
-    chosen.push(bank[chosen.length % bank.length]);
+  while (chosen.length < ENTRY_TEST_COUNT && mcOnly.length > 0) {
+    chosen.push(mcOnly[chosen.length % mcOnly.length]);
   }
-  return chosen.slice(0, DIAGNOSTIC_COUNT);
+  return chosen.slice(0, ENTRY_TEST_COUNT);
 }
 
-export function Diagnose() {
+export function EntryTest() {
   const navigate = useNavigate();
-  const applyDiagnostic = useStore((s) => s.applyDiagnostic);
+  const applyEntryTest = useStore((s) => s.applyEntryTest);
   const bank = useMemo(() => allQuestions(), []);
-  const questions = useMemo(() => pickDiagnostic(bank), [bank]);
+  const questions = useMemo(() => pickEntryTest(bank), [bank]);
   const [index, setIndex] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
-  const [responses, setResponses] = useState<DiagnosticResponse[]>([]);
+  const [responses, setResponses] = useState<EntryTestResponse[]>([]);
   const [showSummary, setShowSummary] = useState(false);
   const [bootstrappedPriors, setBootstrappedPriors] = useState<Record<string, number> | null>(null);
 
@@ -51,14 +53,14 @@ export function Diagnose() {
   if (!current) {
     return (
       <section className="max-w-2xl mx-auto px-6 py-16 text-center">
-        <p className="text-muted-foreground">Keine Diagnose-Fragen verfügbar.</p>
+        <p className="text-muted-foreground">Keine Eingangstest-Fragen verfügbar.</p>
       </section>
     );
   }
   if (current.type !== "mc") {
     return (
       <section className="max-w-2xl mx-auto px-6 py-16 text-center">
-        <p className="text-muted-foreground">Diagnose unterstützt aktuell nur MC-Fragen.</p>
+        <p className="text-muted-foreground">Eingangstest unterstützt aktuell nur MC-Fragen.</p>
       </section>
     );
   }
@@ -66,13 +68,13 @@ export function Diagnose() {
   function handleNext() {
     if (selected === null || !current || current.type !== "mc") return;
     const correct = selected === current.correct;
-    const newResponses: DiagnosticResponse[] = [
+    const newResponses: EntryTestResponse[] = [
       ...responses,
       ...current.skills.map((skill) => ({ skill, correct })),
     ];
     if (index + 1 >= questions.length) {
       setResponses(newResponses);
-      setBootstrappedPriors(computeDiagnosticPriors(newResponses));
+      setBootstrappedPriors(computeEntryTestPriors(newResponses));
       setShowSummary(true);
     } else {
       setResponses(newResponses);
@@ -92,7 +94,7 @@ export function Diagnose() {
     const weakest = sorted.slice(-5).reverse();
 
     function finish() {
-      applyDiagnostic(responses);
+      applyEntryTest(responses);
       navigate("/train");
     }
 
@@ -139,7 +141,7 @@ export function Diagnose() {
   return (
     <section className="max-w-3xl mx-auto px-6 py-12">
       <div className="mb-6">
-        <h2 className="font-display text-3xl mb-1">Diagnose</h2>
+        <h2 className="font-display text-3xl mb-1">Eingangstest</h2>
         <p className="text-sm text-muted-foreground">
           Frage {index + 1} von {questions.length} · Wir zeigen dir 5 Aufgaben, damit wir deinen
           Startpunkt schätzen können. Kein Feedback zwischendurch.
@@ -166,7 +168,7 @@ export function Diagnose() {
               >
                 <input
                   type="radio"
-                  name={`diag-${current.id}`}
+                  name={`entry-${current.id}`}
                   value={i}
                   checked={selected === i}
                   onChange={() => setSelected(i)}
@@ -188,7 +190,7 @@ export function Diagnose() {
           ))}
         </ul>
         <Button onClick={handleNext} disabled={selected === null} className="mt-4">
-          {index + 1 >= questions.length ? "Diagnose abschließen" : "Weiter"}
+          {index + 1 >= questions.length ? "Eingangstest abschließen" : "Weiter"}
         </Button>
       </Card>
     </section>

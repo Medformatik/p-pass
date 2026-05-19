@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach } from "vitest";
 import { useStore } from "./store";
-import type { DiagnosticResponse } from "./engine/diagnose";
+import type { EntryTestResponse } from "./engine/entryTest";
 
 describe("store", () => {
   beforeEach(() => {
@@ -91,20 +91,20 @@ describe("export/import", () => {
   });
 });
 
-describe("applyDiagnostic", () => {
+describe("applyEntryTest", () => {
   beforeEach(() => useStore.getState().reset());
 
-  it("sets skill priors from diagnostic responses", () => {
-    const responses: DiagnosticResponse[] = [
+  it("sets skill priors from entry test responses", () => {
+    const responses: EntryTestResponse[] = [
       { skill: "bayes", correct: true },
       { skill: "bayes", correct: true },
     ];
-    useStore.getState().applyDiagnostic(responses);
+    useStore.getState().applyEntryTest(responses);
     expect(useStore.getState().skills.bayes).toBeCloseTo(0.85, 5);
   });
 
-  it("marks diagnostic as completed", () => {
-    useStore.getState().applyDiagnostic([]);
-    expect(useStore.getState().diagnosticCompleted).toBe(true);
+  it("marks entry test as completed", () => {
+    useStore.getState().applyEntryTest([]);
+    expect(useStore.getState().entryTestCompleted).toBe(true);
   });
 });

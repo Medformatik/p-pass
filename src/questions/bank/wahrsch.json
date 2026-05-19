@@ -1,0 +1,529 @@
+[
+  {
+    "id": "q-kombinatorik-001",
+    "type": "mc",
+    "skills": ["kombinatorik"],
+    "difficulty": 0.2,
+    "stem": "Auf wie viele verschiedene Arten lassen sich 7 unterscheidbare Bücher in einer Reihe anordnen?",
+    "options": ["49", "128", "720", "5040", "40 320"],
+    "correct": 3,
+    "explanation": "Die Anzahl der Permutationen von n unterscheidbaren Objekten ist n!. Hier ist 7! = 7·6·5·4·3·2·1 = 5040.",
+    "solutionSteps": [
+      "Permutation ohne Wiederholung: n!",
+      "7! = 7·6·5·4·3·2·1",
+      "= 5040"
+    ],
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-kombinatorik-002",
+    "type": "numeric",
+    "skills": ["kombinatorik"],
+    "difficulty": 0.4,
+    "stem": "Aus 10 Bewerbern soll ein Komitee von 4 Personen (ohne Rangordnung) ausgewählt werden. Wie viele verschiedene Komitees sind möglich?",
+    "correct": { "value": 210, "tolerance": 0.5 },
+    "explanation": "Auswahl ohne Reihenfolge und ohne Zurücklegen: Binomialkoeffizient C(10,4) = 10!/(4!·6!) = (10·9·8·7)/(4·3·2·1) = 5040/24 = 210.",
+    "solutionSteps": [
+      "Auswahl ohne Reihenfolge, ohne Wiederholung",
+      "C(n,k) = n! / (k!·(n−k)!)",
+      "C(10,4) = (10·9·8·7)/(4·3·2·1) = 5040/24 = 210"
+    ],
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-kombinatorik-003",
+    "type": "mc",
+    "skills": ["kombinatorik"],
+    "difficulty": 0.55,
+    "stem": "Welche der folgenden Aussagen zur Kombinatorik ist FALSCH?",
+    "options": [
+      "Die Anzahl der Permutationen von n verschiedenen Objekten ist n!.",
+      "Die Anzahl der k-Tupel aus einer n-elementigen Menge mit Wiederholung ist n^k.",
+      "Die Anzahl der k-elementigen Teilmengen aus n Objekten ist C(n,k).",
+      "Es gilt C(n,k) = C(n, n−k) für alle 0 ≤ k ≤ n.",
+      "Die Anzahl geordneter Stichproben vom Umfang k ohne Wiederholung aus n Objekten ist n^k."
+    ],
+    "correct": 4,
+    "explanation": "Geordnet ohne Wiederholung führt auf die Variation n·(n−1)·…·(n−k+1) = n!/(n−k)!, NICHT n^k. n^k ist die Anzahl bei Auswahl MIT Wiederholung. Die übrigen Aussagen sind Standardresultate (Permutation, Variation mit Wiederholung, Kombination, Symmetrie des Binomialkoeffizienten).",
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-bedingt-001",
+    "type": "mc",
+    "skills": ["bedingt"],
+    "difficulty": 0.3,
+    "stem": "Eine Urne enthält 5 rote und 3 schwarze Kugeln. Es werden ohne Zurücklegen nacheinander zwei Kugeln gezogen. Wie groß ist die Wahrscheinlichkeit, dass die zweite Kugel rot ist, gegeben dass die erste Kugel rot war?",
+    "options": ["3/8", "4/8 = 1/2", "4/7 ≈ 0,571", "5/8 = 0,625", "5/7 ≈ 0,714"],
+    "correct": 2,
+    "explanation": "Nach Ziehen einer roten Kugel bleiben 4 rote und 3 schwarze, also 7 Kugeln. P(2. rot | 1. rot) = 4/7 ≈ 0,5714.",
+    "solutionSteps": [
+      "Vor 2. Ziehung: 4 rote, 3 schwarze, insgesamt 7",
+      "P(2. rot | 1. rot) = 4/7",
+      "≈ 0,5714"
+    ],
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-bedingt-002",
+    "type": "mc",
+    "skills": ["bedingt"],
+    "difficulty": 0.5,
+    "stem": "Seien A und B Ereignisse mit P(A) > 0 und P(B) > 0. Welche der folgenden Aussagen ist FALSCH?",
+    "options": [
+      "Es gilt P(A ∩ B) = P(A|B)·P(B).",
+      "Aus P(A ∩ B) = 0 folgt, dass A und B disjunkt sind.",
+      "Aus stochastischer Unabhängigkeit folgt P(A|B) = P(A).",
+      "Sind A und B disjunkt mit P(A), P(B) > 0, so können sie nicht unabhängig sein.",
+      "Aus P(A|B) = P(B|A) folgt stets P(A) = P(B)."
+    ],
+    "correct": 4,
+    "explanation": "P(A|B) = P(B|A) führt über die Bayes-Formel auf P(A∩B)/P(B) = P(A∩B)/P(A). Daraus folgt P(A) = P(B) NUR wenn P(A∩B) > 0. Bei P(A∩B) = 0 gilt die Gleichheit P(A|B)=P(B|A)=0 trivial, ohne dass P(A) = P(B) sein muss. Die übrigen Aussagen sind richtig: Multiplikationssatz, Definition disjunkt, Definition unabhängig, und disjunkte Ereignisse mit positiver W-keit erfüllen 0 = P(A∩B) ≠ P(A)·P(B) > 0.",
+    "source": "Cramer/Kamps Klausurtraining A.II.8 (adaptiert)"
+  },
+  {
+    "id": "q-bedingt-003",
+    "type": "numeric",
+    "skills": ["bedingt"],
+    "difficulty": 0.45,
+    "stem": "Ein fairer Würfel wird zweimal hintereinander geworfen. Wie groß ist die Wahrscheinlichkeit, dass die Augensumme 8 beträgt, gegeben dass der erste Wurf eine 5 zeigt?",
+    "correct": { "value": 0.1667, "tolerance": 0.005 },
+    "explanation": "Bei erstem Wurf 5 muss der zweite Wurf eine 3 sein, damit die Summe 8 wird. P(2. Wurf = 3 | 1. Wurf = 5) = 1/6 ≈ 0,1667 (die Würfe sind unabhängig).",
+    "solutionSteps": [
+      "Bedingung: 1. Wurf = 5",
+      "Damit Summe = 8: 2. Wurf = 3",
+      "P(2. = 3 | 1. = 5) = P(2. = 3) = 1/6 ≈ 0,1667"
+    ],
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-bayes-001",
+    "type": "numeric",
+    "skills": ["bayes", "bedingt"],
+    "difficulty": 0.5,
+    "stem": "Ein medizinischer Test erkennt Krankheit X mit Sensitivität 90% und einer Falsch-Positiv-Rate von 5%. In der Bevölkerung sind 2% tatsächlich krank. Eine zufällig getestete Person erhält ein positives Testergebnis. Wie wahrscheinlich ist sie tatsächlich krank?",
+    "correct": { "value": 0.269, "tolerance": 0.01 },
+    "explanation": "Nach Bayes: P(K|+) = P(+|K)·P(K) / [P(+|K)·P(K) + P(+|¬K)·P(¬K)] = (0,90·0,02) / (0,90·0,02 + 0,05·0,98) = 0,018 / (0,018 + 0,049) = 0,018 / 0,067 ≈ 0,269.",
+    "solutionSteps": [
+      "Prior: P(K) = 0,02; P(¬K) = 0,98",
+      "Sensitivität: P(+|K) = 0,90; FPR: P(+|¬K) = 0,05",
+      "Zähler: 0,90·0,02 = 0,018",
+      "Nenner: 0,018 + 0,05·0,98 = 0,018 + 0,049 = 0,067",
+      "P(K|+) ≈ 0,2687"
+    ],
+    "viz": { "component": "BayesUpdater", "props": { "prior": 0.02, "sensitivity": 0.9, "fpr": 0.05 } },
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-bayes-002",
+    "type": "mc",
+    "skills": ["bayes"],
+    "difficulty": 0.55,
+    "stem": "Ein Spam-Filter erkennt Spam-Mails mit 98% Wahrscheinlichkeit (Sensitivität). Allerdings markiert er 3% der echten Mails fälschlich als Spam. Im Posteingang sind 40% aller Mails tatsächlich Spam. Eine Mail wird als Spam markiert. Wie groß ist die Wahrscheinlichkeit, dass es sich wirklich um Spam handelt?",
+    "options": ["≈ 0,42", "≈ 0,75", "≈ 0,87", "≈ 0,96", "≈ 0,98"],
+    "correct": 3,
+    "explanation": "P(S|+) = (0,98·0,40) / (0,98·0,40 + 0,03·0,60) = 0,392 / (0,392 + 0,018) = 0,392 / 0,410 ≈ 0,956.",
+    "solutionSteps": [
+      "P(S)=0,40; P(¬S)=0,60",
+      "P(+|S)=0,98; P(+|¬S)=0,03",
+      "Zähler: 0,98·0,40 = 0,392",
+      "Nenner: 0,392 + 0,03·0,60 = 0,392 + 0,018 = 0,410",
+      "P(S|+) ≈ 0,956"
+    ],
+    "viz": { "component": "BayesUpdater", "props": { "prior": 0.4, "sensitivity": 0.98, "fpr": 0.03 } },
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-bayes-003",
+    "type": "numeric",
+    "skills": ["bayes"],
+    "difficulty": 0.5,
+    "stem": "Ein Hersteller produziert Regenschirme an drei Standorten S1, S2, S3 mit Anteilen 50%, 20%, 30% der Gesamtproduktion. Die Defektraten sind 0,8% (S1), 5% (S2) und 2% (S3). Ein zufällig gezogener Schirm ist defekt — mit welcher Wahrscheinlichkeit stammt er aus S2?",
+    "correct": { "value": 0.5, "tolerance": 0.01 },
+    "explanation": "Satz von der totalen Wahrscheinlichkeit: P(D) = 0,5·0,008 + 0,2·0,05 + 0,3·0,02 = 0,004 + 0,010 + 0,006 = 0,020. Nach Bayes: P(S2|D) = (P(S2)·P(D|S2))/P(D) = 0,010/0,020 = 0,500.",
+    "solutionSteps": [
+      "P(D) = Σ P(Si)·P(D|Si)",
+      "= 0,5·0,008 + 0,2·0,05 + 0,3·0,02 = 0,020",
+      "P(S2|D) = (0,2·0,05)/0,020 = 0,010/0,020 = 0,5"
+    ],
+    "viz": { "component": "BayesUpdater", "props": { "prior": 0.2, "sensitivity": 0.05, "fpr": 0.015 } },
+    "source": "Cramer/Kamps Klausurtraining A.II.12 (adaptiert)"
+  },
+  {
+    "id": "q-zv-diskret-001",
+    "type": "numeric",
+    "skills": ["zv-diskret", "erwartungswert-varianz"],
+    "difficulty": 0.4,
+    "stem": "Eine diskrete Zufallsvariable X hat die Zähldichte p(−1) = 1/5, p(0) = 1/5, p(1) = 1/2, p(2) = 1/10. Bestimme den Erwartungswert E(X).",
+    "correct": { "value": 0.5, "tolerance": 0.01 },
+    "explanation": "E(X) = Σ x·p(x) = (−1)·(1/5) + 0·(1/5) + 1·(1/2) + 2·(1/10) = −0,2 + 0 + 0,5 + 0,2 = 0,5.",
+    "solutionSteps": [
+      "Probe: Σ p(x) = 1/5+1/5+1/2+1/10 = 2/10+2/10+5/10+1/10 = 10/10 = 1 ✓",
+      "E(X) = −1·0,2 + 0·0,2 + 1·0,5 + 2·0,1",
+      "= −0,2 + 0,5 + 0,2 = 0,5"
+    ],
+    "source": "Cramer/Kamps Klausurtraining A.II.27 (adaptiert)"
+  },
+  {
+    "id": "q-zv-diskret-002",
+    "type": "mc",
+    "skills": ["zv-diskret"],
+    "difficulty": 0.45,
+    "stem": "Sei X eine diskrete Zufallsvariable mit Verteilungsfunktion F. Welche Aussage ist FALSCH?",
+    "options": [
+      "F ist monoton wachsend.",
+      "Es gilt lim_{x→−∞} F(x) = 0 und lim_{x→+∞} F(x) = 1.",
+      "F ist rechtsseitig stetig.",
+      "Für a < b gilt P(a < X ≤ b) = F(b) − F(a).",
+      "F ist stets stetig auf ganz ℝ."
+    ],
+    "correct": 4,
+    "explanation": "Die Verteilungsfunktion einer DISKRETEN Zufallsvariablen ist eine Treppenfunktion mit Sprungstellen an den Trägerpunkten — sie ist also NICHT stetig. Sie ist aber rechtsseitig stetig, monoton wachsend und besitzt die genannten Grenzwerte. Die Identität P(a<X≤b) = F(b)−F(a) gilt allgemein.",
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-zv-diskret-003",
+    "type": "multi-mc",
+    "skills": ["zv-diskret", "erwartungswert-varianz"],
+    "difficulty": 0.55,
+    "stem": "Seien X und Y stochastisch unabhängige Zufallsvariablen mit P(X=1)=P(X=2)=P(X=3)=1/3 und P(Y=0)=1/4, P(Y=1)=3/4. Sei Z = X·Y. Welche Aussagen sind korrekt?",
+    "options": [
+      "Es gilt P(Z = 0) = 1/4.",
+      "E(Z) = E(X)·E(Y) = 1,5.",
+      "Der Träger von Z ist {0, 1, 2, 3}.",
+      "Z ist eine diskrete Zufallsvariable.",
+      "Es gilt P(Z ≥ 2) = 1/2."
+    ],
+    "correct": [0, 1, 2, 3, 4],
+    "explanation": "(1) Z=0 ⇔ Y=0, also P(Z=0) = P(Y=0) = 1/4. (2) Bei Unabhängigkeit: E(Z) = E(X)·E(Y) = 2 · 0,75 = 1,5. (3) Y=0 → Z=0; Y=1 → Z=X ∈ {1,2,3}. Träger = {0,1,2,3}. (4) Endlicher Träger → diskret. (5) P(Z≥2) = P(Y=1)·P(X≥2) = (3/4)·(2/3) = 1/2 ✓.",
+    "source": "Cramer/Kamps Klausurtraining A.II.24 (adaptiert)"
+  },
+  {
+    "id": "q-zv-stetig-001",
+    "type": "mc",
+    "skills": ["zv-stetig"],
+    "difficulty": 0.45,
+    "stem": "Eine stetige Zufallsvariable X habe die Dichte f(x) = c·x für 0 ≤ x ≤ 2 und f(x) = 0 sonst. Welchen Wert muss die Konstante c haben?",
+    "options": ["c = 1/4", "c = 1/2", "c = 1", "c = 2", "c = 4"],
+    "correct": 1,
+    "explanation": "Normierungsbedingung: ∫_0^2 c·x dx = c·[x²/2]_0^2 = c·2 = 1. Also c = 1/2.",
+    "solutionSteps": [
+      "∫ f(x) dx muss = 1 sein",
+      "∫_0^2 c·x dx = c · 2²/2 = 2c",
+      "2c = 1 ⇒ c = 0,5"
+    ],
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-zv-stetig-002",
+    "type": "numeric",
+    "skills": ["zv-stetig", "erwartungswert-varianz"],
+    "difficulty": 0.75,
+    "stem": "X habe die Dichte f(x) = (2/3)·x für 0 ≤ x ≤ 1 und f(x) = (3−x)/3 für 1 < x ≤ 3 (sonst 0). Bestimme E(X).",
+    "correct": { "value": 1.3333, "tolerance": 0.02 },
+    "explanation": "E(X) = ∫_0^1 x·(2x/3) dx + ∫_1^3 x·(3−x)/3 dx = (2/3)·[x³/3]_0^1 + (1/3)·[3x²/2 − x³/3]_1^3 = 2/9 + (1/3)·[(27/2 − 9) − (3/2 − 1/3)] = 2/9 + (1/3)·[9/2 − 7/6] = 2/9 + (1/3)·(20/6) = 2/9 + 10/9 = 12/9 = 4/3 ≈ 1,333.",
+    "solutionSteps": [
+      "E(X) = ∫_0^1 x·(2x/3) dx + ∫_1^3 x·(3−x)/3 dx",
+      "Teil 1: (2/3)·[x³/3]_0^1 = 2/9",
+      "Teil 2: (1/3)·[3x²/2 − x³/3]_1^3 = (1/3)·((13,5 − 9) − (1,5 − 1/3)) = (1/3)·(20/6) = 10/9",
+      "Summe: 2/9 + 10/9 = 12/9 = 4/3 ≈ 1,333"
+    ],
+    "source": "Cramer/Kamps Klausurtraining A.II.17 (adaptiert)"
+  },
+  {
+    "id": "q-erwartungswert-varianz-001",
+    "type": "numeric",
+    "skills": ["erwartungswert-varianz", "zv-diskret"],
+    "difficulty": 0.4,
+    "stem": "Sei X eine diskrete Zufallsvariable mit P(X=0)=0,2, P(X=1)=0,5, P(X=2)=0,3. Bestimme die Varianz Var(X).",
+    "correct": { "value": 0.49, "tolerance": 0.01 },
+    "explanation": "E(X) = 0·0,2 + 1·0,5 + 2·0,3 = 1,1. E(X²) = 0·0,2 + 1·0,5 + 4·0,3 = 1,7. Var(X) = E(X²) − (E(X))² = 1,7 − 1,21 = 0,49.",
+    "solutionSteps": [
+      "E(X) = 0,5 + 0,6 = 1,1",
+      "E(X²) = 0,5 + 1,2 = 1,7",
+      "Var(X) = E(X²) − E(X)² = 1,7 − 1,21 = 0,49"
+    ],
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-erwartungswert-varianz-002",
+    "type": "mc",
+    "skills": ["erwartungswert-varianz"],
+    "difficulty": 0.5,
+    "stem": "Seien X, Y Zufallsvariablen und a, b ∈ ℝ. Welche der folgenden Aussagen ist FALSCH?",
+    "options": [
+      "E(aX + b) = a·E(X) + b.",
+      "Var(aX + b) = a²·Var(X).",
+      "E(X + Y) = E(X) + E(Y), auch wenn X und Y abhängig sind.",
+      "Var(X + Y) = Var(X) + Var(Y), auch wenn X und Y abhängig sind.",
+      "Sind X und Y unabhängig, gilt E(X·Y) = E(X)·E(Y)."
+    ],
+    "correct": 3,
+    "explanation": "Var(X+Y) = Var(X) + Var(Y) + 2·Cov(X,Y). Die einfache Additivität gilt NUR bei Unkorreliertheit (insbesondere bei Unabhängigkeit). Linearität des Erwartungswertes (Option 3) gilt dagegen IMMER, ebenso die übrigen Rechenregeln.",
+    "source": "Eigene Aufgabe, klassische Varianz-Falle"
+  },
+  {
+    "id": "q-erwartungswert-varianz-003",
+    "type": "numeric",
+    "skills": ["erwartungswert-varianz", "zv-diskret"],
+    "difficulty": 0.55,
+    "stem": "Zwei faire Würfel werden geworfen. Bestimme den Erwartungswert der Augensumme S = X1 + X2.",
+    "correct": { "value": 7, "tolerance": 0.01 },
+    "explanation": "Für einen einzelnen fairen Würfel gilt E(Xi) = (1+2+3+4+5+6)/6 = 21/6 = 3,5. Wegen der Linearität des Erwartungswertes: E(S) = E(X1) + E(X2) = 3,5 + 3,5 = 7.",
+    "solutionSteps": [
+      "E(Xi) = (1+…+6)/6 = 3,5",
+      "Linearität: E(S) = E(X1) + E(X2)",
+      "= 3,5 + 3,5 = 7"
+    ],
+    "source": "Cramer/Kamps Klausurtraining A.II.14 (adaptiert)"
+  },
+  {
+    "id": "q-binomial-poisson-001",
+    "type": "mc",
+    "skills": ["binomial-poisson"],
+    "difficulty": 0.35,
+    "stem": "Eine faire Münze wird 8-mal geworfen. Wie groß ist die Wahrscheinlichkeit, genau 3-mal Kopf zu erhalten?",
+    "options": ["≈ 0,094", "≈ 0,125", "≈ 0,219", "≈ 0,273", "≈ 0,375"],
+    "correct": 2,
+    "explanation": "X ~ Bin(8; 0,5). P(X=3) = C(8,3)·0,5³·0,5⁵ = 56·(1/256) = 56/256 ≈ 0,2188.",
+    "solutionSteps": [
+      "X ~ Bin(n=8, p=0,5)",
+      "P(X=3) = C(8,3) · p³ · (1−p)⁵",
+      "= 56 · 0,5⁸ = 56/256 ≈ 0,2188"
+    ],
+    "viz": { "component": "BinomialPMF", "props": { "n": 8, "p": 0.5, "highlight": 3 } },
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-binomial-poisson-002",
+    "type": "numeric",
+    "skills": ["binomial-poisson"],
+    "difficulty": 0.5,
+    "stem": "In einer Lieferung sind 90% der Notebooks defekt. Eine Stichprobe von 4 Notebooks wird gezogen. Wie groß ist die Wahrscheinlichkeit, dass genau 3 davon intakt sind? (Modellierung: Y = Anzahl intakter Notebooks ~ Bin(4; 0,1))",
+    "correct": { "value": 0.0036, "tolerance": 0.0005 },
+    "explanation": "Y ~ Bin(4; 0,1). P(Y=3) = C(4,3)·0,1³·0,9¹ = 4·0,001·0,9 = 0,0036.",
+    "solutionSteps": [
+      "Y = Anzahl intakter Notebooks ~ Bin(4; 0,1)",
+      "P(Y=3) = C(4,3)·0,1³·0,9¹",
+      "= 4·0,001·0,9 = 0,0036"
+    ],
+    "viz": { "component": "BinomialPMF", "props": { "n": 4, "p": 0.1, "highlight": 3 } },
+    "source": "Cramer/Kamps Klausurtraining A.II.13 (adaptiert)"
+  },
+  {
+    "id": "q-binomial-poisson-003",
+    "type": "numeric",
+    "skills": ["binomial-poisson"],
+    "difficulty": 0.55,
+    "stem": "In einem Callcenter gehen durchschnittlich 4 Anrufe pro Minute ein (Poisson-Modell). Wie groß ist die Wahrscheinlichkeit, dass in einer bestimmten Minute genau 2 Anrufe eingehen?",
+    "correct": { "value": 0.1465, "tolerance": 0.005 },
+    "explanation": "X ~ Poi(λ=4). P(X=2) = e^(−4)·4²/2! = e^(−4)·8 = 0,01832·8 ≈ 0,1465.",
+    "solutionSteps": [
+      "X ~ Poi(λ=4)",
+      "P(X=k) = e^(−λ)·λ^k/k!",
+      "P(X=2) = e^(−4)·16/2 = 8·e^(−4) ≈ 8·0,01832 ≈ 0,1465"
+    ],
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-binomial-poisson-004",
+    "type": "mc",
+    "skills": ["binomial-poisson"],
+    "difficulty": 0.5,
+    "stem": "Sei X ~ Bin(n,p). Welche Aussage ist FALSCH?",
+    "options": [
+      "E(X) = n·p.",
+      "Var(X) = n·p·(1−p).",
+      "Für große n und kleine p mit λ = n·p moderat lässt sich Bin(n,p) durch Poi(λ) approximieren.",
+      "Die Summe unabhängiger Bin(n1,p) und Bin(n2,p) ist wieder Bin(n1+n2,p).",
+      "Es gilt Var(X) = E(X), unabhängig vom Wert von p."
+    ],
+    "correct": 4,
+    "explanation": "Var(X) = n·p·(1−p), E(X) = n·p. Gleichheit gilt nur falls 1−p = 1, also p = 0 — Trivialfall. Bei der POISSON-Verteilung gilt allerdings E = Var = λ. Die übrigen Aussagen sind Standardresultate.",
+    "viz": { "component": "BinomialPMF", "props": { "n": 20, "p": 0.3 } },
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-normal-exp-001",
+    "type": "numeric",
+    "skills": ["normal-exp"],
+    "difficulty": 0.4,
+    "stem": "Die Zeit (in Minuten) zwischen zwei E-Mails sei exponentialverteilt mit Erwartungswert 10. Wie groß ist die Wahrscheinlichkeit, dass mehr als 10 Minuten zwischen zwei E-Mails vergehen?",
+    "correct": { "value": 0.3679, "tolerance": 0.005 },
+    "explanation": "X ~ Exp(λ) mit E(X) = 1/λ = 10, also λ = 0,1. P(X > 10) = e^(−λ·10) = e^(−1) ≈ 0,3679.",
+    "solutionSteps": [
+      "λ = 1/E(X) = 1/10 = 0,1",
+      "P(X > t) = e^(−λt)",
+      "P(X > 10) = e^(−0,1·10) = e^(−1) ≈ 0,3679"
+    ],
+    "source": "Cramer/Kamps Klausurtraining A.II.15 (adaptiert)"
+  },
+  {
+    "id": "q-normal-exp-002",
+    "type": "numeric",
+    "skills": ["normal-exp"],
+    "difficulty": 0.5,
+    "stem": "Sei X ~ N(μ=100, σ²=25). Bestimme P(X ≤ 110). (Hinweis: Φ(2) ≈ 0,9772.)",
+    "correct": { "value": 0.9772, "tolerance": 0.005 },
+    "explanation": "Z-Standardisierung: P(X ≤ 110) = P((X−μ)/σ ≤ (110−100)/5) = Φ(2) ≈ 0,9772.",
+    "solutionSteps": [
+      "σ = √25 = 5",
+      "Z = (X − 100)/5",
+      "P(X ≤ 110) = Φ((110−100)/5) = Φ(2) ≈ 0,9772"
+    ],
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-normal-exp-003",
+    "type": "mc",
+    "skills": ["normal-exp"],
+    "difficulty": 0.5,
+    "stem": "Welche Aussage zur Exponentialverteilung Exp(λ) ist FALSCH?",
+    "options": [
+      "Der Erwartungswert ist 1/λ.",
+      "Die Varianz ist 1/λ².",
+      "Die Verteilung besitzt die Gedächtnislosigkeitseigenschaft: P(X > s+t | X > s) = P(X > t).",
+      "Die Dichte ist f(x) = λ·e^(−λx) für x ≥ 0.",
+      "Die Summe zweier unabhängiger Exp(λ)-Zufallsvariablen ist wieder Exp(λ)-verteilt."
+    ],
+    "correct": 4,
+    "explanation": "Die Summe X+Y zweier unabhängiger Exp(λ)-Variablen ist Gamma(2,λ)-verteilt, NICHT Exp(λ). Die anderen Aussagen sind Standardeigenschaften der Exponentialverteilung; insbesondere die Gedächtnislosigkeit ist charakteristisch.",
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-clt-001",
+    "type": "mc",
+    "skills": ["clt"],
+    "difficulty": 0.55,
+    "stem": "Welche Aussage zum Zentralen Grenzwertsatz ist FALSCH?",
+    "options": [
+      "Für unabhängige, identisch verteilte X1,…,Xn mit endlicher Varianz konvergiert (X̄n − μ)·√n/σ in Verteilung gegen N(0,1).",
+      "Der CLT setzt voraus, dass die Xi normalverteilt sind.",
+      "Bei großem n ist X̄n näherungsweise N(μ, σ²/n)-verteilt.",
+      "Die Standardabweichung des Mittelwertes ist σ/√n.",
+      "Der CLT bildet die Grundlage für approximative Konfidenzintervalle und Tests."
+    ],
+    "correct": 1,
+    "explanation": "Der CLT setzt gerade NICHT Normalverteilung der Einzel-Variablen voraus — endliche Varianz und Unabhängigkeit (i.i.d.) reichen aus. Genau das ist seine Stärke. Die übrigen Aussagen sind korrekt: standardisierte Form, Verteilung des Mittels, Standardfehler und Anwendung in der schließenden Statistik.",
+    "viz": { "component": "CLTDemo", "props": { "distribution": "exponential", "n": 30 } },
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-clt-002",
+    "type": "numeric",
+    "skills": ["clt"],
+    "difficulty": 0.7,
+    "stem": "Sei X̄ das Stichprobenmittel aus n = 100 unabhängigen Beobachtungen mit μ = 50 und σ = 10. Bestimme näherungsweise P(X̄ > 52) mittels CLT. (Φ(2) ≈ 0,9772.)",
+    "correct": { "value": 0.0228, "tolerance": 0.005 },
+    "explanation": "Nach CLT: X̄ ≈ N(μ, σ²/n) = N(50, 1). Z = (52 − 50)/1 = 2. P(X̄ > 52) ≈ 1 − Φ(2) ≈ 1 − 0,9772 = 0,0228.",
+    "solutionSteps": [
+      "Standardfehler: σ/√n = 10/10 = 1",
+      "Z = (52 − 50)/1 = 2",
+      "P(X̄ > 52) ≈ 1 − Φ(2) = 1 − 0,9772 = 0,0228"
+    ],
+    "viz": { "component": "CLTDemo", "props": { "distribution": "uniform", "n": 100 } },
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-markov-001",
+    "type": "mc",
+    "skills": ["markov"],
+    "difficulty": 0.5,
+    "stem": "Welche Aussage zu Markov-Ketten in diskreter Zeit ist FALSCH?",
+    "options": [
+      "Die Markov-Eigenschaft besagt: P(X_{n+1} = j | X_n = i, X_{n−1}, …, X_0) = P(X_{n+1} = j | X_n = i).",
+      "Die Übergangsmatrix P ist stochastisch: alle Zeilensummen sind 1.",
+      "Eine stationäre Verteilung π erfüllt π·P = π.",
+      "Jede endliche, irreduzible und aperiodische Markov-Kette besitzt eine eindeutige stationäre Verteilung.",
+      "Die Spaltensummen einer Übergangsmatrix sind stets gleich 1."
+    ],
+    "correct": 4,
+    "explanation": "Eine zeilen-stochastische Matrix hat ZEILEN-Summen = 1 (jede Zeile beschreibt die Übergangs-Verteilung von einem Zustand aus). Die SPALTEN-Summen sind im Allgemeinen NICHT 1 — dies wäre nur für doppelt-stochastische Matrizen der Fall. Die übrigen Aussagen sind Standardresultate (Markov-Eigenschaft, stochastische Matrix, Definition stationäre Verteilung, Ergodensatz).",
+    "viz": { "component": "MarkovChain", "props": { "states": ["A", "B", "C"], "transitions": [[0.5, 0.3, 0.2], [0.2, 0.6, 0.2], [0.3, 0.3, 0.4]] } },
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-markov-002",
+    "type": "numeric",
+    "skills": ["markov"],
+    "difficulty": 0.7,
+    "stem": "Eine Markov-Kette auf {S, R} (Sonne, Regen) habe die Übergangsmatrix P = [[0,8; 0,2],[0,4; 0,6]] (Zeile i = aktueller Zustand). Bestimme den Anteil π_S der stationären Verteilung für 'Sonne'.",
+    "correct": { "value": 0.6667, "tolerance": 0.01 },
+    "explanation": "Stationäre Verteilung: π·P = π mit π_S + π_R = 1. Gleichungen: π_S = 0,8·π_S + 0,4·π_R und π_R = 0,2·π_S + 0,6·π_R. Aus der ersten: 0,2·π_S = 0,4·π_R, also π_S = 2·π_R. Mit π_S + π_R = 1 folgt 3·π_R = 1, π_R = 1/3, π_S = 2/3 ≈ 0,6667.",
+    "solutionSteps": [
+      "π·P = π und π_S + π_R = 1",
+      "π_S = 0,8·π_S + 0,4·π_R ⇒ 0,2·π_S = 0,4·π_R ⇒ π_S = 2·π_R",
+      "2·π_R + π_R = 1 ⇒ π_R = 1/3",
+      "π_S = 2/3 ≈ 0,6667"
+    ],
+    "viz": { "component": "MarkovChain", "props": { "states": ["Sonne", "Regen"], "transitions": [[0.8, 0.2], [0.4, 0.6]] } },
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-markov-003",
+    "type": "numeric",
+    "skills": ["markov"],
+    "difficulty": 0.5,
+    "stem": "Eine Markov-Kette starte im Zustand A mit Übergangsmatrix P = [[0,5; 0,5],[0,3; 0,7]] (Zustände A, B; Zeile = aktueller Zustand). Wie groß ist P(X_2 = B | X_0 = A)?",
+    "correct": { "value": 0.6, "tolerance": 0.01 },
+    "explanation": "P(X_2 = B | X_0 = A) ist Eintrag (A,B) von P². Schritt 1 von A: P(X_1=A)=0,5, P(X_1=B)=0,5. Schritt 2: P(X_2=B|X_0=A) = 0,5·0,5 + 0,5·0,7 = 0,25 + 0,35 = 0,60.",
+    "solutionSteps": [
+      "Pfadweise: P(A→A→B) + P(A→B→B)",
+      "= 0,5·0,5 + 0,5·0,7",
+      "= 0,25 + 0,35 = 0,60"
+    ],
+    "viz": { "component": "MarkovChain", "props": { "states": ["A", "B"], "transitions": [[0.5, 0.5], [0.3, 0.7]] } },
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-normal-exp-004",
+    "type": "multi-mc",
+    "skills": ["normal-exp"],
+    "difficulty": 0.55,
+    "stem": "Sei Z ~ N(0,1) die Standardnormalverteilung mit Verteilungsfunktion Φ. Welche Aussagen sind korrekt?",
+    "options": [
+      "Die Dichte φ(z) ist symmetrisch um 0, also φ(−z) = φ(z).",
+      "Es gilt Φ(−z) = 1 − Φ(z) für alle z ∈ ℝ.",
+      "Es gilt P(|Z| ≤ 1) ≈ 0,683.",
+      "Es gilt P(|Z| ≤ 2) ≈ 0,954.",
+      "Bei X ~ N(μ, σ²) gilt P(X ≤ x) = Φ((x − μ)·σ)."
+    ],
+    "correct": [0, 1, 2, 3],
+    "explanation": "(1)-(4) sind die klassischen Eigenschaften der Standardnormalverteilung: Symmetrie der Dichte, Symmetrie der Verteilungsfunktion und die 68-95-99,7-Regel. (5) ist falsch: korrekt ist P(X ≤ x) = Φ((x − μ)/σ), also Division durch σ, nicht Multiplikation.",
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-bayes-004",
+    "type": "multi-mc",
+    "skills": ["bayes", "bedingt"],
+    "difficulty": 0.6,
+    "stem": "Seien A1, A2, A3 eine Zerlegung des Ergebnisraums Ω (paarweise disjunkt mit Σ P(Ai) = 1, jeweils P(Ai) > 0) und B ein Ereignis mit P(B) > 0. Welche Aussagen sind korrekt?",
+    "options": [
+      "Es gilt P(B) = Σ_i P(B|Ai)·P(Ai) (Satz der totalen Wahrscheinlichkeit).",
+      "Es gilt P(Ai|B) = P(B|Ai)·P(Ai) / P(B) (Satz von Bayes).",
+      "Σ_i P(Ai|B) = 1.",
+      "Aus P(B|A1) > P(B|A2) folgt stets P(A1|B) > P(A2|B).",
+      "Bei P(A1) = P(A2) = P(A3) und P(B|A1) > P(B|A2) gilt P(A1|B) > P(A2|B)."
+    ],
+    "correct": [0, 1, 2, 4],
+    "explanation": "(1)-(3) sind Standardresultate. (4) ist falsch: P(A1|B) ist proportional zu P(B|A1)·P(A1) — wenn z. B. P(A1) sehr klein ist, kann P(A2|B) trotz kleinerer Likelihood größer sein. (5) ist korrekt: bei gleichen Priors entscheidet die Likelihood — P(A1|B)/P(A2|B) = P(B|A1)/P(B|A2) > 1.",
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-clt-003",
+    "type": "multi-mc",
+    "skills": ["clt"],
+    "difficulty": 0.6,
+    "stem": "Seien X1, …, Xn unabhängige, identisch verteilte Zufallsvariablen mit E(Xi) = μ und Var(Xi) = σ² < ∞. Welche Aussagen sind korrekt?",
+    "options": [
+      "Der Erwartungswert des Stichprobenmittels X̄n ist μ.",
+      "Die Varianz von X̄n ist σ²/n.",
+      "Die Standardabweichung von X̄n ist σ/√n.",
+      "Nach dem CLT konvergiert √n·(X̄n − μ)/σ in Verteilung gegen N(0,1).",
+      "Der CLT gilt nur, wenn die Xi normalverteilt sind."
+    ],
+    "correct": [0, 1, 2, 3],
+    "explanation": "(1)-(4) sind direkt aus dem CLT bzw. den Rechenregeln für E und Var. (5) ist falsch — die Stärke des CLT ist gerade, dass keine Normalverteilung der Einzelvariablen vorausgesetzt wird; endliche Varianz und Unabhängigkeit reichen.",
+    "viz": { "component": "CLTDemo", "props": { "distribution": "bernoulli", "n": 50 } },
+    "source": "Eigene Aufgabe"
+  }
+]

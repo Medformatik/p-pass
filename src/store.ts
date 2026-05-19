@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { SKILLS, DEFAULT_BKT_PARAMS, type SkillId } from "@/engine/skills";
 import { bktUpdateMulti } from "@/engine/bkt";
-import { computeDiagnosticPriors, type DiagnosticResponse } from "@/engine/diagnose";
+import { computeEntryTestPriors, type EntryTestResponse } from "@/engine/entryTest";
 
 const HISTORY_CAP = 1000;
 const STORAGE_KEY = "ppass:v1:state";
@@ -20,7 +20,7 @@ export type StoreState = {
   history: HistoryEntry[];
   streak: { current: number; longest: number; lastDate: string };
   preferences: { darkMode: boolean; soundEnabled: boolean };
-  diagnosticCompleted: boolean;
+  entryTestCompleted: boolean;
 };
 
 export type StoreActions = {
@@ -30,7 +30,7 @@ export type StoreActions = {
   toggleSound: () => void;
   exportState: () => string;
   importState: (json: string) => void;
-  applyDiagnostic: (responses: DiagnosticResponse[]) => void;
+  applyEntryTest: (responses: EntryTestResponse[]) => void;
 };
 
 function initialSkills(): Record<SkillId, number> {
@@ -44,7 +44,7 @@ const initialState: StoreState = {
   history: [],
   streak: { current: 0, longest: 0, lastDate: "" },
   preferences: { darkMode: true, soundEnabled: false },
-  diagnosticCompleted: false,
+  entryTestCompleted: false,
 };
 
 function loadPersisted(): StoreState {
@@ -179,10 +179,10 @@ export const useStore = create<StoreState & StoreActions>((set, get) => ({
       return next;
     });
   },
-  applyDiagnostic(responses) {
-    const priors = computeDiagnosticPriors(responses);
+  applyEntryTest(responses) {
+    const priors = computeEntryTestPriors(responses);
     set((state) => {
-      const next = { ...state, skills: priors, diagnosticCompleted: true };
+      const next = { ...state, skills: priors, entryTestCompleted: true };
       persist(next);
       return next;
     });

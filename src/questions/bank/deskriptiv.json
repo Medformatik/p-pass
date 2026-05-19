@@ -1,0 +1,369 @@
+[
+  {
+    "id": "q-lagemasse-001",
+    "type": "numeric",
+    "skills": ["lagemasse"],
+    "difficulty": 0.15,
+    "stem": "Gegeben sei der Datensatz 4, 1, 9, 3, 7, 2, 6. Bestimme den Median.",
+    "correct": { "value": 4, "tolerance": 0.001 },
+    "explanation": "Sortiert: 1, 2, 3, 4, 6, 7, 9. Bei n=7 (ungerade) ist der Median der Wert an Position (n+1)/2 = 4, also x_(4) = 4.",
+    "solutionSteps": [
+      "Werte sortieren: 1, 2, 3, 4, 6, 7, 9",
+      "Stichprobenumfang n=7 ist ungerade",
+      "Median = x_((n+1)/2) = x_(4) = 4"
+    ],
+    "viz": { "component": "Boxplot", "props": { "data": [4, 1, 9, 3, 7, 2, 6] } },
+    "source": "Cramer/Kamps Klausurtraining A.I.7 (adaptiert)"
+  },
+  {
+    "id": "q-lagemasse-002",
+    "type": "numeric",
+    "skills": ["lagemasse"],
+    "difficulty": 0.2,
+    "stem": "Gegeben sei der Datensatz 2, 5, 8, 3, 6, 10. Bestimme den Median.",
+    "correct": { "value": 5.5, "tolerance": 0.01 },
+    "explanation": "Sortiert: 2, 3, 5, 6, 8, 10. Bei n=6 (gerade) ist der Median das arithmetische Mittel der beiden mittleren Werte: (x_(3) + x_(4))/2 = (5+6)/2 = 5,5.",
+    "solutionSteps": [
+      "Sortieren: 2, 3, 5, 6, 8, 10",
+      "n=6 ist gerade, Median = (x_(n/2) + x_(n/2+1))/2",
+      "= (x_(3) + x_(4))/2 = (5+6)/2 = 5,5"
+    ],
+    "viz": { "component": "Boxplot", "props": { "data": [2, 5, 8, 3, 6, 10] } },
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-lagemasse-003",
+    "type": "mc",
+    "skills": ["lagemasse"],
+    "difficulty": 0.4,
+    "stem": "Gegeben seien die Messwerte 3, 4, 4, 6, 8, 9, 12. Welche der folgenden Aussagen ist FALSCH?",
+    "options": [
+      "Das arithmetische Mittel beträgt etwa 6,57.",
+      "Der Median ist 6.",
+      "Der Modus ist 4.",
+      "Bei linearer Transformation y_i = 2·x_i + 3 gilt für das Mittel ȳ = 16,14.",
+      "Das arithmetische Mittel ist robust gegenüber Ausreißern."
+    ],
+    "correct": 4,
+    "explanation": "Das arithmetische Mittel ist gerade NICHT robust gegenüber Ausreißern — schon ein einzelner extremer Wert kann es stark verschieben. Der Median ist robust. Die anderen Aussagen stimmen: Mittel = 46/7 ≈ 6,57; sortiert ist der mittlere Wert 6; Wert 4 tritt zweimal auf; bei linearer Transformation gilt ȳ = 2·x̄ + 3 = 2·6,571 + 3 ≈ 16,14.",
+    "viz": { "component": "Boxplot", "props": { "data": [3, 4, 4, 6, 8, 9, 12] } },
+    "source": "Cramer/Kamps Klausurtraining A.I.4/A.I.5 (adaptiert)"
+  },
+  {
+    "id": "q-lagemasse-004",
+    "type": "multi-mc",
+    "skills": ["lagemasse"],
+    "difficulty": 0.5,
+    "stem": "Für einen Datensatz mit n=8 Werten sei das arithmetische Mittel x̄ = 10 und der Median x̃ = 8. Welche Aussagen sind korrekt?",
+    "options": [
+      "Die Summe aller Werte beträgt 80.",
+      "Die Daten sind vermutlich rechtsschief (x̄ > x̃).",
+      "Wendet man die Transformation y_i = 3·x_i − 4 an, so ergibt sich ȳ = 26.",
+      "Der Median der transformierten Daten ist ỹ = 20.",
+      "Der Median ist stets gleich dem arithmetischen Mittel."
+    ],
+    "correct": [0, 1, 2, 3],
+    "explanation": "(1) Σx_i = n·x̄ = 8·10 = 80. (2) x̄ > x̃ deutet auf Rechtsschiefe hin (lange rechte Verteilungsschwanz zieht den Mittelwert nach oben). (3) Bei linearer Transformation y = a·x + b gilt ȳ = a·x̄ + b = 3·10 − 4 = 26. (4) Der Median ist linear-equivariant: ỹ = 3·8 − 4 = 20. (5) ist falsch — Median und Mittel sind nur bei symmetrischen Verteilungen gleich.",
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-streuung-001",
+    "type": "numeric",
+    "skills": ["streuung"],
+    "difficulty": 0.3,
+    "stem": "Bestimme die empirische Varianz s²_x (mit Vorfaktor 1/n) der Werte 2, 4, 4, 6, 4.",
+    "correct": { "value": 1.6, "tolerance": 0.02 },
+    "explanation": "Mittel x̄ = (2+4+4+6+4)/5 = 20/5 = 4. Quadrierte Abweichungen: (−2)² + 0² + 0² + 2² + 0² = 4+0+0+4+0 = 8. Damit s²_x = 8/5 = 1,6.",
+    "solutionSteps": [
+      "Mittelwert: x̄ = 20/5 = 4",
+      "Σ(x_i − x̄)² = 4 + 0 + 0 + 4 + 0 = 8",
+      "s²_x = 8/5 = 1,6"
+    ],
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-streuung-002",
+    "type": "numeric",
+    "skills": ["streuung"],
+    "difficulty": 0.35,
+    "stem": "Für den Datensatz 1, 3, 5, 7, 9 berechne die empirische Standardabweichung s_x (Vorfaktor 1/n).",
+    "correct": { "value": 2.8284, "tolerance": 0.03 },
+    "explanation": "Mittel x̄ = 25/5 = 5. Abweichungen: −4, −2, 0, 2, 4. Quadrate: 16, 4, 0, 4, 16. Summe = 40. s²_x = 40/5 = 8, also s_x = √8 ≈ 2,828.",
+    "solutionSteps": [
+      "x̄ = 25/5 = 5",
+      "Σ(x_i − 5)² = 16+4+0+4+16 = 40",
+      "s² = 40/5 = 8",
+      "s = √8 ≈ 2,828"
+    ],
+    "viz": { "component": "Boxplot", "props": { "data": [1, 3, 5, 7, 9] } },
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-streuung-003",
+    "type": "mc",
+    "skills": ["streuung", "lagemasse"],
+    "difficulty": 0.5,
+    "stem": "Gegeben seien die Messwerte 5, 3, 3, 4, 5, 10, 5. Welche der folgenden Aussagen ist FALSCH?",
+    "options": [
+      "Das arithmetische Mittel hat den Wert 5.",
+      "Die Summe der Abweichungen vom Mittelwert Σ(x_i − x̄) ist 0.",
+      "Die mittlere absolute Abweichung vom Mittel ist größer als 1.",
+      "Die mittlere absolute Abweichung ist stets kleiner oder gleich der empirischen Standardabweichung.",
+      "Für die linear transformierten Daten y_i = 4·(x_i + 4) gilt ȳ = 24."
+    ],
+    "correct": 4,
+    "explanation": "Es gilt ȳ = 4·(x̄ + 4) = 4·(5+4) = 36, nicht 24. Die anderen Aussagen sind richtig: Mittel = 35/7 = 5, Σ(x_i − x̄) = 0 immer, MAD = (0+2+2+1+0+5+0)/7 ≈ 1,43 > 1, und nach Jensen gilt MAD ≤ s.",
+    "source": "Cramer/Kamps Klausurtraining A.I.5 (adaptiert)"
+  },
+  {
+    "id": "q-streuung-004",
+    "type": "mc",
+    "skills": ["streuung"],
+    "difficulty": 0.45,
+    "stem": "Sei s_x die empirische Standardabweichung der Daten x_1, …, x_n und seien y_i = a·x_i + b mit a, b ∈ ℝ. Welche Aussage ist FALSCH?",
+    "options": [
+      "Es gilt s_y = |a|·s_x.",
+      "Die empirische Varianz s²_y ist gleich a²·s²_x.",
+      "Eine Verschiebung um eine Konstante b ändert die Standardabweichung nicht.",
+      "Bei a = 0 ist s_y = 0.",
+      "Es gilt stets s_y = a·s_x, unabhängig vom Vorzeichen von a."
+    ],
+    "correct": 4,
+    "explanation": "Für a < 0 wäre a·s_x negativ, was als Standardabweichung unmöglich ist. Korrekt ist s_y = |a|·s_x. Die übrigen Aussagen sind richtig: s²_y = a²·s²_x folgt durch Quadrieren, Translation b ändert keine Streuungsmaße, und bei a=0 sind alle y_i = b konstant.",
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-quantile-boxplot-001",
+    "type": "numeric",
+    "skills": ["quantile-boxplot"],
+    "difficulty": 0.3,
+    "stem": "Gegeben sind die geordneten Werte 2, 4, 6, 8, 10, 12, 14, 16. Bestimme das untere Quartil (25%-Quantil) nach der Cramer/Kamps-Konvention: bei ganzzahligem n·p ist das p-Quantil 0,5·(x_(n·p) + x_(n·p+1)).",
+    "correct": { "value": 5, "tolerance": 0.02 },
+    "explanation": "n = 8, p = 0,25, n·p = 2 (ganzzahlig). Daher ist das untere Quartil 0,5·(x_(2) + x_(3)) = (4 + 6)/2 = 5.",
+    "solutionSteps": [
+      "n = 8, p = 0,25 → n·p = 2 (ganzzahlig)",
+      "Konvention: 0,5·(x_(n·p) + x_(n·p+1)) = 0,5·(x_(2) + x_(3))",
+      "= 0,5·(4 + 6) = 5"
+    ],
+    "viz": { "component": "Boxplot", "props": { "data": [2, 4, 6, 8, 10, 12, 14, 16] } },
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-quantile-boxplot-002",
+    "type": "numeric",
+    "skills": ["quantile-boxplot"],
+    "difficulty": 0.4,
+    "stem": "Für einen Datensatz ist das untere Quartil 12 und das obere Quartil 28. Bestimme den Quartilsabstand (IQR).",
+    "correct": { "value": 16, "tolerance": 0.01 },
+    "explanation": "Der Quartilsabstand ist definiert als IQR = Q_0,75 − Q_0,25 = 28 − 12 = 16.",
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-quantile-boxplot-003",
+    "type": "multi-mc",
+    "skills": ["quantile-boxplot"],
+    "difficulty": 0.5,
+    "stem": "Aus einem Boxplot eines Datensatzes liest man ab: Minimum 5, unteres Quartil 11, Median 14, oberes Quartil 18, Maximum 30. Welche Aussagen sind korrekt?",
+    "options": [
+      "Der Quartilsabstand (IQR) beträgt 7.",
+      "Mindestens 50 % der Daten liegen zwischen 11 und 18.",
+      "Der Datensatz ist (nach den Quartilen) leicht rechtsschief, weil Q_3 − Median > Median − Q_1.",
+      "Der Wert 30 ist nach der 1,5·IQR-Regel ein milder Ausreißer.",
+      "Die Spannweite beträgt 25."
+    ],
+    "correct": [0, 1, 2, 3, 4],
+    "explanation": "(1) IQR = 18 − 11 = 7. (2) Die Box umfasst die mittleren 50 %. (3) Q_3 − Med = 4 > Med − Q_1 = 3 → rechtsschief. (4) Obere Schranke: Q_3 + 1,5·IQR = 18 + 10,5 = 28,5; 30 > 28,5, also Ausreißer. (5) Spannweite = 30 − 5 = 25.",
+    "viz": { "component": "Boxplot", "props": { "data": [5, 11, 11, 12, 13, 14, 15, 16, 17, 18, 18, 30] } },
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-quantile-boxplot-004",
+    "type": "mc",
+    "skills": ["quantile-boxplot"],
+    "difficulty": 0.45,
+    "stem": "Welche der folgenden Aussagen über Boxplots ist FALSCH?",
+    "options": [
+      "Die Box wird vom unteren und oberen Quartil begrenzt.",
+      "Der Strich innerhalb der Box markiert den Median.",
+      "Die Whisker reichen üblicherweise höchstens 1,5·IQR über Q_3 bzw. unter Q_1.",
+      "Punkte außerhalb der Whisker werden als Ausreißer dargestellt.",
+      "Aus einem Boxplot lässt sich direkt das arithmetische Mittel ablesen."
+    ],
+    "correct": 4,
+    "explanation": "Das arithmetische Mittel ist im klassischen Boxplot NICHT eingezeichnet. Nur Quartile, Median, Whisker und Ausreißer sind sichtbar — alles robuste oder rang-basierte Größen. Ein Mittelwert müsste zusätzlich markiert werden (z. B. als Kreuz).",
+    "viz": { "component": "Boxplot", "props": { "data": [3, 5, 7, 8, 9, 10, 11, 13, 15, 25] } },
+    "source": "Cramer/Kamps Klausurtraining A.I.11 (adaptiert)"
+  },
+  {
+    "id": "q-korrelation-001",
+    "type": "mc",
+    "skills": ["korrelation"],
+    "difficulty": 0.4,
+    "stem": "Welche Aussage über den Bravais-Pearson-Korrelationskoeffizienten r_xy ist FALSCH?",
+    "options": [
+      "Es gilt stets −1 ≤ r_xy ≤ 1.",
+      "r_xy = 1 bedeutet einen exakten linearen Zusammenhang mit positiver Steigung.",
+      "r_xy ist invariant gegenüber linearer Transformation mit positiven Skalierungsfaktoren.",
+      "r_xy = 0 impliziert Unabhängigkeit der Merkmale X und Y.",
+      "r_xy misst die Stärke und Richtung eines linearen Zusammenhangs."
+    ],
+    "correct": 3,
+    "explanation": "r_xy = 0 bedeutet lediglich, dass KEIN linearer Zusammenhang besteht. Es kann durchaus ein starker nichtlinearer Zusammenhang vorliegen (z. B. Y = X² mit X gleichmäßig um 0 verteilt → r ≈ 0, obwohl Y vollständig durch X bestimmt ist). Unabhängigkeit ist eine viel stärkere Eigenschaft.",
+    "viz": { "component": "Regression", "props": { "points": [[-2, 4], [-1, 1], [0, 0], [1, 1], [2, 4]] } },
+    "source": "Eigene Aufgabe, klassische Korrelations-Falle"
+  },
+  {
+    "id": "q-korrelation-002",
+    "type": "numeric",
+    "skills": ["korrelation"],
+    "difficulty": 0.55,
+    "stem": "Für die Datenpaare (1,2), (2,4), (3,6), (4,8) ist der Bravais-Pearson-Korrelationskoeffizient r_xy zu berechnen.",
+    "correct": { "value": 1, "tolerance": 0.01 },
+    "explanation": "Die Punkte liegen exakt auf der Geraden y = 2x. Bei einem perfekten linearen Zusammenhang mit positiver Steigung gilt r_xy = 1.",
+    "solutionSteps": [
+      "x̄ = 2,5; ȳ = 5",
+      "Σ(x − x̄)(y − ȳ) = (−1,5)(−3) + (−0,5)(−1) + (0,5)(1) + (1,5)(3) = 4,5+0,5+0,5+4,5 = 10",
+      "Σ(x − x̄)² = 5; Σ(y − ȳ)² = 20",
+      "r = 10/√(5·20) = 10/10 = 1"
+    ],
+    "viz": { "component": "Regression", "props": { "points": [[1, 2], [2, 4], [3, 6], [4, 8]] } },
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-korrelation-003",
+    "type": "multi-mc",
+    "skills": ["korrelation"],
+    "difficulty": 0.55,
+    "stem": "Welche der folgenden Aussagen zur Korrelation sind korrekt?",
+    "options": [
+      "Der Spearman-Rangkorrelationskoeffizient verwendet die Ränge anstelle der Originalwerte.",
+      "Spearmans ρ erkennt jeden monotonen Zusammenhang, auch nichtlineare.",
+      "Bei strikt monoton wachsendem Zusammenhang gilt Spearmans ρ = 1.",
+      "Pearsons r ist gegen Ausreißer empfindlicher als Spearmans ρ.",
+      "Aus r_xy > 0 folgt, dass X die Ursache von Y ist."
+    ],
+    "correct": [0, 1, 2, 3],
+    "explanation": "(1)-(3): Spearman ist Pearson auf den Rängen → erkennt monotone Zusammenhänge; bei strikt monoton wachsendem Zusammenhang sind beide Rangreihen identisch → ρ = 1. (4): Pearson nutzt die tatsächlichen Werte und ist daher empfindlicher gegen Ausreißer. (5): Korrelation impliziert keine Kausalität — eine positive Korrelation sagt nichts über die Ursachenrichtung.",
+    "viz": { "component": "Regression", "props": { "points": [[1, 1], [2, 4], [3, 9], [4, 16], [5, 25], [6, 36]] } },
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-regression-deskr-001",
+    "type": "numeric",
+    "skills": ["regression-deskr"],
+    "difficulty": 0.5,
+    "stem": "Gegeben sei der bivariate Datensatz (x_i, y_i) mit (1, 4), (3, 0), (2, 2). Bestimme die Steigung b̂ der Ausgleichsgeraden ŷ = â + b̂·x nach der Methode der kleinsten Quadrate.",
+    "correct": { "value": -2, "tolerance": 0.02 },
+    "explanation": "x̄ = 2, ȳ = 2. S_xy = Σ(x_i − x̄)(y_i − ȳ) = (−1)·2 + 1·(−2) + 0·0 = −4. S_xx = Σ(x_i − x̄)² = 1 + 1 + 0 = 2. b̂ = S_xy / S_xx = −4/2 = −2.",
+    "solutionSteps": [
+      "x̄ = (1+3+2)/3 = 2; ȳ = (4+0+2)/3 = 2",
+      "S_xy = (1−2)(4−2) + (3−2)(0−2) + (2−2)(2−2) = −2 − 2 + 0 = −4",
+      "S_xx = (−1)² + 1² + 0² = 2",
+      "b̂ = S_xy/S_xx = −2"
+    ],
+    "viz": { "component": "Regression", "props": { "points": [[1, 4], [3, 0], [2, 2]] } },
+    "source": "Cramer/Kamps Klausurtraining A.I.35 (adaptiert)"
+  },
+  {
+    "id": "q-regression-deskr-002",
+    "type": "numeric",
+    "skills": ["regression-deskr"],
+    "difficulty": 0.6,
+    "stem": "Eine Ausgleichsgerade ergibt eine Reststreuung Σ(y_i − ŷ_i)² = 12 bei einer Gesamtstreuung Σ(y_i − ȳ)² = 60. Bestimme das Bestimmtheitsmaß R².",
+    "correct": { "value": 0.8, "tolerance": 0.01 },
+    "explanation": "Das Bestimmtheitsmaß ist R² = 1 − SS_res/SS_tot = 1 − 12/60 = 1 − 0,2 = 0,8. Das bedeutet: 80 % der Varianz von y werden durch das lineare Modell erklärt.",
+    "solutionSteps": [
+      "SS_res = 12, SS_tot = 60",
+      "R² = 1 − SS_res/SS_tot = 1 − 12/60",
+      "R² = 1 − 0,2 = 0,8"
+    ],
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-regression-deskr-003",
+    "type": "mc",
+    "skills": ["regression-deskr"],
+    "difficulty": 0.5,
+    "stem": "Welche der folgenden Aussagen zur linearen Einfachregression nach kleinsten Quadraten ist FALSCH?",
+    "options": [
+      "Die Ausgleichsgerade verläuft stets durch den Punkt (x̄, ȳ).",
+      "Die Summe der Residuen Σ(y_i − ŷ_i) ist gleich 0.",
+      "Das Bestimmtheitsmaß R² liegt im Intervall [0, 1].",
+      "Bei R² = 1 liegen alle Datenpunkte exakt auf der Regressionsgeraden.",
+      "Bei R² = 0 ist die Steigung b̂ stets verschieden von 0."
+    ],
+    "correct": 4,
+    "explanation": "R² = 0 entsteht genau dann, wenn die Regression keinerlei Varianz erklärt — und das ist äquivalent zu b̂ = 0 (eine waagerechte Regressionsgerade y = ȳ). Die übrigen Aussagen sind Standardresultate der KQ-Methode.",
+    "viz": { "component": "Regression", "props": { "points": [[1, 2.1], [2, 3.9], [3, 6.0], [4, 7.8], [5, 10.2]] } },
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-regression-deskr-004",
+    "type": "numeric",
+    "skills": ["regression-deskr"],
+    "difficulty": 0.55,
+    "stem": "Mit â = 1 und b̂ = 2,5 lautet die Ausgleichsgerade ŷ = 1 + 2,5·x. Welchen y-Wert prognostiziert die Gerade für x = 6?",
+    "correct": { "value": 16, "tolerance": 0.16 },
+    "explanation": "Einfaches Einsetzen: ŷ(6) = 1 + 2,5·6 = 1 + 15 = 16.",
+    "viz": { "component": "Regression", "props": { "points": [[1, 3.5], [2, 6], [3, 8.5], [4, 11], [5, 13.5]] } },
+    "source": "Cramer/Kamps Klausurtraining A.I.36 (adaptiert)"
+  },
+  {
+    "id": "q-lorenz-gini-001",
+    "type": "numeric",
+    "skills": ["lorenz-gini"],
+    "difficulty": 0.55,
+    "stem": "Fünf Unternehmen erwirtschaften Umsätze von 10, 20, 40, 50, 80 Mio. €. Berechne den (unnormierten) Gini-Koeffizienten G.",
+    "correct": { "value": 0.34, "tolerance": 0.01 },
+    "explanation": "Sortiert: 10, 20, 40, 50, 80; Summe S = 200. Kumulierte Anteile y_k = Σ_{i≤k} x_(i)/S: 0,05; 0,15; 0,35; 0,60; 1,00. Mit der Formel G = (2·Σ i·x_(i))/(n·S) − (n+1)/n: Σ i·x_(i) = 1·10 + 2·20 + 3·40 + 4·50 + 5·80 = 770. Also G = (2·770)/(5·200) − 6/5 = 1,54 − 1,2 = 0,34. (Trapezfläche A unter Lorenz-Kurve = 0,33, daher G = 1 − 2·0,33 = 0,34.)",
+    "viz": { "component": "LorenzGini", "props": { "values": [10, 20, 40, 50, 80] } },
+    "source": "Cramer/Kamps Klausurtraining A.I.26 (adaptiert)"
+  },
+  {
+    "id": "q-lorenz-gini-002",
+    "type": "mc",
+    "skills": ["lorenz-gini"],
+    "difficulty": 0.45,
+    "stem": "Welche der folgenden Aussagen zur Lorenz-Kurve und zum Gini-Koeffizienten ist FALSCH?",
+    "options": [
+      "Die Lorenz-Kurve verbindet die Punkte (0,0) und (1,1).",
+      "Bei vollständiger Gleichverteilung ist die Lorenz-Kurve die Diagonale.",
+      "Der Gini-Koeffizient ist das Doppelte der Fläche zwischen Diagonale und Lorenz-Kurve.",
+      "Der unnormierte Gini-Koeffizient nimmt Werte in [0, 1] an.",
+      "Bei maximaler Ungleichheit (ein Akteur hat alles) erreicht der unnormierte Gini den Wert 1."
+    ],
+    "correct": 4,
+    "explanation": "Der UNNORMIERTE Gini-Koeffizient kann den Wert 1 nicht erreichen — er ist nach oben durch (n−1)/n begrenzt. Erst der NORMIERTE Gini G* = n/(n−1)·G erreicht bei maximaler Konzentration den Wert 1. Die übrigen Aussagen sind korrekt.",
+    "viz": { "component": "LorenzGini", "props": { "values": [0, 0, 0, 0, 100] } },
+    "source": "Cramer/Kamps Klausurtraining A.I.27 (adaptiert)"
+  },
+  {
+    "id": "q-lorenz-gini-003",
+    "type": "numeric",
+    "skills": ["lorenz-gini"],
+    "difficulty": 0.35,
+    "stem": "Ein Markt besteht aus 4 gleich großen Anbietern, die jeweils den gleichen Umsatz erzielen. Wie groß ist der Gini-Koeffizient G?",
+    "correct": { "value": 0, "tolerance": 0.001 },
+    "explanation": "Bei vollständiger Gleichverteilung fällt die Lorenz-Kurve mit der Diagonalen zusammen. Die Fläche zwischen ihnen ist 0, und damit ist G = 0. Das ist der Minimalwert.",
+    "viz": { "component": "LorenzGini", "props": { "values": [25, 25, 25, 25] } },
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-lorenz-gini-004",
+    "type": "multi-mc",
+    "skills": ["lorenz-gini"],
+    "difficulty": 0.55,
+    "stem": "Für die Beobachtungen 4, 8, 12, 16 (sortiert) gilt: Welche Aussagen sind korrekt?",
+    "options": [
+      "Die Lorenz-Kurve verläuft durch den Punkt (0,25; 0,1).",
+      "Die Lorenz-Kurve verläuft durch (0,5; 0,3).",
+      "Die Lorenz-Kurve verläuft durch (0,75; 0,6).",
+      "Der Gini-Koeffizient ist gleich 0.",
+      "Der normierte Gini ist stets größer oder gleich dem unnormierten Gini."
+    ],
+    "correct": [0, 1, 2, 4],
+    "explanation": "Summe = 40. Kumulierte Anteile (sortiert 4,8,12,16): nach 1 von 4: 4/40 = 0,1 → Punkt (0,25; 0,1) ✓. Nach 2: 12/40 = 0,3 → (0,5; 0,3) ✓. Nach 3: 24/40 = 0,6 → (0,75; 0,6) ✓. Da die Werte nicht alle gleich sind, ist G > 0 → (4) falsch. (5) ist richtig wegen G* = n/(n−1)·G ≥ G.",
+    "viz": { "component": "LorenzGini", "props": { "values": [4, 8, 12, 16] } },
+    "source": "Eigene Aufgabe"
+  }
+]

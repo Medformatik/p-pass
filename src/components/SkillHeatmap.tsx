@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useStore } from "@/store";
 import { SKILLS, type SkillBlock, type Skill } from "@/engine/skills";
 
@@ -32,15 +33,16 @@ export function SkillHeatmap() {
             {grouped[block].map((s) => {
               const pL = skills[s.id] ?? 0;
               return (
-                <div
-                  key={s.id}
-                  data-skill={s.id}
-                  className="rounded-md border border-border p-3 transition-colors"
-                  style={{ background: heatColor(pL), color: "var(--heat-ink)" }}
-                >
-                  <div className="text-sm font-medium">{s.label}</div>
-                  <div className="text-xs font-mono mt-1">{(pL * 100).toFixed(0)}%</div>
-                </div>
+                <Link key={s.id} to={`/dive/${s.id}`} className="block">
+                  <div
+                    data-skill={s.id}
+                    className="rounded-md border border-border p-3 transition-colors hover:opacity-90 cursor-pointer"
+                    style={{ background: heatColor(pL), color: "var(--heat-ink)" }}
+                  >
+                    <div className="text-sm font-medium">{s.label}</div>
+                    <div className="text-xs font-mono mt-1">{(pL * 100).toFixed(0)}%</div>
+                  </div>
+                </Link>
               );
             })}
           </div>

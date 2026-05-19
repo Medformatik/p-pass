@@ -1,16 +1,16 @@
 import { describe, it, expect } from "vitest";
-import { computeDiagnosticPriors } from "./diagnose";
+import { computeEntryTestPriors } from "./entryTest";
 import { SKILLS } from "./skills";
 
-describe("computeDiagnosticPriors", () => {
-  it("returns defaults (pL0) for skills not in diagnostic results", () => {
-    const priors = computeDiagnosticPriors([]);
+describe("computeEntryTestPriors", () => {
+  it("returns defaults (pL0) for skills not in entry test results", () => {
+    const priors = computeEntryTestPriors([]);
     expect(priors.bayes).toBeCloseTo(0.2, 5);
     expect(priors.clt).toBeCloseTo(0.2, 5);
   });
 
   it("raises pL for a skill where all answers were correct", () => {
-    const priors = computeDiagnosticPriors([
+    const priors = computeEntryTestPriors([
       { skill: "bayes", correct: true },
       { skill: "bayes", correct: true },
     ]);
@@ -18,7 +18,7 @@ describe("computeDiagnosticPriors", () => {
   });
 
   it("lowers pL for a skill where all answers were wrong", () => {
-    const priors = computeDiagnosticPriors([
+    const priors = computeEntryTestPriors([
       { skill: "bayes", correct: false },
       { skill: "bayes", correct: false },
     ]);
@@ -26,7 +26,7 @@ describe("computeDiagnosticPriors", () => {
   });
 
   it("uses proportion correct for mixed results", () => {
-    const priors = computeDiagnosticPriors([
+    const priors = computeEntryTestPriors([
       { skill: "clt", correct: true },
       { skill: "clt", correct: false },
     ]);
@@ -34,7 +34,7 @@ describe("computeDiagnosticPriors", () => {
   });
 
   it("includes all 20 skills in result", () => {
-    const priors = computeDiagnosticPriors([]);
+    const priors = computeEntryTestPriors([]);
     for (const s of SKILLS) {
       expect(priors[s.id]).toBeDefined();
     }

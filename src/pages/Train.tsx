@@ -10,7 +10,7 @@ export function Train() {
   const skills = useStore((s) => s.skills);
   const history = useStore((s) => s.history);
   const recordAnswer = useStore((s) => s.recordAnswer);
-  const diagnosticCompleted = useStore((s) => s.diagnosticCompleted);
+  const entryTestCompleted = useStore((s) => s.entryTestCompleted);
   const bank = useMemo(() => allQuestions(), []);
   const recentIds = useMemo(() => history.slice(-20).map((h) => h.qid), [history]);
 
@@ -40,8 +40,8 @@ export function Train() {
     setCurrentId(next?.id ?? null);
   }
 
-  if (!diagnosticCompleted && history.length === 0) {
-    return <Navigate to="/diagnose" replace />;
+  if (!entryTestCompleted && history.length === 0) {
+    return <Navigate to="/entry-test" replace />;
   }
 
   if (!current) {

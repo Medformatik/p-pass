@@ -27,6 +27,9 @@ export function Layout() {
           <NavLink to="/train" active={location.pathname.startsWith("/train")}>
             Trainieren
           </NavLink>
+          <NavLink to="/mock" active={location.pathname.startsWith("/mock")}>
+            Mock-Klausur
+          </NavLink>
           <NavLink to="/dashboard" active={location.pathname.startsWith("/dashboard")}>
             Dashboard
           </NavLink>

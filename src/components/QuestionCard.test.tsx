@@ -44,3 +44,70 @@ describe("QuestionCard", () => {
     expect(screen.getByText("Trivial.")).toBeInTheDocument();
   });
 });
+
+const numericQ: Question = {
+  id: "qn",
+  type: "numeric",
+  skills: ["binomial-poisson"],
+  difficulty: 0.4,
+  stem: "Was ist 1+1?",
+  correct: { value: 2, tolerance: 0.01 },
+  explanation: "Trivial.",
+};
+
+describe("QuestionCard numeric", () => {
+  it("accepts numeric answer within tolerance", () => {
+    const onAnswered = vi.fn();
+    render(<QuestionCard question={numericQ} onAnswered={onAnswered} />);
+    const input = screen.getByPlaceholderText(/antwort eingeben/i) as HTMLInputElement;
+    fireEvent.change(input, { target: { value: "2.005" } });
+    fireEvent.click(screen.getByText(/prüfen/i));
+    expect(onAnswered).toHaveBeenCalledWith(true);
+  });
+
+  it("rejects numeric answer outside tolerance", () => {
+    const onAnswered = vi.fn();
+    render(<QuestionCard question={numericQ} onAnswered={onAnswered} />);
+    const input = screen.getByPlaceholderText(/antwort eingeben/i) as HTMLInputElement;
+    fireEvent.change(input, { target: { value: "3" } });
+    fireEvent.click(screen.getByText(/prüfen/i));
+    expect(onAnswered).toHaveBeenCalledWith(false);
+  });
+});
+
+const multiQ: Question = {
+  id: "qm",
+  type: "multi-mc",
+  skills: ["bayes"],
+  difficulty: 0.5,
+  stem: "Welche sind richtig?",
+  options: ["A", "B", "C", "D"],
+  correct: [0, 2],
+  explanation: "A und C.",
+};
+
+describe("QuestionCard multi-mc", () => {
+  it("renders all options as checkboxes", () => {
+    const { container } = render(<QuestionCard question={multiQ} onAnswered={() => {}} />);
+    const boxes = container.querySelectorAll('input[type="checkbox"]');
+    expect(boxes.length).toBe(4);
+  });
+
+  it("returns correct=true for exact set match", () => {
+    const onAnswered = vi.fn();
+    render(<QuestionCard question={multiQ} onAnswered={onAnswered} />);
+    // Find labels by text content and click them
+    fireEvent.click(screen.getByText("A").closest("label")!);
+    fireEvent.click(screen.getByText("C").closest("label")!);
+    fireEvent.click(screen.getByText(/prüfen/i));
+    expect(onAnswered).toHaveBeenCalledWith(true);
+  });
+
+  it("returns correct=false for incomplete selection", () => {
+    const onAnswered = vi.fn();
+    render(<QuestionCard question={multiQ} onAnswered={onAnswered} />);
+    fireEvent.click(screen.getByText("A").closest("label")!);
+    fireEvent.click(screen.getByText(/prüfen/i));
+    expect(onAnswered).toHaveBeenCalledWith(false);
+  });
+});

@@ -1,0 +1,310 @@
+[
+  {
+    "id": "q-schaetzer-ml-001",
+    "type": "mc",
+    "skills": ["schaetzer-ml"],
+    "difficulty": 0.45,
+    "stem": "Seien X₁,…,Xₙ stochastisch unabhängig und identisch N(μ,σ²)-verteilt mit unbekanntem μ ∈ ℝ und bekanntem σ² > 0. Welche der folgenden Schätzer für μ ist NICHT erwartungstreu?",
+    "options": [
+      "T₁ = X̄ = (1/n)·Σ Xᵢ",
+      "T₂ = (1/3)·(X₁ + X₂ + X₃) bei n ≥ 3",
+      "T₃ = (X₁ + X_n)/2",
+      "T₄ = (1/(n+1))·Σ Xᵢ",
+      "T₅ = X₁"
+    ],
+    "correct": 3,
+    "explanation": "Erwartungstreu bedeutet E(T) = μ. Für T₄ gilt E(T₄) = (1/(n+1))·n·μ = n/(n+1)·μ ≠ μ, also nicht erwartungstreu. Alle anderen liefern E(Tᵢ) = μ (geeignete Mittel von iid N(μ,σ²)-Zufallsvariablen). Hinweis: Trotz Bias kann T₄ einen kleineren MSE haben — Erwartungstreue allein ist kein Qualitätskriterium.",
+    "solutionSteps": [
+      "E(Xᵢ) = μ für alle i",
+      "E(T₄) = (1/(n+1))·Σ E(Xᵢ) = n·μ/(n+1)",
+      "n/(n+1) ≠ 1, also E(T₄) ≠ μ"
+    ],
+    "source": "Cramer/Kamps Klausurtraining A.III.24 (adaptiert)"
+  },
+  {
+    "id": "q-schaetzer-ml-002",
+    "type": "numeric",
+    "skills": ["schaetzer-ml"],
+    "difficulty": 0.55,
+    "stem": "Seien X₁, X₂ stochastisch unabhängig und identisch N(μ,1)-verteilt. Betrachte den Schätzer μ̂ = (1/3)·(X₁ + 2·X₂). Berechne den mittleren quadratischen Fehler MSE(μ̂) = E((μ̂ − μ)²).",
+    "correct": { "value": 0.5556, "tolerance": 0.01 },
+    "explanation": "E(μ̂) = (1/3)·(μ + 2μ) = μ, also erwartungstreu, und damit MSE = Var(μ̂). Var(μ̂) = (1/9)·(Var(X₁) + 4·Var(X₂)) = (1/9)·(1 + 4) = 5/9 ≈ 0,5556. Vergleich: der Standardschätzer (X₁+X₂)/2 hätte Var = 1/2 = 0,5 < 5/9 und wäre also besser.",
+    "solutionSteps": [
+      "E(μ̂) = (1/3)·(E(X₁) + 2·E(X₂)) = (1/3)·(μ + 2μ) = μ",
+      "Erwartungstreu ⇒ MSE = Var(μ̂)",
+      "Var(μ̂) = (1/9)·(Var(X₁) + 4·Var(X₂)) = (1+4)/9 = 5/9 ≈ 0,556"
+    ],
+    "source": "Cramer/Kamps Klausurtraining A.III.2 (adaptiert)"
+  },
+  {
+    "id": "q-schaetzer-ml-003",
+    "type": "numeric",
+    "skills": ["schaetzer-ml"],
+    "difficulty": 0.5,
+    "stem": "In 52 Wochen wurden an einer Unfallstelle folgende wöchentliche Unfallzahlen erfasst: 22 Wochen mit 0 Unfällen, 12 mit 1, 10 mit 2, 6 mit 3, 2 mit 4. Modell: Xᵢ ~ Poisson(λ) iid. Berechne den Maximum-Likelihood-Schätzwert λ̂ = x̄.",
+    "correct": { "value": 1.115, "tolerance": 0.01 },
+    "explanation": "Für Poisson(λ) ist der ML-Schätzer der Stichprobenmittelwert x̄. Gesamtzahl = 0·22 + 1·12 + 2·10 + 3·6 + 4·2 = 0 + 12 + 20 + 18 + 8 = 58. λ̂ = 58/52 ≈ 1,1154.",
+    "solutionSteps": [
+      "ML-Schätzer für Poisson(λ): λ̂_ML = X̄",
+      "Σ xᵢ = 0·22 + 1·12 + 2·10 + 3·6 + 4·2 = 58",
+      "λ̂ = 58/52 ≈ 1,115"
+    ],
+    "viz": { "component": "BinomialPMF", "props": { "n": 10, "p": 0.11 } },
+    "source": "Cramer/Kamps Klausurtraining A.III.1 (adaptiert)"
+  },
+  {
+    "id": "q-schaetzer-ml-004",
+    "type": "multi-mc",
+    "skills": ["schaetzer-ml"],
+    "difficulty": 0.6,
+    "stem": "Seien X₁,…,Xₙ iid mit X₁ ~ Exp(λ), λ>0. Welche Aussagen über den Schätzer λ̂ = 1/X̄ sind RICHTIG?",
+    "options": [
+      "λ̂ ist der Maximum-Likelihood-Schätzer für λ.",
+      "λ̂ ist erwartungstreu für λ.",
+      "λ̂ ist konsistent für λ (n → ∞).",
+      "Die log-Likelihood lautet ℓ(λ) = n·ln(λ) − λ·Σ Xᵢ.",
+      "Der ML-Schätzer für E(X₁) = 1/λ ist X̄."
+    ],
+    "correct": [0, 2, 3, 4],
+    "explanation": "Richtig: (A) ML aus dl/dλ = n/λ − Σxᵢ = 0 ⇒ λ̂ = 1/x̄. (C) Nach SGGZ und Stetigkeitssatz konvergiert 1/X̄ → λ. (D) log L = Σ(ln λ − λxᵢ) = n·ln λ − λ·Σxᵢ. (E) Invarianzprinzip: ML-Schätzer transformieren sich mit der Funktion. FALSCH: (B) E(1/X̄) ≠ λ im Allgemeinen; tatsächlich ist E(1/X̄) = n·λ/(n−1) für n>1, also positiv verzerrt.",
+    "source": "Cramer/Kamps Klausurtraining A.III.14/A.III.23 (adaptiert)"
+  },
+  {
+    "id": "q-konfidenz-001",
+    "type": "numeric",
+    "skills": ["konfidenz"],
+    "difficulty": 0.4,
+    "stem": "An n=10 Tetra Paks Limonade wird die Füllmenge gemessen; x̄ = 203 ml. Die Varianz σ² = 9/4 ml² ist aus einer Voruntersuchung bekannt; die Werte sind N(μ,σ²)-verteilt. Berechne die obere Grenze des symmetrischen 95%-Konfidenzintervalls für μ.",
+    "correct": { "value": 203.93, "tolerance": 0.03 },
+    "explanation": "Bei bekanntem σ ist das KI = x̄ ± z_{0.975}·σ/√n. Mit σ = 1,5 ml und n=10 folgt σ/√n = 1,5/√10 ≈ 0,4743. Halbe Breite = 1,96·0,4743 ≈ 0,9296. Obere Grenze = 203 + 0,9296 ≈ 203,93.",
+    "solutionSteps": [
+      "σ = √(9/4) = 1,5; n = 10",
+      "Standardfehler = σ/√n = 1,5/3,1623 ≈ 0,4743",
+      "z_{0.975} = 1,96",
+      "Obere Grenze = 203 + 1,96·0,4743 ≈ 203,93"
+    ],
+    "viz": { "component": "ConfidenceInterval", "props": { "mu": 203, "sigma": 1.5, "n": 10 } },
+    "source": "Cramer/Kamps Klausurtraining A.III.21 (adaptiert)"
+  },
+  {
+    "id": "q-konfidenz-002",
+    "type": "numeric",
+    "skills": ["konfidenz"],
+    "difficulty": 0.55,
+    "stem": "Aus n=400 Befragten gaben 40 an, unzufrieden zu sein. Berechne die obere Grenze des approximativen symmetrischen 95%-Konfidenzintervalls für den Anteil p der Unzufriedenen.",
+    "correct": { "value": 0.129, "tolerance": 0.003 },
+    "explanation": "Approximatives KI: p̂ ± z_{0.975}·√(p̂(1−p̂)/n). Mit p̂ = 40/400 = 0,1 folgt Standardfehler = √(0,1·0,9/400) = √0,000225 = 0,015. Halbe Breite = 1,96·0,015 = 0,0294. Obere Grenze = 0,1 + 0,0294 ≈ 0,1294.",
+    "solutionSteps": [
+      "p̂ = 40/400 = 0,1",
+      "SE = √(0,1·0,9/400) = 0,015",
+      "Obere Grenze = 0,1 + 1,96·0,015 ≈ 0,129"
+    ],
+    "source": "Cramer/Kamps Klausurtraining A.III.33 (adaptiert)"
+  },
+  {
+    "id": "q-konfidenz-003",
+    "type": "numeric",
+    "skills": ["konfidenz"],
+    "difficulty": 0.65,
+    "stem": "Eine Stichprobe vom Umfang n=10 aus N(μ,σ²) ergibt die Stichprobenvarianz s² = 4. Bestimme die UNTERE Grenze des zweiseitigen 90%-Konfidenzintervalls für σ². (Verwende χ²_{0.95,9} = 16.919, χ²_{0.05,9} = 3.325.)",
+    "correct": { "value": 2.128, "tolerance": 0.02 },
+    "explanation": "KI für σ²: [(n−1)·s²/χ²_{1−α/2,n−1}, (n−1)·s²/χ²_{α/2,n−1}]. Mit n=10, s²=4 und α=0,10: untere Grenze = 9·4/16,919 = 36/16,919 ≈ 2,128. (Obere Grenze wäre 36/3,325 ≈ 10,83.)",
+    "solutionSteps": [
+      "(n−1)·s² = 9·4 = 36",
+      "Untere Grenze = (n−1)·s²/χ²_{1−α/2,n−1} = 36/16,919",
+      "≈ 2,128"
+    ],
+    "source": "Cramer/Kamps Klausurtraining A.III.17 (adaptiert)"
+  },
+  {
+    "id": "q-konfidenz-004",
+    "type": "mc",
+    "skills": ["konfidenz"],
+    "difficulty": 0.5,
+    "stem": "Seien X₁,…,Xₙ iid N(μ,1) und K_{α,n} das übliche zweiseitige (1−α)-Konfidenzintervall für μ. Welche der folgenden Aussagen ist FALSCH?",
+    "options": [
+      "Mit wachsendem n wird die Länge von K_{α,n} kleiner.",
+      "Mit wachsendem α (z. B. von 5% auf 10%) wird die Länge von K_{α,n} kleiner.",
+      "Die Länge von K_{α,n} hängt nicht von den konkreten Stichprobenrealisationen ab.",
+      "Bei festen n und α deckt das KI mit Wahrscheinlichkeit 1−α den Parameter μ.",
+      "Die Länge des KI ist proportional zur unbekannten Größe μ."
+    ],
+    "correct": 4,
+    "explanation": "Die Länge beträgt 2·z_{1−α/2}/√n und hängt damit weder von den Daten noch von μ ab — sie ist insbesondere NICHT proportional zu μ. Die übrigen Aussagen sind korrekt: größere n verkleinern das KI, größere α verkleinern z_{1−α/2}, die Überdeckungswahrscheinlichkeit ist 1−α.",
+    "source": "Cramer/Kamps Klausurtraining A.III.26 (adaptiert)"
+  },
+  {
+    "id": "q-konfidenz-005",
+    "type": "numeric",
+    "skills": ["konfidenz"],
+    "difficulty": 0.7,
+    "stem": "Bei bekannter Varianz σ² = 0,5 soll bei zukünftigen Erhebungen ein zweiseitiges 95%-Konfidenzintervall für μ höchstens die Breite 0,4 haben. Wie viele Beobachtungen werden mindestens benötigt? (Geben Sie die kleinste natürliche Zahl n an.)",
+    "correct": { "value": 49, "tolerance": 0.5 },
+    "explanation": "Breite = 2·z_{0.975}·σ/√n ≤ 0,4. Daraus folgt √n ≥ 2·1,96·√0,5/0,4 = 2·1,96·0,7071/0,4 = 6,9296. Also n ≥ 48,02. Kleinste natürliche Zahl: n = 49.",
+    "solutionSteps": [
+      "Bedingung: 2·z_{0.975}·σ/√n ≤ 0,4",
+      "√n ≥ 2·1,96·√0,5/0,4 ≈ 6,93",
+      "n ≥ 48,02 ⇒ n = 49"
+    ],
+    "viz": { "component": "ConfidenceInterval", "props": { "mu": 0, "sigma": 0.707, "n": 49 } },
+    "source": "Cramer/Kamps Klausurtraining A.III.17 (adaptiert)"
+  },
+  {
+    "id": "q-tests-001",
+    "type": "numeric",
+    "skills": ["tests"],
+    "difficulty": 0.55,
+    "stem": "Eine Mensa möchte überprüfen, ob der Kaloriengehalt der Mittagsmenüs unter dem Sollwert μ₀ = 1500 kcal liegt. Aus n=10 Messungen wurde x̄ = 1460 kcal berechnet, die Varianz σ² = 2410 kcal² ist bekannt. Berechne den Wert der Gauß-Teststatistik z = (x̄ − μ₀)/(σ/√n).",
+    "correct": { "value": -2.576, "tolerance": 0.02 },
+    "explanation": "σ = √2410 ≈ 49,092. Standardfehler = 49,092/√10 = 49,092/3,1623 ≈ 15,524. z = (1460 − 1500)/15,524 = −40/15,524 ≈ −2,576. Da −2,576 < −z_{0.95} = −1,645 wird H₀: μ ≥ 1500 zum Niveau 5% verworfen.",
+    "solutionSteps": [
+      "σ = √2410 ≈ 49,09",
+      "σ/√n ≈ 49,09/3,162 ≈ 15,52",
+      "z = (1460−1500)/15,52 ≈ −2,576"
+    ],
+    "viz": { "component": "HypothesisTest", "props": { "mu0": 1500, "mu1": 1460, "sigma": 15.52, "alpha": 0.05 } },
+    "source": "Cramer/Kamps Klausurtraining A.III.37 (adaptiert)"
+  },
+  {
+    "id": "q-tests-002",
+    "type": "numeric",
+    "skills": ["tests"],
+    "difficulty": 0.6,
+    "stem": "Restaurantbetreiber Helmut wiegt n=5 Burger und erhält x̄ = 504 g sowie eine Stichprobenvarianz s² = 7,5 g². Er möchte testen, ob das mittlere Gewicht über μ₀ = 500 g liegt (Modell: N(μ,σ²) mit unbekanntem σ²). Berechne die Teststatistik t = (x̄ − μ₀)/(s/√n).",
+    "correct": { "value": 3.266, "tolerance": 0.03 },
+    "explanation": "s = √7,5 ≈ 2,7386. s/√n = 2,7386/√5 = 2,7386/2,2361 ≈ 1,2247. t = (504 − 500)/1,2247 ≈ 3,266. Vergleich mit t_{0.95,4} = 2,132: H₀: μ ≤ 500 wird zum Niveau 5% verworfen.",
+    "solutionSteps": [
+      "s = √7,5 ≈ 2,739",
+      "s/√n = 2,739/√5 ≈ 1,225",
+      "t = (504−500)/1,225 ≈ 3,266"
+    ],
+    "source": "Cramer/Kamps Klausurtraining A.III.33 (adaptiert)"
+  },
+  {
+    "id": "q-tests-003",
+    "type": "mc",
+    "skills": ["tests"],
+    "difficulty": 0.55,
+    "stem": "Seien X₁,…,Xₙ iid N(μ,1) und der zweiseitige Gauß-Test betrachte H₀: μ = μ₀ gegen H₁: μ ≠ μ₀ zum Niveau α. Welche Aussage ist FALSCH?",
+    "options": [
+      "Wird H₀ zum Niveau 5% verworfen, dann auch zum Niveau 10%.",
+      "Wird H₀ zum Niveau 5% NICHT verworfen, dann auch nicht zum Niveau 1%.",
+      "Die Fehlerwahrscheinlichkeit 1. Art ist höchstens α.",
+      "Die Macht (Power) wächst mit dem Stichprobenumfang n.",
+      "Wird H₀ zum Niveau 5% verworfen, dann gilt mit Sicherheit μ ≠ μ₀."
+    ],
+    "correct": 4,
+    "explanation": "Die Ablehnung von H₀ liefert KEINE Sicherheit, dass μ ≠ μ₀ — es bleibt die Fehlerwahrscheinlichkeit 1. Art (bis zu α = 5%). Die übrigen Aussagen sind richtig: kleineres Niveau ⇒ kritischer Bereich kleiner (also Implikationen 1. und 2.), Niveau α heißt P(Fehler 1. Art) ≤ α, größere n erhöhen die Macht.",
+    "source": "Cramer/Kamps Klausurtraining A.III.28 (adaptiert)"
+  },
+  {
+    "id": "q-tests-004",
+    "type": "multi-mc",
+    "skills": ["tests"],
+    "difficulty": 0.65,
+    "stem": "Welche der folgenden Aussagen zu Fehlern 1. und 2. Art sowie Power sind RICHTIG?",
+    "options": [
+      "Senkt man α, so steigt typischerweise β (Fehler 2. Art).",
+      "Power eines Tests ist 1 − β.",
+      "α und β können bei festem n simultan beliebig klein gemacht werden.",
+      "Bei festem α steigt die Power mit wachsendem Stichprobenumfang n.",
+      "Wenn die Effektgröße |μ₁ − μ₀| zunimmt, sinkt die Power."
+    ],
+    "correct": [0, 1, 3],
+    "explanation": "Richtig: (A) Trade-off α ↔ β bei festem n. (B) Definition der Power. (D) Mehr Information ⇒ leichter Abweichungen aufzudecken. FALSCH: (C) α und β sind antagonistisch — bei festem n nicht gleichzeitig beliebig klein. (E) Größere Effektgröße erhöht die Power (Verteilungen weiter getrennt).",
+    "viz": { "component": "HypothesisTest", "props": { "mu0": 0, "mu1": 1.5, "sigma": 1, "alpha": 0.05 } },
+    "source": "Eigene Aufgabe, klassisches Lehrbuchwissen (vgl. Steland Kap. 3)"
+  },
+  {
+    "id": "q-tests-005",
+    "type": "numeric",
+    "skills": ["tests"],
+    "difficulty": 0.5,
+    "stem": "Aus einer Stichprobe n=1000 Stück werden 22 als defekt befundenen. Getestet werden soll H₀: p ≤ 0,02 gegen H₁: p > 0,02. Berechne die approximative Teststatistik z = (p̂ − p₀)/√(p₀(1−p₀)/n).",
+    "correct": { "value": 0.452, "tolerance": 0.02 },
+    "explanation": "p̂ = 22/1000 = 0,022. Standardfehler unter H₀: √(0,02·0,98/1000) = √0,0000196 ≈ 0,004427. z = (0,022 − 0,02)/0,004427 ≈ 0,4518. Da 0,452 < z_{0.95} = 1,645 wird H₀ NICHT verworfen — die Ware kann zum Niveau 5% nicht als zu schlecht abgelehnt werden.",
+    "solutionSteps": [
+      "p̂ = 22/1000 = 0,022",
+      "SE = √(0,02·0,98/1000) ≈ 0,00443",
+      "z ≈ 0,002/0,00443 ≈ 0,452"
+    ],
+    "source": "Cramer/Kamps Klausurtraining A.III.27 (adaptiert)"
+  },
+  {
+    "id": "q-regression-schl-001",
+    "type": "numeric",
+    "skills": ["regression-schl"],
+    "difficulty": 0.6,
+    "stem": "Für die Stichprobe (xᵢ, yᵢ): (1,2), (2,3), (3,5), (4,4), (5,6) ergibt sich aus der KQ-Schätzung β̂₁ = 0,9. Berechne das Bestimmtheitsmaß R² (auf 2 Nachkommastellen).",
+    "correct": { "value": 0.81, "tolerance": 0.01 },
+    "explanation": "x̄ = 3, ȳ = 4. SST = Σ(yᵢ − ȳ)² = 4+1+1+0+4 = 10. β̂₀ = ȳ − β̂₁·x̄ = 4 − 0,9·3 = 1,3. Vorhergesagte ŷᵢ: 2,2; 3,1; 4,0; 4,9; 5,8. Residuen: −0,2; −0,1; 1,0; −0,9; 0,2. SSR = 0,04+0,01+1,00+0,81+0,04 = 1,90. R² = 1 − SSR/SST = 1 − 1,9/10 = 0,81.",
+    "solutionSteps": [
+      "ȳ = 4, SST = Σ(yᵢ−ȳ)² = 10",
+      "β̂₀ = 4 − 0,9·3 = 1,3; ŷᵢ = 1,3+0,9·xᵢ",
+      "SSR = Σ(yᵢ−ŷᵢ)² = 1,9",
+      "R² = 1 − 1,9/10 = 0,81"
+    ],
+    "viz": {
+      "component": "Regression",
+      "props": { "points": [[1, 2], [2, 3], [3, 5], [4, 4], [5, 6]] }
+    },
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-regression-schl-002",
+    "type": "numeric",
+    "skills": ["regression-schl"],
+    "difficulty": 0.75,
+    "stem": "Im Modell yᵢ = β₀ + β₁·xᵢ + εᵢ mit εᵢ ~ N(0,σ²) iid ergaben sich für die Daten (1,2), (2,3), (3,5), (4,4), (5,6): β̂₁ = 0,9, SSR = 1,9, S_{xx} = Σ(xᵢ−x̄)² = 10. Berechne die Teststatistik t = β̂₁/SE(β̂₁) zum Testen von H₀: β₁ = 0.",
+    "correct": { "value": 3.576, "tolerance": 0.05 },
+    "explanation": "Schätzer der Fehlervarianz: σ̂² = SSR/(n−2) = 1,9/3 ≈ 0,6333. Standardfehler der Steigung: SE(β̂₁) = √(σ̂²/S_{xx}) = √(0,6333/10) = √0,06333 ≈ 0,2517. t = β̂₁/SE = 0,9/0,2517 ≈ 3,576. Vergleich mit t_{0.975,3} = 3,182: H₀ wird zum Niveau 5% (zweiseitig) verworfen.",
+    "solutionSteps": [
+      "σ̂² = SSR/(n−2) = 1,9/3 ≈ 0,633",
+      "SE(β̂₁) = √(σ̂²/S_{xx}) = √(0,633/10) ≈ 0,252",
+      "t = 0,9/0,252 ≈ 3,58"
+    ],
+    "viz": {
+      "component": "Regression",
+      "props": { "points": [[1, 2], [2, 3], [3, 5], [4, 4], [5, 6]] }
+    },
+    "source": "Eigene Aufgabe (vgl. Steland Kap. 3.4)"
+  },
+  {
+    "id": "q-regression-schl-003",
+    "type": "mc",
+    "skills": ["regression-schl"],
+    "difficulty": 0.55,
+    "stem": "Im einfachen linearen Regressionsmodell yᵢ = β₀ + β₁·xᵢ + εᵢ mit εᵢ ~ N(0,σ²) iid. Welche Aussage zum t-Test für H₀: β₁ = 0 ist FALSCH?",
+    "options": [
+      "Die Teststatistik T = β̂₁/SE(β̂₁) ist unter H₀ t-verteilt mit n−2 Freiheitsgraden.",
+      "Wird H₀ verworfen, gibt es einen statistisch signifikanten linearen Zusammenhang.",
+      "Die Breite des Konfidenzintervalls für β₁ hängt von σ̂² und von S_{xx} = Σ(xᵢ − x̄)² ab.",
+      "Bei größerer Streuung der xᵢ wird SE(β̂₁) tendenziell kleiner.",
+      "Wird H₀: β₁ = 0 nicht verworfen, dann ist sicher β₁ = 0."
+    ],
+    "correct": 4,
+    "explanation": "Nicht-Verwerfen liefert keinen Beweis für H₀ — der Test hat lediglich nicht genug Evidenz gegen H₀ erbracht (Fehler 2. Art bleibt möglich). Die übrigen Aussagen entsprechen den klassischen Eigenschaften des Modells (T ~ t_{n−2}, signifikanter Zusammenhang, SE-Formel und ihr Verhalten mit S_{xx}).",
+    "source": "Eigene Aufgabe (vgl. Steland Kap. 3.4)"
+  },
+  {
+    "id": "q-regression-schl-004",
+    "type": "multi-mc",
+    "skills": ["regression-schl"],
+    "difficulty": 0.6,
+    "stem": "Welche Annahmen des klassischen linearen Regressionsmodells für Inferenz über β₁ sind RICHTIG?",
+    "options": [
+      "Die Fehler εᵢ haben Erwartungswert 0.",
+      "Die Fehler εᵢ haben konstante Varianz σ² (Homoskedastizität).",
+      "Die Fehler εᵢ sind paarweise stochastisch unabhängig.",
+      "Die Werte xᵢ sind selbst N(μ,σ²)-verteilt.",
+      "Für klassische t-/F-Tests sind die Fehler εᵢ normalverteilt."
+    ],
+    "correct": [0, 1, 2, 4],
+    "explanation": "Standardannahmen des linearen Modells: E(εᵢ)=0, Var(εᵢ)=σ² (Homoskedastizität), Unabhängigkeit der εᵢ, und für klassische t-/F-Tests Normalverteilung der εᵢ. FALSCH ist (D): die Regressoren xᵢ werden als fest (deterministisch) bzw. als gegeben betrachtet — sie müssen nicht normalverteilt sein. Inferenz bezieht sich auf die Verteilung der Fehler, nicht der xᵢ.",
+    "viz": {
+      "component": "Regression",
+      "props": { "points": [[1, 2.1], [2, 3.8], [3, 6.1], [4, 7.9], [5, 10.4], [6, 11.7]] }
+    },
+    "source": "Eigene Aufgabe (vgl. Steland Kap. 3.4)"
+  }
+]
