@@ -2,9 +2,9 @@
 
 > Bestehe die Stocha-Klausur. Das Tool nutzt **Bayes-Inferenz**, um deine Schwächen zu finden und dich gezielt zu trainieren — und legt dieselbe Bayes-Rechnung im Inspector transparent offen.
 
-## Was kann's
+## Features
 
-- **~73 handkuratierte Aufgaben** im Cramer/Kamps-Klausur-Stil (MC, Compute, Multi-MC) über alle drei Klausurblöcke
+- **> 70 handkuratierte Aufgaben** im Cramer/Kamps-Klausur-Stil (MC, Compute, Multi-MC) über alle drei Klausurblöcke
 - **12 interaktive Visualisierungen**: Galton-Brett, Binomial-PMF, Bayes-Updater, Konfidenzintervall-Simulator, Hypothesentest, Poisson-Prozess, Lorenz/Gini, Boxplot, Regression, CLT-Demo, Random-Walk, Markov-Kette
 - **Adaptive Auswahl** per Bayesian Knowledge Tracing (BKT) — das System schätzt pro Skill, wie sicher du es kannst, und stellt dir die Aufgaben, die am meisten bringen
 - **Eingangstest** (5 Fragen ohne Feedback) bootstrappt die Skill-Wahrscheinlichkeiten — kein Cold-Start mit 0%
@@ -16,11 +16,12 @@
 - **Dark Mode (Observatory) / Light Mode (Lab Notebook)** mit OKLCH-Palette
 - Vollständig auf der Tastatur bedienbar: `a–e` für MC, `Enter` zum Prüfen, `→` für die nächste Frage
 
-## Sofort loslegen
+## Deployment
 
 Live-Demo: [https://medformatik.github.io/p-pass/](https://medformatik.github.io/p-pass/) *(Deploy in Phase 5)*
 
 Keine Installation, keine Anmeldung. Fortschritt bleibt im localStorage. Über das Dashboard lässt er sich als JSON exportieren/importieren — handy für Gerätewechsel.
+Auto-deploy zu GitHub Pages bei Push auf `main` via `.github/workflows/deploy.yml`.
 
 ## Lokal entwickeln
 
@@ -39,18 +40,6 @@ React 19 · TypeScript 6 · Vite 8 · Tailwind 4 · shadcn/ui · motion 12 · D3
 
 Statisches Build (kein Backend, keine Auth). Hostbar auf GitHub Pages / Cloudflare Pages / jedem statischen Hoster.
 
-## Hackathon-Anforderungen
-
-- ✓ **Easy Access**: URL → läuft. Keine Installation.
-- ✓ **Open Source**: dieses Repo, MIT-lizenziert.
-- ✓ **Free Software Only**: alle Dependencies MIT/BSD/Apache-2.0.
-
 ## Lizenz
 
-[MIT](LICENSE). Aufgabentexte sind eigene Formulierungen — pädagogisch angelehnt an Cramer/Kamps („Klausurtraining Statistik") und Steland („Basiswissen Statistik"), nicht kopiert.
-
-## StochaHackathon 2026
-
-Einreichung zum Hackathon des RWTH-Kurses „Einführung in die Angewandte Stochastik" (SoSe 2026).
-
-Voting durch Kommilitonen entscheidet. Falls dir das Tool beim Lernen geholfen hat — du weißt, was zu tun ist.
+[MIT](LICENSE). Aufgabentexte sind eigene Formulierungen — angelehnt an Cramer/Kamps („Klausurtraining Statistik") und Steland („Basiswissen Statistik").

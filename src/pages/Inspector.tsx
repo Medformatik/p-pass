@@ -5,6 +5,7 @@ import { useStore } from "@/store";
 import { SKILLS, getSkill, type SkillId } from "@/engine/skills";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Math } from "@/components/Math";
 
 export function Inspector() {
   const history = useStore((s) => s.history);
@@ -112,22 +113,16 @@ export function Inspector() {
           Die Formel
         </h3>
         <p className="text-sm mb-3">Pro Antwort führt das Tool zwei Schritte aus:</p>
-        <div className="space-y-2 text-sm font-mono">
-          <p>
-            <strong>1. Posterior</strong> P(L | obs)
-          </p>
-          <p className="pl-4 text-xs">
-            P(L | ✓) = P(L)·(1−S) / [P(L)·(1−S) + (1−P(L))·G]
-          </p>
-          <p className="pl-4 text-xs">
-            P(L | ✗) = P(L)·S / [P(L)·S + (1−P(L))·(1−G)]
-          </p>
-          <p>
-            <strong>2. Lerntransition</strong>
-          </p>
-          <p className="pl-4 text-xs">
-            P(L_neu) = P(L | obs) + (1 − P(L | obs)) · T
-          </p>
+        <p className="mb-2 text-sm">
+          <strong>1. Posterior</strong>{" "}<Math tex="P(L \mid \mathrm{obs})" />
+        </p>
+        <div className="pl-4 mb-3 space-y-2">
+          <Math display tex="P(L \mid \checkmark) = \frac{P(L)\,(1-S)}{P(L)\,(1-S) + (1-P(L))\,G}" />
+          <Math display tex="P(L \mid \times) = \frac{P(L)\,S}{P(L)\,S + (1-P(L))\,(1-G)}" />
+        </div>
+        <p className="mb-2 text-sm"><strong>2. Lerntransition</strong></p>
+        <div className="pl-4">
+          <Math display tex="P(L_{\mathrm{neu}}) = P(L \mid \mathrm{obs}) + \bigl(1 - P(L \mid \mathrm{obs})\bigr)\cdot T" />
         </div>
         <p className="text-xs text-muted-foreground mt-3">
           Parameter dieses Skills: pT = {getSkill(selected).bktParams.pT}, pG ={" "}

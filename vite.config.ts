@@ -6,7 +6,7 @@ import path from "node:path";
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  base: "./",
+  base: process.env.GITHUB_ACTIONS ? "/p-pass/" : "./",
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),

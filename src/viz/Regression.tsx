@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useRef, useState, useMemo } from "react";
 import { getAccentColor } from "./shared/colors";
 import type { BaseVizProps } from "./shared/types";
 
@@ -53,6 +53,9 @@ export function Regression({
   const [points, setPoints] = useState<[number, number][]>(initial);
   const [text, setText] = useState(pointsToText(initial));
 
+  const svgRef = useRef<SVGSVGElement | null>(null);
+  const [dragIdx, setDragIdx] = useState<number | null>(null);
+
   const { beta0, beta1, r2 } = useMemo(() => regress(points), [points]);
 
   const margin = { top: 12, right: 12, bottom: 32, left: 36 };
@@ -75,6 +78,17 @@ export function Regression({
   const scaleX = (x: number) => ((x - xDomMin) / (xDomMax - xDomMin)) * innerW;
   const scaleY = (y: number) => innerH - ((y - yDomMin) / (yDomMax - yDomMin)) * innerH;
 
+  function clientToData(clientX: number, clientY: number): [number, number] | null {
+    if (!svgRef.current) return null;
+    const rect = svgRef.current.getBoundingClientRect();
+    const relX = clientX - rect.left - margin.left;
+    const relY = clientY - rect.top - margin.top;
+    if (relX < 0 || relX > innerW || relY < 0 || relY > innerH) return null;
+    const x = xDomMin + (relX / innerW) * (xDomMax - xDomMin);
+    const y = yDomMax - (relY / innerH) * (yDomMax - yDomMin);
+    return [x, y];
+  }
+
   const accent = getAccentColor();
 
   const lineX1 = xDomMin;
@@ -91,11 +105,30 @@ export function Regression({
 
   return (
     <div className="inline-block">
-      <svg width={width} height={height} role="img" aria-label={aria} style={{ overflow: "visible" }}>
+      <svg ref={svgRef} width={width} height={height} role="img" aria-label={aria} style={{ overflow: "visible" }}>
         <g transform={`translate(${margin.left},${margin.top})`}>
           {/* Axes */}
           <line x1={0} x2={innerW} y1={innerH} y2={innerH} stroke="currentColor" opacity={0.4} />
           <line x1={0} x2={0} y1={0} y2={innerH} stroke="currentColor" opacity={0.4} />
+          {/* Interactive background for click-to-add */}
+          {!controlled && (
+            <rect
+              x={0}
+              y={0}
+              width={innerW}
+              height={innerH}
+              fill="transparent"
+              onDoubleClick={(e) => {
+                const c = clientToData(e.clientX, e.clientY);
+                if (!c) return;
+                setPoints((prev) => {
+                  const next = [...prev, c];
+                  setText(pointsToText(next));
+                  return next;
+                });
+              }}
+            />
+          )}
           {/* Regression line */}
           <line
             x1={scaleX(lineX1)}
@@ -107,7 +140,58 @@ export function Regression({
           />
           {/* Points */}
           {points.map(([x, y], i) => (
-            <circle key={i} cx={scaleX(x)} cy={scaleY(y)} r={3.5} fill={accent} />
+            <circle
+              key={i}
+              cx={scaleX(x)}
+              cy={scaleY(y)}
+              r={dragIdx === i ? 6 : 4}
+              fill={accent}
+              opacity={dragIdx === i ? 1 : 0.85}
+              style={{ cursor: controlled ? "default" : "grab" }}
+              onPointerDown={
+                controlled
+                  ? undefined
+                  : (e) => {
+                      e.preventDefault();
+                      (e.target as SVGCircleElement).setPointerCapture(e.pointerId);
+                      setDragIdx(i);
+                    }
+              }
+              onPointerMove={
+                controlled
+                  ? undefined
+                  : (e) => {
+                      if (dragIdx !== i) return;
+                      const c = clientToData(e.clientX, e.clientY);
+                      if (!c) return;
+                      setPoints((prev) => prev.map((p, j) => (j === i ? c : p)));
+                    }
+              }
+              onPointerUp={
+                controlled
+                  ? undefined
+                  : (e) => {
+                      (e.target as SVGCircleElement).releasePointerCapture(e.pointerId);
+                      setDragIdx(null);
+                      setPoints((prev) => {
+                        setText(pointsToText(prev));
+                        return prev;
+                      });
+                    }
+              }
+              onDoubleClick={
+                controlled
+                  ? undefined
+                  : (e) => {
+                      e.stopPropagation();
+                      setPoints((prev) => {
+                        const next = prev.filter((_, j) => j !== i);
+                        setText(pointsToText(next));
+                        return next;
+                      });
+                    }
+              }
+            />
           ))}
         </g>
       </svg>
@@ -130,6 +214,12 @@ export function Regression({
             className="mt-1 w-full border-2 border-border rounded-md px-2 py-1 bg-bg"
           />
         </label>
+      )}
+      {!controlled && (
+        <p className="mt-1 text-xs text-muted-foreground">
+          Punkt ziehen, doppelklick zum Entfernen,
+          doppelklick auf leere Fläche zum Hinzufügen.
+        </p>
       )}
     </div>
   );

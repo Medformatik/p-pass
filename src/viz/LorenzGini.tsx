@@ -38,8 +38,13 @@ export function LorenzGini({
 }: Props) {
   const [values, setValues] = useState<number[]>(initialValues);
   const [text, setText] = useState(initialValues.join(", "));
+  const [draggingIdx, setDraggingIdx] = useState<number | null>(null);
 
   const { points, gini } = useMemo(() => computeLorenz(values), [values]);
+
+  const editorH = 80;
+  const editorBarW = Math.max(8, Math.min(28, (width - 32) / Math.max(values.length, 1)));
+  const maxValForScale = Math.max(...values, 1) * 1.2;
 
   const margin = { top: 12, right: 12, bottom: 28, left: 36 };
   const size = Math.min(width - margin.left - margin.right, height - margin.top - margin.bottom);
@@ -100,19 +105,108 @@ export function LorenzGini({
         Gini: <strong>{gini.toFixed(3)}</strong>
       </div>
       {!controlled && (
-        <label className="mt-2 block text-xs">
-          Werte (komma-getrennt):
-          <input
-            type="text"
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-            onBlur={(e) => commitText(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") commitText(e.currentTarget.value);
-            }}
-            className="mt-1 w-full border-2 border-border rounded-md px-2 py-1 bg-bg"
-          />
-        </label>
+        <>
+          <div className="mt-3">
+            <svg
+              width={width}
+              height={editorH + 24}
+              role="img"
+              aria-label={`Werte-Editor: ${values.length} Werte`}
+            >
+              <g transform={`translate(${margin.left}, 8)`}>
+                {values.map((v, i) => {
+                  const x = i * editorBarW;
+                  const barTop = editorH - (v / Math.max(maxValForScale, 1)) * editorH;
+                  return (
+                    <g key={i}>
+                      <rect
+                        x={x}
+                        y={barTop}
+                        width={Math.max(2, editorBarW - 2)}
+                        height={editorH - barTop}
+                        fill={accent}
+                        opacity={0.7}
+                      />
+                      {/* Drag handle: a slim invisible rect across the top edge */}
+                      <rect
+                        x={x - 4}
+                        y={Math.max(0, barTop - 6)}
+                        width={editorBarW + 8}
+                        height={12}
+                        fill="transparent"
+                        style={{ cursor: "ns-resize" }}
+                        onPointerDown={(e) => {
+                          e.preventDefault();
+                          (e.target as SVGRectElement).setPointerCapture(e.pointerId);
+                          setDraggingIdx(i);
+                        }}
+                        onPointerMove={(e) => {
+                          if (draggingIdx !== i) return;
+                          const svgEl = (e.target as SVGRectElement).ownerSVGElement;
+                          if (!svgEl) return;
+                          const rect = svgEl.getBoundingClientRect();
+                          const relY = e.clientY - rect.top - 8;
+                          const t = 1 - relY / editorH;
+                          const newV = Math.max(0, Math.min(maxValForScale, t * maxValForScale));
+                          setValues((prev) => prev.map((v0, j) => (j === i ? newV : v0)));
+                          setText(values.map((v0, j) => (j === i ? newV : v0)).join(", "));
+                        }}
+                        onPointerUp={(e) => {
+                          (e.target as SVGRectElement).releasePointerCapture(e.pointerId);
+                          setDraggingIdx(null);
+                        }}
+                        onDoubleClick={(e) => {
+                          e.stopPropagation();
+                          const next = values.filter((_, j) => j !== i);
+                          setValues(next);
+                          setText(next.join(", "));
+                        }}
+                      />
+                    </g>
+                  );
+                })}
+                {/* Axis baseline */}
+                <line
+                  x1={0}
+                  x2={values.length * editorBarW}
+                  y1={editorH}
+                  y2={editorH}
+                  stroke="currentColor"
+                  opacity={0.4}
+                />
+              </g>
+            </svg>
+            <div className="flex items-center gap-3 mt-1 text-xs">
+              <button
+                type="button"
+                onClick={() => {
+                  const next = [...values, maxValForScale * 0.5];
+                  setValues(next);
+                  setText(next.join(", "));
+                }}
+                className="underline text-accent"
+              >
+                + Wert hinzufügen
+              </button>
+              <span className="text-muted-foreground">
+                Oberkante ziehen zum Ändern, doppelklick zum Entfernen
+              </span>
+            </div>
+          </div>
+          <label className="mt-2 block text-xs">
+            Werte (komma-getrennt):
+            <input
+              type="text"
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+              onBlur={(e) => commitText(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") commitText(e.currentTarget.value);
+              }}
+              className="mt-1 w-full border-2 border-border rounded-md px-2 py-1 bg-bg"
+            />
+          </label>
+        </>
       )}
     </div>
   );

@@ -14,26 +14,24 @@ const TARGET_SKILLS = ["bayes", "binomial-poisson", "clt", "bedingt", "normal-ex
 const ENTRY_TEST_COUNT = 5;
 
 function pickEntryTest(bank: Question[]): Question[] {
-  // Entry test UI renders MC questions only. Filter, then pick by target skills.
-  const mcOnly = bank.filter((q) => q.type === "mc");
   const chosen: Question[] = [];
   const used = new Set<string>();
   for (const target of TARGET_SKILLS) {
-    const q = mcOnly.find((q) => q.skills.includes(target) && !used.has(q.id));
+    const q = bank.find((q) => q.skills.includes(target) && !used.has(q.id));
     if (q) {
       chosen.push(q);
       used.add(q.id);
     }
   }
-  for (const q of mcOnly) {
+  for (const q of bank) {
     if (chosen.length >= ENTRY_TEST_COUNT) break;
     if (!used.has(q.id)) {
       chosen.push(q);
       used.add(q.id);
     }
   }
-  while (chosen.length < ENTRY_TEST_COUNT && mcOnly.length > 0) {
-    chosen.push(mcOnly[chosen.length % mcOnly.length]);
+  while (chosen.length < ENTRY_TEST_COUNT && bank.length > 0) {
+    chosen.push(bank[chosen.length % bank.length]);
   }
   return chosen.slice(0, ENTRY_TEST_COUNT);
 }
@@ -45,6 +43,7 @@ export function EntryTest() {
   const questions = useMemo(() => pickEntryTest(bank), [bank]);
   const [index, setIndex] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
+  const [selectedMulti, setSelectedMulti] = useState<number[]>([]);
   const [responses, setResponses] = useState<EntryTestResponse[]>([]);
   const [showSummary, setShowSummary] = useState(false);
   const [bootstrappedPriors, setBootstrappedPriors] = useState<Record<string, number> | null>(null);
@@ -57,17 +56,21 @@ export function EntryTest() {
       </section>
     );
   }
-  if (current.type !== "mc") {
-    return (
-      <section className="max-w-2xl mx-auto px-6 py-16 text-center">
-        <p className="text-muted-foreground">Eingangstest unterstützt aktuell nur MC-Fragen.</p>
-      </section>
-    );
-  }
-
   function handleNext() {
-    if (selected === null || !current || current.type !== "mc") return;
-    const correct = selected === current.correct;
+    if (!current) return;
+    let correct = false;
+    if (current.type === "mc") {
+      if (selected === null) return;
+      correct = selected === current.correct;
+    } else if (current.type === "numeric") {
+      if (selected === null) return;
+      correct = Math.abs(selected - current.correct.value) <= current.correct.tolerance;
+    } else if (current.type === "multi-mc") {
+      if (selectedMulti.length === 0) return;
+      const want = [...current.correct].sort((a, b) => a - b);
+      const got = [...selectedMulti].sort((a, b) => a - b);
+      correct = want.length === got.length && want.every((v, i) => v === got[i]);
+    }
     const newResponses: EntryTestResponse[] = [
       ...responses,
       ...current.skills.map((skill) => ({ skill, correct })),
@@ -80,6 +83,7 @@ export function EntryTest() {
       setResponses(newResponses);
       setIndex(index + 1);
       setSelected(null);
+      setSelectedMulti([]);
     }
   }
 
@@ -156,40 +160,110 @@ export function EntryTest() {
 
       <Card key={current.id} className="p-6">
         <p className="font-display text-xl mb-4">{current.stem}</p>
-        <ul className="space-y-2">
-          {current.options.map((opt, i) => (
-            <li key={i}>
-              <label
-                className={cn(
-                  "flex items-center gap-3 px-3 py-2 rounded-md border-2 cursor-pointer transition-colors",
-                  "border-border",
-                  selected === i && "border-accent bg-accent/10",
-                )}
-              >
-                <input
-                  type="radio"
-                  name={`entry-${current.id}`}
-                  value={i}
-                  checked={selected === i}
-                  onChange={() => setSelected(i)}
-                  className="sr-only"
-                />
-                <span
+
+        {current.type === "mc" && (
+          <ul className="space-y-2">
+            {current.options.map((opt, i) => (
+              <li key={i}>
+                <label
                   className={cn(
-                    "size-4 rounded-full border-2 border-border flex-shrink-0 transition-colors",
-                    selected === i && "border-accent bg-accent",
+                    "flex items-center gap-3 px-3 py-2 rounded-md border-2 cursor-pointer transition-colors",
+                    "border-border",
+                    selected === i && "border-accent bg-accent/10",
                   )}
-                  aria-hidden="true"
-                />
-                <span className="font-mono text-sm text-muted-foreground">
-                  {String.fromCharCode(97 + i)})
-                </span>
-                <span>{opt}</span>
-              </label>
-            </li>
-          ))}
-        </ul>
-        <Button onClick={handleNext} disabled={selected === null} className="mt-4">
+                >
+                  <input
+                    type="radio"
+                    name={`entry-${current.id}`}
+                    value={i}
+                    checked={selected === i}
+                    onChange={() => setSelected(i)}
+                    className="sr-only"
+                  />
+                  <span
+                    className={cn(
+                      "size-4 rounded-full border-2 border-border flex-shrink-0 transition-colors",
+                      selected === i && "border-accent bg-accent",
+                    )}
+                    aria-hidden="true"
+                  />
+                  <span className="font-mono text-sm text-muted-foreground">
+                    {String.fromCharCode(97 + i)})
+                  </span>
+                  <span>{opt}</span>
+                </label>
+              </li>
+            ))}
+          </ul>
+        )}
+
+        {current.type === "numeric" && (
+          <div className="mb-2">
+            <input
+              type="number"
+              step="any"
+              value={selected ?? ""}
+              onChange={(e) => setSelected(e.target.value === "" ? null : parseFloat(e.target.value))}
+              placeholder="Antwort eingeben"
+              aria-label="Numerische Antwort"
+              className="border-2 border-border rounded-md px-3 py-2 w-48 bg-bg"
+              inputMode="decimal"
+            />
+          </div>
+        )}
+
+        {current.type === "multi-mc" && (
+          <>
+            <p className="text-xs text-muted-foreground mb-2">Wähle alle zutreffenden Antworten.</p>
+            <ul className="space-y-2">
+              {current.options.map((opt, i) => {
+                const isSel = selectedMulti.includes(i);
+                return (
+                  <li key={i}>
+                    <label
+                      className={cn(
+                        "flex items-center gap-3 px-3 py-2 rounded-md border-2 cursor-pointer transition-colors",
+                        "border-border",
+                        isSel && "border-accent bg-accent/10",
+                      )}
+                    >
+                      <input
+                        type="checkbox"
+                        checked={isSel}
+                        onChange={(e) => {
+                          if (e.target.checked) setSelectedMulti((prev) => [...prev, i]);
+                          else setSelectedMulti((prev) => prev.filter((v) => v !== i));
+                        }}
+                        className="sr-only"
+                      />
+                      <span
+                        className={cn(
+                          "size-4 rounded-[2px] border-2 border-border flex-shrink-0",
+                          isSel && "border-accent bg-accent",
+                        )}
+                        aria-hidden="true"
+                      />
+                      <span className="font-mono text-sm text-muted-foreground">
+                        {String.fromCharCode(97 + i)})
+                      </span>
+                      <span>{opt}</span>
+                    </label>
+                  </li>
+                );
+              })}
+            </ul>
+          </>
+        )}
+
+        <Button
+          onClick={handleNext}
+          disabled={
+            current.type === "multi-mc"
+              ? selectedMulti.length === 0
+              : selected === null
+          }
+          className="mt-4"
+        >
           {index + 1 >= questions.length ? "Eingangstest abschließen" : "Weiter"}
         </Button>
       </Card>
