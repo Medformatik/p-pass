@@ -2,21 +2,52 @@ import { Link, Outlet, useLocation } from "react-router-dom";
 import { useStore } from "@/store";
 import { useEffect } from "react";
 import type { ReactNode } from "react";
-import { Sun, Moon, Flame, Volume2, VolumeX } from "lucide-react";
+import { Sun, Moon, Monitor, Flame, Volume2, VolumeX } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { NumberTicker } from "./NumberTicker";
+import type { ThemeMode } from "@/store";
+
+const THEME_CYCLE: Record<ThemeMode, ThemeMode> = {
+  system: "light",
+  light: "dark",
+  dark: "system",
+};
+
+const THEME_LABEL: Record<ThemeMode, string> = {
+  system: "System",
+  light: "Hell",
+  dark: "Dunkel",
+};
+
+function ThemeIcon({ theme }: { theme: ThemeMode }) {
+  if (theme === "system") return <Monitor className="size-4" />;
+  if (theme === "light") return <Sun className="size-4" />;
+  return <Moon className="size-4" />;
+}
 
 export function Layout() {
-  const darkMode = useStore((s) => s.preferences.darkMode);
-  const toggleDarkMode = useStore((s) => s.toggleDarkMode);
+  const theme = useStore((s) => s.preferences.theme);
+  const setTheme = useStore((s) => s.setTheme);
   const soundEnabled = useStore((s) => s.preferences.soundEnabled);
   const toggleSound = useStore((s) => s.toggleSound);
   const streakCurrent = useStore((s) => s.streak.current);
   const location = useLocation();
 
   useEffect(() => {
-    document.documentElement.classList.toggle("dark", darkMode);
-  }, [darkMode]);
+    const apply = () => {
+      const isDark =
+        theme === "dark" ||
+        (theme === "system" &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches);
+      document.documentElement.classList.toggle("dark", isDark);
+    };
+    apply();
+    if (theme === "system") {
+      const mql = window.matchMedia("(prefers-color-scheme: dark)");
+      mql.addEventListener("change", apply);
+      return () => mql.removeEventListener("change", apply);
+    }
+  }, [theme]);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -55,11 +86,12 @@ export function Layout() {
             {soundEnabled ? <Volume2 className="size-4" /> : <VolumeX className="size-4" />}
           </button>
           <button
-            onClick={toggleDarkMode}
+            onClick={() => setTheme(THEME_CYCLE[theme])}
             className="p-2.5 rounded-md hover:bg-muted"
-            aria-label="Theme umschalten"
+            aria-label={`Theme: ${THEME_LABEL[theme]} (klicken zum Wechseln)`}
+            title={`Theme: ${THEME_LABEL[theme]}`}
           >
-            {darkMode ? <Sun className="size-4" /> : <Moon className="size-4" />}
+            <ThemeIcon theme={theme} />
           </button>
         </nav>
       </header>

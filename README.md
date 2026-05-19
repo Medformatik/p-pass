@@ -18,7 +18,7 @@
 
 ## Deployment
 
-Live-Demo: [https://medformatik.github.io/p-pass/](https://medformatik.github.io/p-pass/) *(Deploy in Phase 5)*
+Live-Demo: [https://medformatik.github.io/p-pass/](https://medformatik.github.io/p-pass/)
 
 Keine Installation, keine Anmeldung. Fortschritt bleibt im localStorage. Über das Dashboard lässt er sich als JSON exportieren/importieren — handy für Gerätewechsel.
 Auto-deploy zu GitHub Pages bei Push auf `main` via `.github/workflows/deploy.yml`.

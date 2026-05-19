@@ -75,7 +75,7 @@ describe("export/import", () => {
       skills: { bayes: 0.95, clt: 0.5 },
       history: [],
       streak: { current: 7, longest: 7, lastDate: "2026-05-19" },
-      preferences: { darkMode: true, soundEnabled: false },
+      preferences: { theme: "dark", soundEnabled: false },
     };
     useStore.getState().importState(JSON.stringify(state));
     expect(useStore.getState().skills.bayes).toBeCloseTo(0.95);

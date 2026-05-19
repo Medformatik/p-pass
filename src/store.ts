@@ -15,18 +15,20 @@ export type HistoryEntry = {
   pLAfter: Record<SkillId, number>;
 };
 
+export type ThemeMode = "system" | "light" | "dark";
+
 export type StoreState = {
   skills: Record<SkillId, number>;
   history: HistoryEntry[];
   streak: { current: number; longest: number; lastDate: string };
-  preferences: { darkMode: boolean; soundEnabled: boolean };
+  preferences: { theme: ThemeMode; soundEnabled: boolean };
   entryTestCompleted: boolean;
 };
 
 export type StoreActions = {
   recordAnswer: (qid: string, skills: SkillId[], correct: boolean) => void;
   reset: () => void;
-  toggleDarkMode: () => void;
+  setTheme: (theme: ThemeMode) => void;
   toggleSound: () => void;
   exportState: () => string;
   importState: (json: string) => void;
@@ -43,7 +45,7 @@ const initialState: StoreState = {
   skills: initialSkills(),
   history: [],
   streak: { current: 0, longest: 0, lastDate: "" },
-  preferences: { darkMode: true, soundEnabled: false },
+  preferences: { theme: "system", soundEnabled: false },
   entryTestCompleted: false,
 };
 
@@ -52,12 +54,22 @@ function loadPersisted(): StoreState {
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY);
     if (!raw) return initialState;
-    const parsed = JSON.parse(raw) as StoreState;
+    const parsed = JSON.parse(raw) as Partial<StoreState> & {
+      preferences?: { darkMode?: boolean; theme?: ThemeMode; soundEnabled?: boolean };
+    };
+    // Migrate legacy darkMode → theme
+    const legacy = parsed.preferences;
+    const migratedTheme: ThemeMode =
+      legacy?.theme ?? (typeof legacy?.darkMode === "boolean" ? (legacy.darkMode ? "dark" : "light") : "system");
+    const migratedPreferences = {
+      theme: migratedTheme,
+      soundEnabled: legacy?.soundEnabled ?? initialState.preferences.soundEnabled,
+    };
     return {
       ...initialState,
       ...parsed,
       skills: { ...initialState.skills, ...parsed.skills },
-      preferences: { ...initialState.preferences, ...parsed.preferences },
+      preferences: migratedPreferences,
     };
   } catch {
     return initialState;
@@ -128,11 +140,11 @@ export const useStore = create<StoreState & StoreActions>((set, get) => ({
       return initialState;
     });
   },
-  toggleDarkMode() {
+  setTheme(theme) {
     set((state) => {
       const next = {
         ...state,
-        preferences: { ...state.preferences, darkMode: !state.preferences.darkMode },
+        preferences: { ...state.preferences, theme },
       };
       persist(next);
       return next;
