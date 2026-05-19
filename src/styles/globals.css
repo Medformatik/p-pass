@@ -1,0 +1,82 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Brand palette — runtime CSS variables that switch with theme. */
+/* @theme inline below references these via var() so utilities respond
+   to .dark overrides instead of inlining a static value. */
+:root {
+  --brand-bg: oklch(0.98 0.012 85);
+  --brand-ink: oklch(0.22 0.020 250);
+  --brand-accent: oklch(0.55 0.130 195);
+  --brand-correct: oklch(0.62 0.130 155);
+  --brand-wrong: oklch(0.55 0.160 25);
+  --brand-muted: oklch(0.92 0.010 85);
+  --brand-border: oklch(0.22 0.020 250 / 0.15);
+  --brand-muted-foreground: oklch(0.45 0.015 250);
+  /* Light text on accent / wrong (light mode: accent is dark teal, so light text). */
+  --brand-on-accent: oklch(0.98 0.012 85);
+}
+
+.dark {
+  --brand-bg: oklch(0.14 0.025 260);
+  --brand-ink: oklch(0.94 0.010 85);
+  --brand-accent: oklch(0.78 0.180 195);
+  --brand-correct: oklch(0.78 0.180 155);
+  --brand-wrong: oklch(0.70 0.200 25);
+  --brand-muted: oklch(0.22 0.025 260);
+  --brand-border: oklch(0.94 0.010 85 / 0.12);
+  --brand-muted-foreground: oklch(0.70 0.015 260);
+  /* In dark mode the accent is brighter, so contrast text is dark. */
+  --brand-on-accent: oklch(0.14 0.025 260);
+}
+
+@theme inline {
+  /* Brand utilities */
+  --color-bg: var(--brand-bg);
+  --color-ink: var(--brand-ink);
+  --color-accent: var(--brand-accent);
+  --color-correct: var(--brand-correct);
+  --color-wrong: var(--brand-wrong);
+  --color-muted: var(--brand-muted);
+  --color-border: var(--brand-border);
+  --color-muted-foreground: var(--brand-muted-foreground);
+
+  /* shadcn primitive tokens mapped to brand */
+  --color-background: var(--brand-bg);
+  --color-foreground: var(--brand-ink);
+  --color-card: var(--brand-bg);
+  --color-card-foreground: var(--brand-ink);
+  --color-popover: var(--brand-bg);
+  --color-popover-foreground: var(--brand-ink);
+  --color-primary: var(--brand-accent);
+  --color-primary-foreground: var(--brand-on-accent);
+  --color-secondary: var(--brand-muted);
+  --color-secondary-foreground: var(--brand-ink);
+  --color-accent-foreground: var(--brand-on-accent);
+  --color-destructive: var(--brand-wrong);
+  --color-destructive-foreground: var(--brand-on-accent);
+  --color-input: var(--brand-border);
+  --color-ring: var(--brand-accent);
+
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Fraunces", Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --radius: 0.5rem;
+  --radius-card: 0.75rem;
+}
+
+@layer base {
+  html {
+    color-scheme: dark light;
+  }
+  body {
+    background: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "cv11", "ss01";
+    -webkit-font-smoothing: antialiased;
+  }
+}

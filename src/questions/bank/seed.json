@@ -1,0 +1,60 @@
+[
+  {
+    "id": "q-bayes-seed-001",
+    "type": "mc",
+    "skills": ["bayes", "bedingt"],
+    "difficulty": 0.4,
+    "stem": "Ein Test erkennt Krankheit X mit 95% Sensitivität und hat eine Falsch-Positiv-Rate von 2%. In der Bevölkerung sind 1% krank. Eine zufällig getestete Person erhält ein positives Testergebnis. Wie wahrscheinlich ist sie tatsächlich krank?",
+    "options": ["≈ 0.95", "≈ 0.32", "≈ 0.05", "≈ 0.50", "≈ 0.01"],
+    "correct": 1,
+    "explanation": "Nach Bayes: P(K|+) = P(+|K)·P(K) / [P(+|K)·P(K) + P(+|¬K)·P(¬K)] = (0.95·0.01) / (0.95·0.01 + 0.02·0.99) ≈ 0.324.",
+    "solutionSteps": [
+      "Identifiziere Prior: P(K) = 0.01",
+      "Identifiziere Sensitivität: P(+|K) = 0.95",
+      "Identifiziere FPR: P(+|¬K) = 0.02",
+      "Setze in Bayes ein: P(K|+) = 0.95·0.01 / (0.95·0.01 + 0.02·0.99)",
+      "Berechne: 0.0095 / (0.0095 + 0.0198) = 0.0095 / 0.0293 ≈ 0.324"
+    ],
+    "viz": {
+      "component": "GaltonBoard",
+      "props": { "n": 12, "p": 0.5, "balls": 2000 }
+    },
+    "source": "Eigene Aufgabe, klassisches Bayes-Beispiel"
+  },
+  {
+    "id": "q-binomial-seed-001",
+    "type": "mc",
+    "skills": ["binomial-poisson"],
+    "difficulty": 0.3,
+    "stem": "Eine faire Münze wird 10-mal geworfen. Was ist die Wahrscheinlichkeit, genau 7-mal Kopf zu sehen?",
+    "options": ["≈ 0.117", "≈ 0.205", "≈ 0.500", "≈ 0.700", "≈ 0.044"],
+    "correct": 0,
+    "explanation": "X ~ Bin(10, 0.5). P(X=7) = C(10,7)·0.5^7·0.5^3 = 120·(1/1024) ≈ 0.117.",
+    "viz": {
+      "component": "GaltonBoard",
+      "props": { "n": 10, "p": 0.5, "balls": 2000, "highlight": 7 }
+    },
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-clt-seed-001",
+    "type": "mc",
+    "skills": ["clt"],
+    "difficulty": 0.5,
+    "stem": "Welche Aussage zum Zentralen Grenzwertsatz ist FALSCH?",
+    "options": [
+      "Die Verteilung des Stichprobenmittels nähert sich für große n einer Normalverteilung an.",
+      "Die Voraussetzung ist endliche Varianz der Einzel-Zufallsvariablen.",
+      "Die ursprüngliche Verteilung muss bereits normalverteilt sein.",
+      "Der Mittelwert der Grenzverteilung entspricht dem theoretischen Erwartungswert μ.",
+      "Die Standardabweichung der Grenzverteilung ist σ/√n."
+    ],
+    "correct": 2,
+    "explanation": "Die ursprüngliche Verteilung muss NICHT normalverteilt sein — genau das ist der Witz des CLT. Endliche Varianz und Unabhängigkeit reichen aus.",
+    "viz": {
+      "component": "GaltonBoard",
+      "props": { "n": 20, "p": 0.5, "balls": 3000 }
+    },
+    "source": "Eigene Aufgabe, klassische CLT-Falle"
+  }
+]
