@@ -6,6 +6,10 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/cn";
 import type { Question } from "@/questions/types";
 
+// Mock-Klausur lässt Multi-Part-Aufgaben aus (zu lang fürs 10-Fragen-Quick-Mock —
+// sie sind für Deep-Dive / Train gedacht).
+type ExamQuestion = Exclude<Question, { type: "multi-part" }>;
+
 type UserAnswer =
   | { type: "mc"; selected: number | null }
   | { type: "numeric"; value: number | null }
@@ -22,19 +26,12 @@ function shuffled<T>(arr: T[]): T[] {
   return out;
 }
 
-function pickExamSet(bank: Question[]): Question[] {
-  // Group by block via first skill — best-effort even distribution
-  const byBlock: Record<string, Question[]> = {};
-  for (const q of bank) {
-    const block = q.skills[0]; // we have skill IDs, group fully later
-    byBlock[block] = byBlock[block] ?? [];
-    byBlock[block].push(q);
-  }
-  // Simple approach: shuffle whole bank, take first EXAM_SIZE
-  return shuffled(bank).slice(0, EXAM_SIZE);
+function pickExamSet(bank: Question[]): ExamQuestion[] {
+  const eligible = bank.filter((q): q is ExamQuestion => q.type !== "multi-part");
+  return shuffled(eligible).slice(0, EXAM_SIZE);
 }
 
-function isCorrect(q: Question, ans: UserAnswer): boolean {
+function isCorrect(q: ExamQuestion, ans: UserAnswer): boolean {
   if (q.type === "mc" && ans.type === "mc") return ans.selected === q.correct;
   if (q.type === "numeric" && ans.type === "numeric") {
     if (ans.value === null) return false;
@@ -48,7 +45,7 @@ function isCorrect(q: Question, ans: UserAnswer): boolean {
   return false;
 }
 
-function formatAnswer(q: Question, ans: UserAnswer): string {
+function formatAnswer(q: ExamQuestion, ans: UserAnswer): string {
   if (q.type === "mc" && ans.type === "mc") {
     return ans.selected !== null ? q.options[ans.selected] : "—";
   }
@@ -63,13 +60,13 @@ function formatAnswer(q: Question, ans: UserAnswer): string {
   return "—";
 }
 
-function formatCorrect(q: Question): string {
+function formatCorrect(q: ExamQuestion): string {
   if (q.type === "mc") return q.options[q.correct];
   if (q.type === "numeric") return `${q.correct.value} (± ${q.correct.tolerance})`;
   return q.correct.map((i) => q.options[i]).join(", ");
 }
 
-function emptyAnswer(q: Question): UserAnswer {
+function emptyAnswer(q: ExamQuestion): UserAnswer {
   if (q.type === "mc") return { type: "mc", selected: null };
   if (q.type === "numeric") return { type: "numeric", value: null };
   return { type: "multi-mc", selected: [] };
@@ -84,7 +81,7 @@ function formatTime(ms: number): string {
 
 export function MockExam() {
   const bank = useMemo(() => allQuestions(), []);
-  const [questions] = useState<Question[]>(() => pickExamSet(bank));
+  const [questions] = useState<ExamQuestion[]>(() => pickExamSet(bank));
   const [answers, setAnswers] = useState<UserAnswer[]>(() => questions.map(emptyAnswer));
   const [index, setIndex] = useState(0);
   const [submitted, setSubmitted] = useState(false);
