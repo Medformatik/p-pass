@@ -46,4 +46,39 @@ export type NumericQuestion = {
   source?: string;
 };
 
-export type Question = MCQuestion | MultiMCQuestion | NumericQuestion;
+export type MCPart = {
+  type: "mc";
+  label: string;
+  stem: string;
+  options: string[];
+  correct: number;
+  explanation: string;
+};
+
+export type NumericPart = {
+  type: "numeric";
+  label: string;
+  stem: string;
+  correct: { value: number; tolerance: number };
+  explanation: string;
+};
+
+export type QuestionPart = MCPart | NumericPart;
+
+export type MultiPartQuestion = {
+  id: string;
+  type: "multi-part";
+  skills: SkillId[];
+  difficulty: number;
+  stem: string;
+  parts: QuestionPart[];
+  explanation: string;
+  viz?: VizSpec;
+  source?: string;
+};
+
+export type Question =
+  | MCQuestion
+  | MultiMCQuestion
+  | NumericQuestion
+  | MultiPartQuestion;

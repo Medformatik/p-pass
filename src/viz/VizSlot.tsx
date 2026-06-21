@@ -9,6 +9,7 @@ const VIZ_LOADERS: Record<string, () => Promise<Record<string, unknown>>> = {
   GaltonBoard: () => import("./GaltonBoard"),
   BinomialPMF: () => import("./BinomialPMF"),
   BayesUpdater: () => import("./BayesUpdater"),
+  BayesTree: () => import("./BayesTree"),
   ConfidenceInterval: () => import("./ConfidenceInterval"),
   HypothesisTest: () => import("./HypothesisTest"),
   PoissonProcess: () => import("./PoissonProcess"),

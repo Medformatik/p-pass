@@ -2,39 +2,76 @@
   {
     "id": "q-lagemasse-001",
     "type": "numeric",
-    "skills": ["lagemasse"],
+    "skills": [
+      "lagemasse"
+    ],
     "difficulty": 0.15,
     "stem": "Gegeben sei der Datensatz 4, 1, 9, 3, 7, 2, 6. Bestimme den Median.",
-    "correct": { "value": 4, "tolerance": 0.001 },
+    "correct": {
+      "value": 4,
+      "tolerance": 0.001
+    },
     "explanation": "Sortiert: 1, 2, 3, 4, 6, 7, 9. Bei n=7 (ungerade) ist der Median der Wert an Position (n+1)/2 = 4, also x_(4) = 4.",
     "solutionSteps": [
       "Werte sortieren: 1, 2, 3, 4, 6, 7, 9",
       "Stichprobenumfang n=7 ist ungerade",
       "Median = x_((n+1)/2) = x_(4) = 4"
     ],
-    "viz": { "component": "Boxplot", "props": { "data": [4, 1, 9, 3, 7, 2, 6] } },
+    "viz": {
+      "component": "Boxplot",
+      "props": {
+        "data": [
+          4,
+          1,
+          9,
+          3,
+          7,
+          2,
+          6
+        ]
+      }
+    },
     "source": "Cramer/Kamps Klausurtraining A.I.7 (adaptiert)"
   },
   {
     "id": "q-lagemasse-002",
     "type": "numeric",
-    "skills": ["lagemasse"],
+    "skills": [
+      "lagemasse"
+    ],
     "difficulty": 0.2,
     "stem": "Gegeben sei der Datensatz 2, 5, 8, 3, 6, 10. Bestimme den Median.",
-    "correct": { "value": 5.5, "tolerance": 0.01 },
+    "correct": {
+      "value": 5.5,
+      "tolerance": 0.01
+    },
     "explanation": "Sortiert: 2, 3, 5, 6, 8, 10. Bei n=6 (gerade) ist der Median das arithmetische Mittel der beiden mittleren Werte: (x_(3) + x_(4))/2 = (5+6)/2 = 5,5.",
     "solutionSteps": [
       "Sortieren: 2, 3, 5, 6, 8, 10",
       "n=6 ist gerade, Median = (x_(n/2) + x_(n/2+1))/2",
       "= (x_(3) + x_(4))/2 = (5+6)/2 = 5,5"
     ],
-    "viz": { "component": "Boxplot", "props": { "data": [2, 5, 8, 3, 6, 10] } },
+    "viz": {
+      "component": "Boxplot",
+      "props": {
+        "data": [
+          2,
+          5,
+          8,
+          3,
+          6,
+          10
+        ]
+      }
+    },
     "source": "Eigene Aufgabe"
   },
   {
     "id": "q-lagemasse-003",
     "type": "mc",
-    "skills": ["lagemasse"],
+    "skills": [
+      "lagemasse"
+    ],
     "difficulty": 0.4,
     "stem": "Gegeben seien die Messwerte 3, 4, 4, 6, 8, 9, 12. Welche der folgenden Aussagen ist FALSCH?",
     "options": [
@@ -46,13 +83,28 @@
     ],
     "correct": 4,
     "explanation": "Das arithmetische Mittel ist gerade NICHT robust gegenüber Ausreißern — schon ein einzelner extremer Wert kann es stark verschieben. Der Median ist robust. Die anderen Aussagen stimmen: Mittel = 46/7 ≈ 6,57; sortiert ist der mittlere Wert 6; Wert 4 tritt zweimal auf; bei linearer Transformation gilt ȳ = 2·x̄ + 3 = 2·6,571 + 3 ≈ 16,14.",
-    "viz": { "component": "Boxplot", "props": { "data": [3, 4, 4, 6, 8, 9, 12] } },
+    "viz": {
+      "component": "Boxplot",
+      "props": {
+        "data": [
+          3,
+          4,
+          4,
+          6,
+          8,
+          9,
+          12
+        ]
+      }
+    },
     "source": "Cramer/Kamps Klausurtraining A.I.4/A.I.5 (adaptiert)"
   },
   {
     "id": "q-lagemasse-004",
     "type": "multi-mc",
-    "skills": ["lagemasse"],
+    "skills": [
+      "lagemasse"
+    ],
     "difficulty": 0.5,
     "stem": "Für einen Datensatz mit n=8 Werten sei das arithmetische Mittel x̄ = 10 und der Median x̃ = 8. Welche Aussagen sind korrekt?",
     "options": [
@@ -62,17 +114,27 @@
       "Der Median der transformierten Daten ist ỹ = 20.",
       "Der Median ist stets gleich dem arithmetischen Mittel."
     ],
-    "correct": [0, 1, 2, 3],
+    "correct": [
+      0,
+      1,
+      2,
+      3
+    ],
     "explanation": "(1) Σx_i = n·x̄ = 8·10 = 80. (2) x̄ > x̃ deutet auf Rechtsschiefe hin (lange rechte Verteilungsschwanz zieht den Mittelwert nach oben). (3) Bei linearer Transformation y = a·x + b gilt ȳ = a·x̄ + b = 3·10 − 4 = 26. (4) Der Median ist linear-equivariant: ỹ = 3·8 − 4 = 20. (5) ist falsch — Median und Mittel sind nur bei symmetrischen Verteilungen gleich.",
     "source": "Eigene Aufgabe"
   },
   {
     "id": "q-streuung-001",
     "type": "numeric",
-    "skills": ["streuung"],
+    "skills": [
+      "streuung"
+    ],
     "difficulty": 0.3,
     "stem": "Bestimme die empirische Varianz s²_x (mit Vorfaktor 1/n) der Werte 2, 4, 4, 6, 4.",
-    "correct": { "value": 1.6, "tolerance": 0.02 },
+    "correct": {
+      "value": 1.6,
+      "tolerance": 0.02
+    },
     "explanation": "Mittel x̄ = (2+4+4+6+4)/5 = 20/5 = 4. Quadrierte Abweichungen: (−2)² + 0² + 0² + 2² + 0² = 4+0+0+4+0 = 8. Damit s²_x = 8/5 = 1,6.",
     "solutionSteps": [
       "Mittelwert: x̄ = 20/5 = 4",
@@ -84,10 +146,15 @@
   {
     "id": "q-streuung-002",
     "type": "numeric",
-    "skills": ["streuung"],
+    "skills": [
+      "streuung"
+    ],
     "difficulty": 0.35,
     "stem": "Für den Datensatz 1, 3, 5, 7, 9 berechne die empirische Standardabweichung s_x (Vorfaktor 1/n).",
-    "correct": { "value": 2.8284, "tolerance": 0.03 },
+    "correct": {
+      "value": 2.8284,
+      "tolerance": 0.03
+    },
     "explanation": "Mittel x̄ = 25/5 = 5. Abweichungen: −4, −2, 0, 2, 4. Quadrate: 16, 4, 0, 4, 16. Summe = 40. s²_x = 40/5 = 8, also s_x = √8 ≈ 2,828.",
     "solutionSteps": [
       "x̄ = 25/5 = 5",
@@ -95,13 +162,27 @@
       "s² = 40/5 = 8",
       "s = √8 ≈ 2,828"
     ],
-    "viz": { "component": "Boxplot", "props": { "data": [1, 3, 5, 7, 9] } },
+    "viz": {
+      "component": "Boxplot",
+      "props": {
+        "data": [
+          1,
+          3,
+          5,
+          7,
+          9
+        ]
+      }
+    },
     "source": "Eigene Aufgabe"
   },
   {
     "id": "q-streuung-003",
     "type": "mc",
-    "skills": ["streuung", "lagemasse"],
+    "skills": [
+      "streuung",
+      "lagemasse"
+    ],
     "difficulty": 0.5,
     "stem": "Gegeben seien die Messwerte 5, 3, 3, 4, 5, 10, 5. Welche der folgenden Aussagen ist FALSCH?",
     "options": [
@@ -118,7 +199,9 @@
   {
     "id": "q-streuung-004",
     "type": "mc",
-    "skills": ["streuung"],
+    "skills": [
+      "streuung"
+    ],
     "difficulty": 0.45,
     "stem": "Sei s_x die empirische Standardabweichung der Daten x_1, …, x_n und seien y_i = a·x_i + b mit a, b ∈ ℝ. Welche Aussage ist FALSCH?",
     "options": [
@@ -135,33 +218,59 @@
   {
     "id": "q-quantile-boxplot-001",
     "type": "numeric",
-    "skills": ["quantile-boxplot"],
+    "skills": [
+      "quantile-boxplot"
+    ],
     "difficulty": 0.3,
     "stem": "Gegeben sind die geordneten Werte 2, 4, 6, 8, 10, 12, 14, 16. Bestimme das untere Quartil (25%-Quantil) nach der Cramer/Kamps-Konvention: bei ganzzahligem n·p ist das p-Quantil 0,5·(x_(n·p) + x_(n·p+1)).",
-    "correct": { "value": 5, "tolerance": 0.02 },
+    "correct": {
+      "value": 5,
+      "tolerance": 0.02
+    },
     "explanation": "n = 8, p = 0,25, n·p = 2 (ganzzahlig). Daher ist das untere Quartil 0,5·(x_(2) + x_(3)) = (4 + 6)/2 = 5.",
     "solutionSteps": [
       "n = 8, p = 0,25 → n·p = 2 (ganzzahlig)",
       "Konvention: 0,5·(x_(n·p) + x_(n·p+1)) = 0,5·(x_(2) + x_(3))",
       "= 0,5·(4 + 6) = 5"
     ],
-    "viz": { "component": "Boxplot", "props": { "data": [2, 4, 6, 8, 10, 12, 14, 16] } },
+    "viz": {
+      "component": "Boxplot",
+      "props": {
+        "data": [
+          2,
+          4,
+          6,
+          8,
+          10,
+          12,
+          14,
+          16
+        ]
+      }
+    },
     "source": "Eigene Aufgabe"
   },
   {
     "id": "q-quantile-boxplot-002",
     "type": "numeric",
-    "skills": ["quantile-boxplot"],
+    "skills": [
+      "quantile-boxplot"
+    ],
     "difficulty": 0.4,
     "stem": "Für einen Datensatz ist das untere Quartil 12 und das obere Quartil 28. Bestimme den Quartilsabstand (IQR).",
-    "correct": { "value": 16, "tolerance": 0.01 },
+    "correct": {
+      "value": 16,
+      "tolerance": 0.01
+    },
     "explanation": "Der Quartilsabstand ist definiert als IQR = Q_0,75 − Q_0,25 = 28 − 12 = 16.",
     "source": "Eigene Aufgabe"
   },
   {
     "id": "q-quantile-boxplot-003",
     "type": "multi-mc",
-    "skills": ["quantile-boxplot"],
+    "skills": [
+      "quantile-boxplot"
+    ],
     "difficulty": 0.5,
     "stem": "Aus einem Boxplot eines Datensatzes liest man ab: Minimum 5, unteres Quartil 11, Median 14, oberes Quartil 18, Maximum 30. Welche Aussagen sind korrekt?",
     "options": [
@@ -171,15 +280,41 @@
       "Der Wert 30 ist nach der 1,5·IQR-Regel ein milder Ausreißer.",
       "Die Spannweite beträgt 25."
     ],
-    "correct": [0, 1, 2, 3, 4],
+    "correct": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
     "explanation": "(1) IQR = 18 − 11 = 7. (2) Die Box umfasst die mittleren 50 %. (3) Q_3 − Med = 4 > Med − Q_1 = 3 → rechtsschief. (4) Obere Schranke: Q_3 + 1,5·IQR = 18 + 10,5 = 28,5; 30 > 28,5, also Ausreißer. (5) Spannweite = 30 − 5 = 25.",
-    "viz": { "component": "Boxplot", "props": { "data": [5, 11, 11, 12, 13, 14, 15, 16, 17, 18, 18, 30] } },
+    "viz": {
+      "component": "Boxplot",
+      "props": {
+        "data": [
+          5,
+          11,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          18,
+          30
+        ]
+      }
+    },
     "source": "Eigene Aufgabe"
   },
   {
     "id": "q-quantile-boxplot-004",
     "type": "mc",
-    "skills": ["quantile-boxplot"],
+    "skills": [
+      "quantile-boxplot"
+    ],
     "difficulty": 0.45,
     "stem": "Welche der folgenden Aussagen über Boxplots ist FALSCH?",
     "options": [
@@ -191,13 +326,31 @@
     ],
     "correct": 4,
     "explanation": "Das arithmetische Mittel ist im klassischen Boxplot NICHT eingezeichnet. Nur Quartile, Median, Whisker und Ausreißer sind sichtbar — alles robuste oder rang-basierte Größen. Ein Mittelwert müsste zusätzlich markiert werden (z. B. als Kreuz).",
-    "viz": { "component": "Boxplot", "props": { "data": [3, 5, 7, 8, 9, 10, 11, 13, 15, 25] } },
+    "viz": {
+      "component": "Boxplot",
+      "props": {
+        "data": [
+          3,
+          5,
+          7,
+          8,
+          9,
+          10,
+          11,
+          13,
+          15,
+          25
+        ]
+      }
+    },
     "source": "Cramer/Kamps Klausurtraining A.I.11 (adaptiert)"
   },
   {
     "id": "q-korrelation-001",
     "type": "mc",
-    "skills": ["korrelation"],
+    "skills": [
+      "korrelation"
+    ],
     "difficulty": 0.4,
     "stem": "Welche Aussage über den Bravais-Pearson-Korrelationskoeffizienten r_xy ist FALSCH?",
     "options": [
@@ -209,16 +362,47 @@
     ],
     "correct": 3,
     "explanation": "r_xy = 0 bedeutet lediglich, dass KEIN linearer Zusammenhang besteht. Es kann durchaus ein starker nichtlinearer Zusammenhang vorliegen (z. B. Y = X² mit X gleichmäßig um 0 verteilt → r ≈ 0, obwohl Y vollständig durch X bestimmt ist). Unabhängigkeit ist eine viel stärkere Eigenschaft.",
-    "viz": { "component": "Regression", "props": { "points": [[-2, 4], [-1, 1], [0, 0], [1, 1], [2, 4]] } },
+    "viz": {
+      "component": "Regression",
+      "props": {
+        "points": [
+          [
+            -2,
+            4
+          ],
+          [
+            -1,
+            1
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            4
+          ]
+        ]
+      }
+    },
     "source": "Eigene Aufgabe, klassische Korrelations-Falle"
   },
   {
     "id": "q-korrelation-002",
     "type": "numeric",
-    "skills": ["korrelation"],
+    "skills": [
+      "korrelation"
+    ],
     "difficulty": 0.55,
     "stem": "Für die Datenpaare (1,2), (2,4), (3,6), (4,8) ist der Bravais-Pearson-Korrelationskoeffizient r_xy zu berechnen.",
-    "correct": { "value": 1, "tolerance": 0.01 },
+    "correct": {
+      "value": 1,
+      "tolerance": 0.01
+    },
     "explanation": "Die Punkte liegen exakt auf der Geraden y = 2x. Bei einem perfekten linearen Zusammenhang mit positiver Steigung gilt r_xy = 1.",
     "solutionSteps": [
       "x̄ = 2,5; ȳ = 5",
@@ -226,13 +410,37 @@
       "Σ(x − x̄)² = 5; Σ(y − ȳ)² = 20",
       "r = 10/√(5·20) = 10/10 = 1"
     ],
-    "viz": { "component": "Regression", "props": { "points": [[1, 2], [2, 4], [3, 6], [4, 8]] } },
+    "viz": {
+      "component": "Regression",
+      "props": {
+        "points": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            4,
+            8
+          ]
+        ]
+      }
+    },
     "source": "Eigene Aufgabe"
   },
   {
     "id": "q-korrelation-003",
     "type": "multi-mc",
-    "skills": ["korrelation"],
+    "skills": [
+      "korrelation"
+    ],
     "difficulty": 0.55,
     "stem": "Welche der folgenden Aussagen zur Korrelation sind korrekt?",
     "options": [
@@ -242,18 +450,58 @@
       "Pearsons r ist gegen Ausreißer empfindlicher als Spearmans ρ.",
       "Aus r_xy > 0 folgt, dass X die Ursache von Y ist."
     ],
-    "correct": [0, 1, 2, 3],
+    "correct": [
+      0,
+      1,
+      2,
+      3
+    ],
     "explanation": "(1)-(3): Spearman ist Pearson auf den Rängen → erkennt monotone Zusammenhänge; bei strikt monoton wachsendem Zusammenhang sind beide Rangreihen identisch → ρ = 1. (4): Pearson nutzt die tatsächlichen Werte und ist daher empfindlicher gegen Ausreißer. (5): Korrelation impliziert keine Kausalität — eine positive Korrelation sagt nichts über die Ursachenrichtung.",
-    "viz": { "component": "Regression", "props": { "points": [[1, 1], [2, 4], [3, 9], [4, 16], [5, 25], [6, 36]] } },
+    "viz": {
+      "component": "Regression",
+      "props": {
+        "points": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            9
+          ],
+          [
+            4,
+            16
+          ],
+          [
+            5,
+            25
+          ],
+          [
+            6,
+            36
+          ]
+        ]
+      }
+    },
     "source": "Eigene Aufgabe"
   },
   {
     "id": "q-regression-deskr-001",
     "type": "numeric",
-    "skills": ["regression-deskr"],
+    "skills": [
+      "regression-deskr"
+    ],
     "difficulty": 0.5,
     "stem": "Gegeben sei der bivariate Datensatz (x_i, y_i) mit (1, 4), (3, 0), (2, 2). Bestimme die Steigung b̂ der Ausgleichsgeraden ŷ = â + b̂·x nach der Methode der kleinsten Quadrate.",
-    "correct": { "value": -2, "tolerance": 0.02 },
+    "correct": {
+      "value": -2,
+      "tolerance": 0.02
+    },
     "explanation": "x̄ = 2, ȳ = 2. S_xy = Σ(x_i − x̄)(y_i − ȳ) = (−1)·2 + 1·(−2) + 0·0 = −4. S_xx = Σ(x_i − x̄)² = 1 + 1 + 0 = 2. b̂ = S_xy / S_xx = −4/2 = −2.",
     "solutionSteps": [
       "x̄ = (1+3+2)/3 = 2; ȳ = (4+0+2)/3 = 2",
@@ -261,16 +509,39 @@
       "S_xx = (−1)² + 1² + 0² = 2",
       "b̂ = S_xy/S_xx = −2"
     ],
-    "viz": { "component": "Regression", "props": { "points": [[1, 4], [3, 0], [2, 2]] } },
+    "viz": {
+      "component": "Regression",
+      "props": {
+        "points": [
+          [
+            1,
+            4
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      }
+    },
     "source": "Cramer/Kamps Klausurtraining A.I.35 (adaptiert)"
   },
   {
     "id": "q-regression-deskr-002",
     "type": "numeric",
-    "skills": ["regression-deskr"],
+    "skills": [
+      "regression-deskr"
+    ],
     "difficulty": 0.6,
     "stem": "Eine Ausgleichsgerade ergibt eine Reststreuung Σ(y_i − ŷ_i)² = 12 bei einer Gesamtstreuung Σ(y_i − ȳ)² = 60. Bestimme das Bestimmtheitsmaß R².",
-    "correct": { "value": 0.8, "tolerance": 0.01 },
+    "correct": {
+      "value": 0.8,
+      "tolerance": 0.01
+    },
     "explanation": "Das Bestimmtheitsmaß ist R² = 1 − SS_res/SS_tot = 1 − 12/60 = 1 − 0,2 = 0,8. Das bedeutet: 80 % der Varianz von y werden durch das lineare Modell erklärt.",
     "solutionSteps": [
       "SS_res = 12, SS_tot = 60",
@@ -282,7 +553,9 @@
   {
     "id": "q-regression-deskr-003",
     "type": "mc",
-    "skills": ["regression-deskr"],
+    "skills": [
+      "regression-deskr"
+    ],
     "difficulty": 0.5,
     "stem": "Welche der folgenden Aussagen zur linearen Einfachregression nach kleinsten Quadraten ist FALSCH?",
     "options": [
@@ -294,35 +567,110 @@
     ],
     "correct": 4,
     "explanation": "R² = 0 entsteht genau dann, wenn die Regression keinerlei Varianz erklärt — und das ist äquivalent zu b̂ = 0 (eine waagerechte Regressionsgerade y = ȳ). Die übrigen Aussagen sind Standardresultate der KQ-Methode.",
-    "viz": { "component": "Regression", "props": { "points": [[1, 2.1], [2, 3.9], [3, 6.0], [4, 7.8], [5, 10.2]] } },
+    "viz": {
+      "component": "Regression",
+      "props": {
+        "points": [
+          [
+            1,
+            2.1
+          ],
+          [
+            2,
+            3.9
+          ],
+          [
+            3,
+            6.0
+          ],
+          [
+            4,
+            7.8
+          ],
+          [
+            5,
+            10.2
+          ]
+        ]
+      }
+    },
     "source": "Eigene Aufgabe"
   },
   {
     "id": "q-regression-deskr-004",
     "type": "numeric",
-    "skills": ["regression-deskr"],
+    "skills": [
+      "regression-deskr"
+    ],
     "difficulty": 0.55,
     "stem": "Mit â = 1 und b̂ = 2,5 lautet die Ausgleichsgerade ŷ = 1 + 2,5·x. Welchen y-Wert prognostiziert die Gerade für x = 6?",
-    "correct": { "value": 16, "tolerance": 0.16 },
+    "correct": {
+      "value": 16,
+      "tolerance": 0.16
+    },
     "explanation": "Einfaches Einsetzen: ŷ(6) = 1 + 2,5·6 = 1 + 15 = 16.",
-    "viz": { "component": "Regression", "props": { "points": [[1, 3.5], [2, 6], [3, 8.5], [4, 11], [5, 13.5]] } },
+    "viz": {
+      "component": "Regression",
+      "props": {
+        "points": [
+          [
+            1,
+            3.5
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            3,
+            8.5
+          ],
+          [
+            4,
+            11
+          ],
+          [
+            5,
+            13.5
+          ]
+        ]
+      }
+    },
     "source": "Cramer/Kamps Klausurtraining A.I.36 (adaptiert)"
   },
   {
     "id": "q-lorenz-gini-001",
     "type": "numeric",
-    "skills": ["lorenz-gini"],
+    "skills": [
+      "lorenz-gini"
+    ],
     "difficulty": 0.55,
     "stem": "Fünf Unternehmen erwirtschaften Umsätze von 10, 20, 40, 50, 80 Mio. €. Berechne den (unnormierten) Gini-Koeffizienten G.",
-    "correct": { "value": 0.34, "tolerance": 0.01 },
+    "correct": {
+      "value": 0.34,
+      "tolerance": 0.01
+    },
     "explanation": "Sortiert: 10, 20, 40, 50, 80; Summe S = 200. Kumulierte Anteile y_k = Σ_{i≤k} x_(i)/S: 0,05; 0,15; 0,35; 0,60; 1,00. Mit der Formel G = (2·Σ i·x_(i))/(n·S) − (n+1)/n: Σ i·x_(i) = 1·10 + 2·20 + 3·40 + 4·50 + 5·80 = 770. Also G = (2·770)/(5·200) − 6/5 = 1,54 − 1,2 = 0,34. (Trapezfläche A unter Lorenz-Kurve = 0,33, daher G = 1 − 2·0,33 = 0,34.)",
-    "viz": { "component": "LorenzGini", "props": { "values": [10, 20, 40, 50, 80] } },
+    "viz": {
+      "component": "LorenzGini",
+      "props": {
+        "values": [
+          10,
+          20,
+          40,
+          50,
+          80
+        ]
+      }
+    },
     "source": "Cramer/Kamps Klausurtraining A.I.26 (adaptiert)"
   },
   {
     "id": "q-lorenz-gini-002",
     "type": "mc",
-    "skills": ["lorenz-gini"],
+    "skills": [
+      "lorenz-gini"
+    ],
     "difficulty": 0.45,
     "stem": "Welche der folgenden Aussagen zur Lorenz-Kurve und zum Gini-Koeffizienten ist FALSCH?",
     "options": [
@@ -334,24 +682,52 @@
     ],
     "correct": 4,
     "explanation": "Der UNNORMIERTE Gini-Koeffizient kann den Wert 1 nicht erreichen — er ist nach oben durch (n−1)/n begrenzt. Erst der NORMIERTE Gini G* = n/(n−1)·G erreicht bei maximaler Konzentration den Wert 1. Die übrigen Aussagen sind korrekt.",
-    "viz": { "component": "LorenzGini", "props": { "values": [0, 0, 0, 0, 100] } },
+    "viz": {
+      "component": "LorenzGini",
+      "props": {
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          100
+        ]
+      }
+    },
     "source": "Cramer/Kamps Klausurtraining A.I.27 (adaptiert)"
   },
   {
     "id": "q-lorenz-gini-003",
     "type": "numeric",
-    "skills": ["lorenz-gini"],
+    "skills": [
+      "lorenz-gini"
+    ],
     "difficulty": 0.35,
     "stem": "Ein Markt besteht aus 4 gleich großen Anbietern, die jeweils den gleichen Umsatz erzielen. Wie groß ist der Gini-Koeffizient G?",
-    "correct": { "value": 0, "tolerance": 0.001 },
+    "correct": {
+      "value": 0,
+      "tolerance": 0.001
+    },
     "explanation": "Bei vollständiger Gleichverteilung fällt die Lorenz-Kurve mit der Diagonalen zusammen. Die Fläche zwischen ihnen ist 0, und damit ist G = 0. Das ist der Minimalwert.",
-    "viz": { "component": "LorenzGini", "props": { "values": [25, 25, 25, 25] } },
+    "viz": {
+      "component": "LorenzGini",
+      "props": {
+        "values": [
+          25,
+          25,
+          25,
+          25
+        ]
+      }
+    },
     "source": "Eigene Aufgabe"
   },
   {
     "id": "q-lorenz-gini-004",
     "type": "multi-mc",
-    "skills": ["lorenz-gini"],
+    "skills": [
+      "lorenz-gini"
+    ],
     "difficulty": 0.55,
     "stem": "Für die Beobachtungen 4, 8, 12, 16 (sortiert) gilt: Welche Aussagen sind korrekt?",
     "options": [
@@ -361,9 +737,1540 @@
       "Der Gini-Koeffizient ist gleich 0.",
       "Der normierte Gini ist stets größer oder gleich dem unnormierten Gini."
     ],
-    "correct": [0, 1, 2, 4],
+    "correct": [
+      0,
+      1,
+      2,
+      4
+    ],
     "explanation": "Summe = 40. Kumulierte Anteile (sortiert 4,8,12,16): nach 1 von 4: 4/40 = 0,1 → Punkt (0,25; 0,1) ✓. Nach 2: 12/40 = 0,3 → (0,5; 0,3) ✓. Nach 3: 24/40 = 0,6 → (0,75; 0,6) ✓. Da die Werte nicht alle gleich sind, ist G > 0 → (4) falsch. (5) ist richtig wegen G* = n/(n−1)·G ≥ G.",
-    "viz": { "component": "LorenzGini", "props": { "values": [4, 8, 12, 16] } },
+    "viz": {
+      "component": "LorenzGini",
+      "props": {
+        "values": [
+          4,
+          8,
+          12,
+          16
+        ]
+      }
+    },
     "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-lagemasse-005",
+    "type": "numeric",
+    "skills": [
+      "lagemasse"
+    ],
+    "difficulty": 0.4,
+    "stem": "In einem Kurs schreiben 12 Studierende eine Klausur. Die Notenverteilung ist: 1,0 (3 Personen), 2,0 (4 Personen), 3,0 (3 Personen), 4,0 (2 Personen). Bestimme den (gewichteten) Notendurchschnitt.",
+    "correct": {
+      "value": 2.333,
+      "tolerance": 0.01
+    },
+    "explanation": "Bei gegebenen Häufigkeiten n_i und Ausprägungen u_i ist x̄ = (Σ n_i·u_i)/n. Hier: (3·1 + 4·2 + 3·3 + 2·4)/12 = (3+8+9+8)/12 = 28/12 ≈ 2,333.",
+    "solutionSteps": [
+      "Σ n_i·u_i = 3·1 + 4·2 + 3·3 + 2·4 = 28",
+      "n = 12",
+      "x̄ = 28/12 = 7/3 ≈ 2,333"
+    ],
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-lagemasse-006",
+    "type": "numeric",
+    "skills": [
+      "lagemasse"
+    ],
+    "difficulty": 0.55,
+    "stem": "Ein Auto fährt eine Strecke mit 60 km/h und die gleiche Strecke zurück mit 40 km/h. Welche Durchschnittsgeschwindigkeit (in km/h) ergibt sich über die gesamte Strecke?",
+    "correct": {
+      "value": 48,
+      "tolerance": 0.05
+    },
+    "explanation": "Bei gleichen Streckenabschnitten ist die mittlere Geschwindigkeit das harmonische Mittel: x̄_h = n/(Σ 1/x_i) = 2/(1/60 + 1/40) = 2/(2/120 + 3/120) = 2/(5/120) = 240/5 = 48 km/h.",
+    "solutionSteps": [
+      "Bei gleichen Streckenabschnitten: harmonisches Mittel benutzen",
+      "x̄_h = 2/(1/60 + 1/40)",
+      "= 2/(5/120) = 240/5 = 48 km/h"
+    ],
+    "source": "Eigene Aufgabe — klassisches harmonisches-Mittel-Beispiel"
+  },
+  {
+    "id": "q-lagemasse-007",
+    "type": "numeric",
+    "skills": [
+      "lagemasse"
+    ],
+    "difficulty": 0.55,
+    "stem": "Ein Investment wächst in 3 Jahren um die Faktoren 1,20, 1,50 und 0,80 (also +20 %, +50 %, −20 %). Bestimme den durchschnittlichen jährlichen Wachstumsfaktor (geometrisches Mittel) auf 3 Nachkommastellen genau.",
+    "correct": {
+      "value": 1.129,
+      "tolerance": 0.005
+    },
+    "explanation": "Für multiplikative Größen wie Wachstumsfaktoren ist das geometrische Mittel zu verwenden: x̄_g = (1,20 · 1,50 · 0,80)^(1/3) = 1,44^(1/3) ≈ 1,129. Das arithmetische Mittel (1,167) wäre hier falsch, weil es die Multiplikativität ignoriert.",
+    "solutionSteps": [
+      "Wachstumsfaktoren multiplizieren: 1,20·1,50·0,80 = 1,44",
+      "n-te Wurzel ziehen: 1,44^(1/3)",
+      "≈ 1,129 (also ≈ +12,9 % jährlich)"
+    ],
+    "source": "Eigene Aufgabe — Geo-Mittel für Wachstumsraten"
+  },
+  {
+    "id": "q-lagemasse-008",
+    "type": "mc",
+    "skills": [
+      "lagemasse"
+    ],
+    "difficulty": 0.35,
+    "stem": "Ein Stadtteil hat folgende monatliche Mieten (in €): 600, 650, 700, 750, 5000. Welches Lagemaß beschreibt das „typische\" Mietniveau am besten?",
+    "options": [
+      "Das arithmetische Mittel, weil es alle Werte einbezieht.",
+      "Der Median, weil er gegen den extremen Wert (5000) robust ist.",
+      "Der Modus, weil er die häufigste Miete liefert.",
+      "Das geometrische Mittel, weil Mieten multiplikativ wachsen.",
+      "Die Spannweite, weil sie die Bandbreite zeigt."
+    ],
+    "correct": 1,
+    "explanation": "Der Median ist 700 € und entspricht dem typischen Mietniveau. Das arithmetische Mittel ist (600+650+700+750+5000)/5 = 1540 € — durch den Ausreißer stark verzerrt und nicht repräsentativ. Der Modus ist hier nicht aussagekräftig (jeder Wert tritt nur einmal auf). Die Spannweite ist kein Lagemaß.",
+    "viz": {
+      "component": "Boxplot",
+      "props": {
+        "data": [
+          600,
+          650,
+          700,
+          750,
+          5000
+        ]
+      }
+    },
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-lagemasse-009",
+    "type": "numeric",
+    "skills": [
+      "lagemasse"
+    ],
+    "difficulty": 0.4,
+    "stem": "Ein Datensatz hat das arithmetische Mittel x̄ = 24 (in °C). Berechne den Mittelwert nach Umrechnung in Grad Fahrenheit über y_i = 1,8·x_i + 32.",
+    "correct": {
+      "value": 75.2,
+      "tolerance": 0.05
+    },
+    "explanation": "Das arithmetische Mittel ist linear-äquivariant: y = a·x + b ⇒ ȳ = a·x̄ + b. Hier: ȳ = 1,8·24 + 32 = 43,2 + 32 = 75,2 °F.",
+    "solutionSteps": [
+      "Lineare Transformation: y = 1,8·x + 32",
+      "ȳ = 1,8·x̄ + 32 = 1,8·24 + 32",
+      "= 43,2 + 32 = 75,2"
+    ],
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-lagemasse-010",
+    "type": "multi-mc",
+    "skills": [
+      "lagemasse"
+    ],
+    "difficulty": 0.5,
+    "stem": "Welche der folgenden Aussagen über Lagemaße sind korrekt?",
+    "options": [
+      "Das arithmetische Mittel minimiert Σ(x_i − c)² über c.",
+      "Der Median minimiert Σ|x_i − c| über c.",
+      "Der Modus ist auch für nominal skalierte Merkmale sinnvoll definiert.",
+      "Für unimodale, symmetrische Verteilungen fallen Mittelwert, Median und Modus zusammen.",
+      "Das harmonische Mittel ist stets größer als das arithmetische Mittel positiver Zahlen."
+    ],
+    "correct": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "explanation": "(1) Klassisches Resultat: x̄ minimiert die quadratischen Abweichungen. (2) Der Median minimiert die Summe der absoluten Abweichungen. (3) Modus zählt die häufigste Ausprägung — auch für Nominaldaten sinnvoll. (4) Bei symmetrischen unimodalen Verteilungen fallen alle drei Lagemaße zusammen. (5) FALSCH: Es gilt stets x̄_h ≤ x̄_g ≤ x̄ (HM-GM-AM-Ungleichung).",
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-streuung-005",
+    "type": "numeric",
+    "skills": [
+      "streuung"
+    ],
+    "difficulty": 0.4,
+    "stem": "Für die Daten 3, 5, 7, 9, 11, 13 berechne die empirische Varianz s²_x (Vorfaktor 1/n). Tipp: Verschiebungssatz s²_x = (1/n)·Σx_i² − x̄².",
+    "correct": {
+      "value": 11.667,
+      "tolerance": 0.05
+    },
+    "explanation": "x̄ = 48/6 = 8. Σx_i² = 9+25+49+81+121+169 = 454. s²_x = 454/6 − 64 = 75,667 − 64 = 11,667.",
+    "solutionSteps": [
+      "x̄ = 48/6 = 8",
+      "Σx_i² = 9+25+49+81+121+169 = 454",
+      "s²_x = 454/6 − 8² = 75,667 − 64 ≈ 11,667"
+    ],
+    "source": "Eigene Aufgabe — Verschiebungssatz"
+  },
+  {
+    "id": "q-streuung-006",
+    "type": "numeric",
+    "skills": [
+      "streuung",
+      "lagemasse"
+    ],
+    "difficulty": 0.45,
+    "stem": "Für die Messwerte 4, 6, 8, 10, 12 berechne den Variationskoeffizienten v_x = s_x / x̄ (mit s_x als Stichproben-Standardabweichung mit Vorfaktor 1/n).",
+    "correct": {
+      "value": 0.354,
+      "tolerance": 0.01
+    },
+    "explanation": "x̄ = 40/5 = 8. Abweichungen: −4,−2,0,2,4. Quadrate: 16,4,0,4,16 → Σ = 40. s²_x = 40/5 = 8, also s_x = √8 ≈ 2,828. v_x = 2,828/8 ≈ 0,354 bzw. 35,4 %.",
+    "solutionSteps": [
+      "x̄ = 8",
+      "Σ(x − x̄)² = 16+4+0+4+16 = 40",
+      "s²_x = 40/5 = 8 ⇒ s_x = √8 ≈ 2,828",
+      "v_x = s_x/x̄ = 2,828/8 ≈ 0,354"
+    ],
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-streuung-007",
+    "type": "numeric",
+    "skills": [
+      "streuung"
+    ],
+    "difficulty": 0.45,
+    "stem": "Berechne die korrigierte Stichprobenvarianz (Vorfaktor 1/(n−1)) der Daten 2, 4, 4, 4, 5, 5, 7, 9.",
+    "correct": {
+      "value": 4.571,
+      "tolerance": 0.02
+    },
+    "explanation": "n = 8, x̄ = 40/8 = 5. Σ(x − x̄)² = 9+1+1+1+0+0+4+16 = 32. s²_korr = 32/(n−1) = 32/7 ≈ 4,571.",
+    "solutionSteps": [
+      "x̄ = 40/8 = 5",
+      "Σ(x − x̄)² = (−3)²+(−1)²+(−1)²+(−1)²+0+0+2²+4² = 32",
+      "s²_korr = 32/7 ≈ 4,571"
+    ],
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-streuung-008",
+    "type": "numeric",
+    "skills": [
+      "streuung"
+    ],
+    "difficulty": 0.4,
+    "stem": "Sei s²_x = 9 die empirische Varianz eines Datensatzes. Wie groß ist die Varianz der linear transformierten Daten y_i = −3·x_i + 7?",
+    "correct": {
+      "value": 81,
+      "tolerance": 0.01
+    },
+    "explanation": "Bei linearer Transformation y = a·x + b gilt s²_y = a²·s²_x. Hier: a = −3, also a² = 9, und s²_y = 9·9 = 81. Die additive Konstante b verschiebt nur, ändert die Streuung nicht.",
+    "solutionSteps": [
+      "Formel: s²_y = a²·s²_x (Konstante b irrelevant)",
+      "a = −3 ⇒ a² = 9",
+      "s²_y = 9·9 = 81"
+    ],
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-streuung-009",
+    "type": "numeric",
+    "skills": [
+      "streuung"
+    ],
+    "difficulty": 0.4,
+    "stem": "Berechne die empirische Standardabweichung s_x (Vorfaktor 1/n) für 1, 2, 3, 4, 5.",
+    "correct": {
+      "value": 1.4142,
+      "tolerance": 0.02
+    },
+    "explanation": "x̄ = 15/5 = 3. Σ(x−x̄)² = 4+1+0+1+4 = 10. s²_x = 10/5 = 2. s_x = √2 ≈ 1,4142.",
+    "solutionSteps": [
+      "x̄ = 3",
+      "Σ(x−x̄)² = 4+1+0+1+4 = 10",
+      "s²_x = 10/5 = 2",
+      "s_x = √2 ≈ 1,414"
+    ],
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-streuung-010",
+    "type": "multi-mc",
+    "skills": [
+      "streuung"
+    ],
+    "difficulty": 0.5,
+    "stem": "Welche der folgenden Aussagen zu Streuungsmaßen sind korrekt?",
+    "options": [
+      "Wenn alle Beobachtungen gleich sind, ist die empirische Varianz 0.",
+      "Die empirische Varianz kann negative Werte annehmen.",
+      "Die Spannweite (Maximum − Minimum) ist nicht robust gegen Ausreißer.",
+      "Der Quartilsabstand ist robuster gegen Ausreißer als die Standardabweichung.",
+      "Die Standardabweichung hat die gleiche Maßeinheit wie die Daten."
+    ],
+    "correct": [
+      0,
+      2,
+      3,
+      4
+    ],
+    "explanation": "(1) Bei konstanten Daten sind alle (x_i − x̄) = 0. (2) FALSCH: Varianz ist Summe von Quadraten und immer ≥ 0. (3) Spannweite hängt nur von Extremen ab → sehr anfällig für Ausreißer. (4) IQR betrachtet nur das mittlere 50 % → robust. (5) s = √s² → Einheit „Daten\", während s² Einheit „Daten²\" hat.",
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-quantile-boxplot-005",
+    "type": "numeric",
+    "skills": [
+      "quantile-boxplot"
+    ],
+    "difficulty": 0.4,
+    "stem": "Für die geordneten Daten 3, 5, 8, 11, 14, 17 berechne das obere Quartil (75 %-Quantil) nach Cramer/Kamps.",
+    "correct": {
+      "value": 14,
+      "tolerance": 0.02
+    },
+    "explanation": "n = 6, p = 0,75 ⇒ n·p = 4,5 (nicht ganzzahlig). Konvention: x_p = x_(⌊np⌋+1) = x_(5) = 14.",
+    "solutionSteps": [
+      "n·p = 6·0,75 = 4,5 (nicht ganzzahlig)",
+      "Konvention: x_p = x_(⌊np⌋+1) = x_(5)",
+      "= 14"
+    ],
+    "viz": {
+      "component": "Boxplot",
+      "props": {
+        "data": [
+          3,
+          5,
+          8,
+          11,
+          14,
+          17
+        ]
+      }
+    },
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-quantile-boxplot-006",
+    "type": "numeric",
+    "skills": [
+      "quantile-boxplot",
+      "lagemasse"
+    ],
+    "difficulty": 0.3,
+    "stem": "Für die geordneten Daten 1, 3, 5, 7, 9 berechne den Median (50 %-Quantil) nach Cramer/Kamps.",
+    "correct": {
+      "value": 5,
+      "tolerance": 0.01
+    },
+    "explanation": "n = 5, p = 0,5 ⇒ n·p = 2,5 (nicht ganzzahlig). Konvention: x_(⌊2,5⌋+1) = x_(3) = 5. Bei ungeradem n liegt der Median „in der Mitte\".",
+    "viz": {
+      "component": "Boxplot",
+      "props": {
+        "data": [
+          1,
+          3,
+          5,
+          7,
+          9
+        ]
+      }
+    },
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-quantile-boxplot-007",
+    "type": "numeric",
+    "skills": [
+      "quantile-boxplot"
+    ],
+    "difficulty": 0.45,
+    "stem": "Für einen Datensatz seien Q₁ = 20 und Q₃ = 30. Nach welcher oberen Schranke (Q₃ + 1,5·IQR) gelten Werte gemäß der gängigen 1,5·IQR-Regel als (obere) Ausreißer?",
+    "correct": {
+      "value": 45,
+      "tolerance": 0.05
+    },
+    "explanation": "IQR = Q₃ − Q₁ = 30 − 20 = 10. Obere Ausreißerschwelle: Q₃ + 1,5·IQR = 30 + 1,5·10 = 30 + 15 = 45. Werte > 45 werden als (mindestens milde) Ausreißer eingestuft.",
+    "solutionSteps": [
+      "IQR = Q₃ − Q₁ = 30 − 20 = 10",
+      "Schwelle = Q₃ + 1,5·IQR = 30 + 15",
+      "= 45"
+    ],
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-quantile-boxplot-008",
+    "type": "numeric",
+    "skills": [
+      "quantile-boxplot"
+    ],
+    "difficulty": 0.45,
+    "stem": "Für die geordneten Daten 2, 5, 8, 12, 15, 17, 20, 24 berechne den Median (50 %-Quantil) nach Cramer/Kamps.",
+    "correct": {
+      "value": 13.5,
+      "tolerance": 0.02
+    },
+    "explanation": "n = 8, p = 0,5 ⇒ n·p = 4 (ganzzahlig). Konvention: x_p = 0,5·(x_(n·p) + x_(n·p+1)) = 0,5·(x_(4) + x_(5)) = 0,5·(12 + 15) = 13,5.",
+    "viz": {
+      "component": "Boxplot",
+      "props": {
+        "data": [
+          2,
+          5,
+          8,
+          12,
+          15,
+          17,
+          20,
+          24
+        ]
+      }
+    },
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-korrelation-004",
+    "type": "numeric",
+    "skills": [
+      "korrelation"
+    ],
+    "difficulty": 0.55,
+    "stem": "Berechne den Bravais-Pearson-Korrelationskoeffizienten r_xy der Datenpaare (1, 3), (2, 2), (3, 4), (4, 5), (5, 1).",
+    "correct": {
+      "value": -0.1,
+      "tolerance": 0.02
+    },
+    "explanation": "x̄ = 3, ȳ = 3. S_xy = (−2)(0)+(−1)(−1)+(0)(1)+(1)(2)+(2)(−2) = 0+1+0+2−4 = −1. S_xx = 4+1+0+1+4 = 10. S_yy = 0+1+1+4+4 = 10. r = −1/√(10·10) = −0,1.",
+    "solutionSteps": [
+      "x̄ = 3, ȳ = 3",
+      "S_xy = Σ(x−x̄)(y−ȳ) = 0+1+0+2−4 = −1",
+      "S_xx = 10, S_yy = 10",
+      "r = S_xy/√(S_xx·S_yy) = −1/10 = −0,1"
+    ],
+    "viz": {
+      "component": "Regression",
+      "props": {
+        "points": [
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            1
+          ]
+        ]
+      }
+    },
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-korrelation-005",
+    "type": "numeric",
+    "skills": [
+      "korrelation"
+    ],
+    "difficulty": 0.55,
+    "stem": "Für die Datenpaare (1, 1), (2, 4), (3, 9), (4, 16) berechne Spearmans Rangkorrelationskoeffizienten ρ_S.",
+    "correct": {
+      "value": 1,
+      "tolerance": 0.01
+    },
+    "explanation": "x-Ränge: 1, 2, 3, 4. y-Ränge: 1, 2, 3, 4 (y = x² ist auf positiven x strikt monoton wachsend). Die Rangreihen stimmen überein → ρ_S = 1. Pearsons r wäre wegen Nichtlinearität < 1.",
+    "solutionSteps": [
+      "Beide Ränge identisch: 1, 2, 3, 4",
+      "Bei strikt monoton wachsendem Zusammenhang gilt ρ_S = 1",
+      "(unabhängig von der konkreten Form y = x²)"
+    ],
+    "viz": {
+      "component": "Regression",
+      "props": {
+        "points": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            9
+          ],
+          [
+            4,
+            16
+          ]
+        ]
+      }
+    },
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-korrelation-006",
+    "type": "mc",
+    "skills": [
+      "korrelation"
+    ],
+    "difficulty": 0.45,
+    "stem": "Die Datenpaare (x_i, y_i) haben einen Korrelationskoeffizienten r_xy = 0,8. Welcher Wert ergibt sich nach der Transformation (u_i, v_i) = (3·x_i + 1, −2·y_i + 5)?",
+    "options": [
+      "r_uv = 0,8",
+      "r_uv = −0,8",
+      "r_uv = 0,8·(3)·(−2) = −4,8",
+      "r_uv = 1 − 0,8 = 0,2",
+      "r_uv = 0"
+    ],
+    "correct": 1,
+    "explanation": "r ist invariant unter positiv-affinen Transformationen, ändert aber das Vorzeichen, sobald a oder b negativ ist (genauer: Vorzeichen von sgn(a)·sgn(b)). Hier 3 > 0 und −2 < 0 → r_uv = (sgn(3)·sgn(−2))·r_xy = −1·0,8 = −0,8.",
+    "viz": {
+      "component": "Regression",
+      "props": {
+        "points": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3.5
+          ],
+          [
+            3,
+            5.2
+          ],
+          [
+            4,
+            6.5
+          ],
+          [
+            5,
+            8.5
+          ]
+        ]
+      }
+    },
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-regression-deskr-005",
+    "type": "numeric",
+    "skills": [
+      "regression-deskr"
+    ],
+    "difficulty": 0.5,
+    "stem": "Für die Datenpunkte (1, 3), (2, 5), (3, 4), (4, 8), (5, 10) ergibt die KQ-Anpassung die Steigung b̂ = 1,6. Berechne den Achsenabschnitt â der Ausgleichsgeraden ŷ = â + b̂·x.",
+    "correct": {
+      "value": 1.2,
+      "tolerance": 0.02
+    },
+    "explanation": "Die KQ-Gerade verläuft durch (x̄, ȳ): x̄ = 3, ȳ = 6. Also â = ȳ − b̂·x̄ = 6 − 1,6·3 = 6 − 4,8 = 1,2.",
+    "solutionSteps": [
+      "x̄ = 15/5 = 3, ȳ = 30/5 = 6",
+      "â = ȳ − b̂·x̄ = 6 − 1,6·3",
+      "= 6 − 4,8 = 1,2"
+    ],
+    "viz": {
+      "component": "Regression",
+      "props": {
+        "points": [
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            8
+          ],
+          [
+            5,
+            10
+          ]
+        ]
+      }
+    },
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-regression-deskr-006",
+    "type": "numeric",
+    "skills": [
+      "regression-deskr"
+    ],
+    "difficulty": 0.5,
+    "stem": "Berechne die Steigung b̂ der KQ-Ausgleichsgeraden für die Punkte (1, 2), (2, 3), (3, 5), (4, 4), (5, 6).",
+    "correct": {
+      "value": 0.9,
+      "tolerance": 0.02
+    },
+    "explanation": "x̄ = 3, ȳ = 4. S_xy = (−2)(−2)+(−1)(−1)+(0)(1)+(1)(0)+(2)(2) = 4+1+0+0+4 = 9. S_xx = 4+1+0+1+4 = 10. b̂ = 9/10 = 0,9.",
+    "solutionSteps": [
+      "x̄ = 3, ȳ = 4",
+      "S_xy = 4+1+0+0+4 = 9",
+      "S_xx = 4+1+0+1+4 = 10",
+      "b̂ = S_xy/S_xx = 9/10 = 0,9"
+    ],
+    "viz": {
+      "component": "Regression",
+      "props": {
+        "points": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            6
+          ]
+        ]
+      }
+    },
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-regression-deskr-007",
+    "type": "numeric",
+    "skills": [
+      "regression-deskr",
+      "korrelation"
+    ],
+    "difficulty": 0.5,
+    "stem": "Ein bivariater Datensatz hat Korrelationskoeffizient r_xy = −0,6. Bestimme das Bestimmtheitsmaß R² der linearen Einfachregression von Y auf X.",
+    "correct": {
+      "value": 0.36,
+      "tolerance": 0.005
+    },
+    "explanation": "Bei der einfachen linearen Regression gilt R² = r²_xy. Hier: R² = (−0,6)² = 0,36 — unabhängig vom Vorzeichen von r. Das Modell erklärt also 36 % der Y-Varianz.",
+    "solutionSteps": [
+      "Bei einfacher linearer Regression: R² = r²_xy",
+      "= (−0,6)² = 0,36"
+    ],
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-lorenz-gini-005",
+    "type": "numeric",
+    "skills": [
+      "lorenz-gini"
+    ],
+    "difficulty": 0.5,
+    "stem": "In einer Gruppe von 5 Personen besitzt eine Person das gesamte Vermögen, die anderen vier nichts. Berechne den unnormierten Gini-Koeffizienten G.",
+    "correct": {
+      "value": 0.8,
+      "tolerance": 0.01
+    },
+    "explanation": "Maximalkonzentration bei n=5: der unnormierte Gini erreicht (n−1)/n = 4/5 = 0,8 (NICHT 1). Der normierte Gini wäre hier G* = (n/(n−1))·G = (5/4)·0,8 = 1.",
+    "solutionSteps": [
+      "Maximalkonzentration ⇒ G_max = (n−1)/n",
+      "n = 5",
+      "G = 4/5 = 0,8"
+    ],
+    "viz": {
+      "component": "LorenzGini",
+      "props": {
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          100
+        ]
+      }
+    },
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-lorenz-gini-006",
+    "type": "numeric",
+    "skills": [
+      "lorenz-gini"
+    ],
+    "difficulty": 0.4,
+    "stem": "Die sortierten Einkommen lauten 10, 20, 30, 40 (in TEuro). Welcher kumulierte Einkommensanteil (zwischen 0 und 1) entfällt auf die unteren 50 % der Personen?",
+    "correct": {
+      "value": 0.3,
+      "tolerance": 0.01
+    },
+    "explanation": "Summe = 100. Untere 50 % (2 Personen) bringen 10 + 20 = 30 TEuro auf. Anteil: 30/100 = 0,3. Das ist der y-Wert der Lorenz-Kurve bei x = 0,5.",
+    "solutionSteps": [
+      "Summe = 100",
+      "Untere 2 von 4 Personen: 10 + 20 = 30",
+      "Anteil = 30/100 = 0,3"
+    ],
+    "viz": {
+      "component": "LorenzGini",
+      "props": {
+        "values": [
+          10,
+          20,
+          30,
+          40
+        ]
+      }
+    },
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-lorenz-gini-007",
+    "type": "mc",
+    "skills": [
+      "lorenz-gini"
+    ],
+    "difficulty": 0.4,
+    "stem": "Welche Aussage über die Lorenz-Kurve ist FALSCH?",
+    "options": [
+      "Sie startet bei (0,0) und endet bei (1,1).",
+      "Sie liegt stets auf oder unterhalb der Diagonalen.",
+      "Bei Gleichverteilung der Daten fällt sie mit der Diagonalen zusammen.",
+      "Sie ist monoton wachsend.",
+      "Sie ist konvex (von oben gesehen)."
+    ],
+    "correct": 4,
+    "explanation": "Die Lorenz-Kurve ist KONVEX VON UNTEN (also nach unten gewölbt, „bauchig nach unten\"), nicht von oben — sie liegt unterhalb der Diagonalen und „bricht nach unten ein\". Mathematisch heißt das: die Steigungen wachsen monoton, weil die sortierten Werte aufsteigend kumuliert werden.",
+    "viz": {
+      "component": "LorenzGini",
+      "props": {
+        "values": [
+          5,
+          10,
+          15,
+          30,
+          40
+        ]
+      }
+    },
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-lagemasse-011",
+    "type": "numeric",
+    "skills": [
+      "lagemasse"
+    ],
+    "difficulty": 0.45,
+    "stem": "Berechne das arithmetische Mittel der Werte 7, 11, 13, 17, 22.",
+    "correct": {
+      "value": 14,
+      "tolerance": 0.01
+    },
+    "explanation": "x̄ = (7+11+13+17+22)/5 = 70/5 = 14.",
+    "solutionSteps": [
+      "Summe = 7+11+13+17+22 = 70",
+      "n = 5",
+      "x̄ = 70/5 = 14"
+    ],
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-lagemasse-012",
+    "type": "numeric",
+    "skills": [
+      "lagemasse"
+    ],
+    "difficulty": 0.45,
+    "stem": "Bei einer Befragung wurden 50 Personen nach ihrem täglichen Schlaf gefragt: 7 Std (12 Personen), 8 Std (22 Personen), 9 Std (10 Personen), 10 Std (6 Personen). Berechne das mittlere Schlafpensum.",
+    "correct": {
+      "value": 8.2,
+      "tolerance": 0.02
+    },
+    "explanation": "x̄ = (12·7 + 22·8 + 10·9 + 6·10)/50 = (84+176+90+60)/50 = 410/50 = 8,2 Std.",
+    "solutionSteps": [
+      "Σ n_i·u_i = 84+176+90+60 = 410",
+      "n = 12+22+10+6 = 50",
+      "x̄ = 410/50 = 8,2"
+    ],
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-lagemasse-013",
+    "type": "mc",
+    "skills": [
+      "lagemasse"
+    ],
+    "difficulty": 0.4,
+    "stem": "Welcher der folgenden Datensätze hat einen Modus von 7?",
+    "options": [
+      "3, 5, 7, 9, 11",
+      "1, 3, 7, 7, 12, 12",
+      "5, 7, 7, 7, 9, 9",
+      "1, 2, 3, 4, 5",
+      "7, 8, 9, 10, 11, 12"
+    ],
+    "correct": 2,
+    "explanation": "Der Modus ist die am häufigsten auftretende Ausprägung. Nur (3) hat einen eindeutigen Modus 7 (dreimal). In (1), (4), (5) ist jede Ausprägung gleich häufig (kein eindeutiger Modus). In (2) sind sowohl 7 als auch 12 zweimal vertreten (bimodal).",
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-streuung-011",
+    "type": "numeric",
+    "skills": [
+      "streuung"
+    ],
+    "difficulty": 0.35,
+    "stem": "Bestimme die Spannweite (Range) des Datensatzes 8, 3, 12, 5, 15, 2, 9.",
+    "correct": {
+      "value": 13,
+      "tolerance": 0.01
+    },
+    "explanation": "Spannweite = Maximum − Minimum = 15 − 2 = 13.",
+    "solutionSteps": [
+      "Maximum = 15",
+      "Minimum = 2",
+      "Spannweite = 15 − 2 = 13"
+    ],
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-streuung-012",
+    "type": "numeric",
+    "skills": [
+      "streuung"
+    ],
+    "difficulty": 0.5,
+    "stem": "Bestimme die mittlere absolute Abweichung MAD = (1/n)·Σ|x_i − x̄| für die Daten 4, 4, 6, 8, 8.",
+    "correct": {
+      "value": 1.6,
+      "tolerance": 0.02
+    },
+    "explanation": "x̄ = 30/5 = 6. |x_i − 6|: 2, 2, 0, 2, 2 → Summe = 8. MAD = 8/5 = 1,6.",
+    "solutionSteps": [
+      "x̄ = 30/5 = 6",
+      "|x_i − x̄| = 2, 2, 0, 2, 2 → Summe 8",
+      "MAD = 8/5 = 1,6"
+    ],
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-streuung-013",
+    "type": "numeric",
+    "skills": [
+      "streuung"
+    ],
+    "difficulty": 0.6,
+    "stem": "Die korrigierte Stichprobenvarianz beträgt s²_korr = 25 bei n = 11 Beobachtungen. Wie groß ist die empirische Varianz s²_x (mit Vorfaktor 1/n)?",
+    "correct": {
+      "value": 22.727,
+      "tolerance": 0.05
+    },
+    "explanation": "Es gilt s²_korr = n/(n−1)·s²_x bzw. s²_x = (n−1)/n·s²_korr = (10/11)·25 ≈ 22,727.",
+    "solutionSteps": [
+      "s²_x = (n−1)/n · s²_korr",
+      "= (10/11)·25",
+      "= 250/11 ≈ 22,727"
+    ],
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-quantile-boxplot-009",
+    "type": "numeric",
+    "skills": [
+      "quantile-boxplot"
+    ],
+    "difficulty": 0.45,
+    "stem": "Für die geordneten Daten 1, 2, 4, 7, 11, 13, 18 berechne den IQR (Quartilsabstand) nach Cramer/Kamps.",
+    "correct": {
+      "value": 11,
+      "tolerance": 0.02
+    },
+    "explanation": "n = 7. p = 0,25: n·p = 1,75 → Q₁ = x_(2) = 2. p = 0,75: n·p = 5,25 → Q₃ = x_(6) = 13. IQR = 13 − 2 = 11.",
+    "solutionSteps": [
+      "n·0,25 = 1,75 → Q₁ = x_(2) = 2",
+      "n·0,75 = 5,25 → Q₃ = x_(6) = 13",
+      "IQR = 13 − 2 = 11"
+    ],
+    "viz": {
+      "component": "Boxplot",
+      "props": {
+        "data": [
+          1,
+          2,
+          4,
+          7,
+          11,
+          13,
+          18
+        ]
+      }
+    },
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-quantile-boxplot-010",
+    "type": "mc",
+    "skills": [
+      "quantile-boxplot"
+    ],
+    "difficulty": 0.5,
+    "stem": "Vergleicht man zwei Boxplots A und B: A hat eine deutlich längere Box als B, aber denselben Median. Was lässt sich folgern?",
+    "options": [
+      "A hat einen größeren Mittelwert als B.",
+      "A hat eine größere Streuung der mittleren 50 % als B.",
+      "A hat mehr Beobachtungen als B.",
+      "B hat mehr Ausreißer als A.",
+      "A ist symmetrischer verteilt als B."
+    ],
+    "correct": 1,
+    "explanation": "Die Länge der Box ist der Quartilsabstand IQR — er misst die Streuung der mittleren 50 % der Daten. Eine längere Box → größere Streuung in diesem Bereich. Mittelwert, Stichprobenumfang, Ausreißer und Symmetrie sind aus der Boxlänge allein nicht ablesbar.",
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-korrelation-007",
+    "type": "numeric",
+    "skills": [
+      "korrelation"
+    ],
+    "difficulty": 0.6,
+    "stem": "Berechne den Bravais-Pearson-Korrelationskoeffizienten r_xy der Datenpaare (2, 6), (4, 4), (6, 2), (8, 0). Hinweis: Die Punkte liegen exakt auf einer Geraden.",
+    "correct": {
+      "value": -1,
+      "tolerance": 0.005
+    },
+    "explanation": "Die Punkte erfüllen y = 8 − x — eine Gerade mit negativer Steigung. Daher r = −1 (perfekter negativ-linearer Zusammenhang).",
+    "solutionSteps": [
+      "Geradengleichung: y = 8 − x",
+      "Perfekt-linear, negative Steigung",
+      "⇒ r = −1"
+    ],
+    "viz": {
+      "component": "Regression",
+      "props": {
+        "points": [
+          [
+            2,
+            6
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            6,
+            2
+          ],
+          [
+            8,
+            0
+          ]
+        ]
+      }
+    },
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-regression-deskr-008",
+    "type": "numeric",
+    "skills": [
+      "regression-deskr"
+    ],
+    "difficulty": 0.55,
+    "stem": "Berechne die Steigung b̂ der KQ-Geraden für die Punkte (2, 3), (4, 7), (6, 11). Hinweis: Sie liegen perfekt auf einer Geraden.",
+    "correct": {
+      "value": 2,
+      "tolerance": 0.01
+    },
+    "explanation": "Die Punkte erfüllen y = −1 + 2·x; die Steigung ist also b̂ = 2 — direkt am Anstieg pro x-Einheit ablesbar: (7−3)/(4−2) = 2.",
+    "solutionSteps": [
+      "Punkte liegen auf y = −1 + 2x",
+      "Steigung = Δy/Δx = (7−3)/(4−2)",
+      "= 2"
+    ],
+    "viz": {
+      "component": "Regression",
+      "props": {
+        "points": [
+          [
+            2,
+            3
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            6,
+            11
+          ]
+        ]
+      }
+    },
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-lorenz-gini-008",
+    "type": "numeric",
+    "skills": [
+      "lorenz-gini"
+    ],
+    "difficulty": 0.65,
+    "stem": "Für die sortierten Werte 5, 10, 15, 20 (Σ = 50) berechne den unnormierten Gini-Koeffizienten G über G = (2·Σ i·x_(i))/(n·S) − (n+1)/n.",
+    "correct": {
+      "value": 0.25,
+      "tolerance": 0.01
+    },
+    "explanation": "Σ i·x_(i) = 1·5 + 2·10 + 3·15 + 4·20 = 5+20+45+80 = 150. G = (2·150)/(4·50) − 5/4 = 300/200 − 1,25 = 1,5 − 1,25 = 0,25.",
+    "solutionSteps": [
+      "Σ i·x_(i) = 5+20+45+80 = 150",
+      "G = 2·150/(4·50) − (4+1)/4",
+      "= 1,5 − 1,25 = 0,25"
+    ],
+    "viz": {
+      "component": "LorenzGini",
+      "props": {
+        "values": [
+          5,
+          10,
+          15,
+          20
+        ]
+      }
+    },
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-korrelation-008",
+    "type": "numeric",
+    "skills": [
+      "korrelation"
+    ],
+    "difficulty": 0.5,
+    "stem": "Für einen bivariaten Datensatz wurde S_xy = 24 berechnet. Die empirischen Standardabweichungen sind s_x = 4 und s_y = 5, und die Stichprobengröße ist n = 8. Bestimme den Bravais-Pearson-Korrelationskoeffizienten r_xy.",
+    "correct": {
+      "value": 0.15,
+      "tolerance": 0.005
+    },
+    "explanation": "Formel: r_xy = S_xy/(n·s_x·s_y) = 24/(8·4·5) = 24/160 = 0,15. (Wenn s_x, s_y mit Vorfaktor 1/n berechnet werden, ist n im Nenner; bei (n-1)-Konvention statt n verwenden.)",
+    "solutionSteps": [
+      "r = S_xy/(n·s_x·s_y)",
+      "= 24/(8·4·5) = 24/160",
+      "= 0,15"
+    ],
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-korrelation-009",
+    "type": "mc",
+    "skills": [
+      "korrelation"
+    ],
+    "difficulty": 0.55,
+    "stem": "In zwei Studien wurden folgende Korrelationen zwischen X und Y gefunden: Studie A: r = 0,75, n = 20. Studie B: r = 0,75, n = 200. Welche Aussage ist KORREKT?",
+    "options": [
+      "Studie A zeigt einen stärkeren linearen Zusammenhang als Studie B.",
+      "Studie B liefert die statistisch zuverlässigere Aussage über den wahren Zusammenhang.",
+      "Beide Studien sind gleich aussagekräftig, da r identisch ist.",
+      "In Studie B ist der Zusammenhang kausal nachgewiesen.",
+      "In Studie A ist r=0,75 wegen kleinem n nicht möglich."
+    ],
+    "correct": 1,
+    "explanation": "Der Korrelationskoeffizient r misst die Stärke des linearen Zusammenhangs (gleich in beiden Studien). Aber die statistische ZUVERLÄSSIGKEIT — z. B. die Breite eines KI für r oder die Power eines Tests — wächst mit n. Studie B hat eine viel präzisere Schätzung. Kausalität folgt nie aus Korrelation.",
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-korrelation-010",
+    "type": "multi-mc",
+    "skills": [
+      "korrelation"
+    ],
+    "difficulty": 0.55,
+    "stem": "Welche der folgenden Beispiele zeigt einen Spearman-Rangkorrelationskoeffizienten ρ_S = +1?",
+    "options": [
+      "(1,2), (2,4), (3,6), (4,8) — lineare Daten",
+      "(1,1), (2,3), (3,8), (4,15) — streng monoton steigend",
+      "(1,5), (2,4), (3,3), (4,2) — streng monoton fallend",
+      "(1,2), (2,2), (3,5), (4,9) — schwach monoton steigend (kein Tie)",
+      "(1,3), (2,1), (3,4), (4,2) — nicht monoton"
+    ],
+    "correct": [
+      0,
+      1,
+      3
+    ],
+    "explanation": "Spearmans ρ = +1 bedeutet identische Rangreihen — also strikt monoton wachsender Zusammenhang. (1) und (2) sind klar; (4) ist auch strikt monoton (alle y-Werte verschieden und wachsend mit x). (3) ist strikt monoton fallend → ρ_S = −1, nicht +1. (5) ist nicht monoton.",
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-regression-deskr-009",
+    "type": "numeric",
+    "skills": [
+      "regression-deskr"
+    ],
+    "difficulty": 0.55,
+    "stem": "Für einen Datensatz mit x̄ = 4, ȳ = 7, S_xy = 50 und S_xx = 25 — bestimme den Achsenabschnitt â der KQ-Geraden.",
+    "correct": {
+      "value": -1,
+      "tolerance": 0.02
+    },
+    "explanation": "b̂ = S_xy/S_xx = 50/25 = 2. â = ȳ − b̂·x̄ = 7 − 2·4 = 7 − 8 = −1.",
+    "solutionSteps": [
+      "b̂ = S_xy/S_xx = 50/25 = 2",
+      "â = ȳ − b̂·x̄ = 7 − 2·4",
+      "= −1"
+    ],
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-regression-deskr-010",
+    "type": "numeric",
+    "skills": [
+      "regression-deskr",
+      "korrelation"
+    ],
+    "difficulty": 0.65,
+    "stem": "Die KQ-Steigung ist b̂ = 1,5. Die empirischen Standardabweichungen sind s_x = 2 und s_y = 4. Bestimme den Korrelationskoeffizienten r_xy.",
+    "correct": {
+      "value": 0.75,
+      "tolerance": 0.005
+    },
+    "explanation": "Es gilt r_xy = b̂·s_x/s_y = 1,5·2/4 = 3/4 = 0,75.",
+    "solutionSteps": [
+      "Relation: r = b̂·s_x/s_y",
+      "= 1,5·2/4",
+      "= 0,75"
+    ],
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-regression-deskr-011",
+    "type": "mc",
+    "skills": [
+      "regression-deskr"
+    ],
+    "difficulty": 0.55,
+    "stem": "Welche Aussage zur Methode der kleinsten Quadrate (KQ) bei einfacher linearer Regression ist KORREKT?",
+    "options": [
+      "Die KQ-Lösung minimiert die Summe der absoluten Residuen.",
+      "Die KQ-Lösung minimiert die Summe der quadratischen Residuen Σ(y_i − ŷ_i)².",
+      "Die KQ-Lösung minimiert Σ|x_i − x̄|.",
+      "Die KQ-Lösung minimiert die Summe der Residuen Σ(y_i − ŷ_i).",
+      "Die KQ-Lösung minimiert die quadrierten x-Abweichungen."
+    ],
+    "correct": 1,
+    "explanation": "Per Definition minimiert die KQ-Methode SQ(α,β) = Σ(y_i − α − β·x_i)². Die Summe der einfachen Residuen ist bei der KQ-Lösung immer 0 — also für jede Wahl von α im Mittel erfüllt — daher nicht zu minimieren.",
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-lorenz-gini-009",
+    "type": "numeric",
+    "skills": [
+      "lorenz-gini"
+    ],
+    "difficulty": 0.6,
+    "stem": "Für 5 sortierte Werte 0, 0, 0, 20, 80 (Σ = 100) berechne den unnormierten Gini-Koeffizienten G.",
+    "correct": {
+      "value": 0.72,
+      "tolerance": 0.005
+    },
+    "explanation": "Σ i·x_(i) = 1·0 + 2·0 + 3·0 + 4·20 + 5·80 = 0+0+0+80+400 = 480. G = 2·480/(5·100) − 6/5 = 960/500 − 1,2 = 1,92 − 1,2 = 0,72. (Sehr nahe am Maximum (n−1)/n = 0,8 — starke Konzentration.)",
+    "solutionSteps": [
+      "Σ i·x_(i) = 80 + 400 = 480",
+      "G = 2·480/(5·100) − 6/5",
+      "= 1,92 − 1,2 = 0,72"
+    ],
+    "viz": {
+      "component": "LorenzGini",
+      "props": {
+        "values": [
+          0,
+          0,
+          0,
+          20,
+          80
+        ]
+      }
+    },
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-lorenz-gini-010",
+    "type": "numeric",
+    "skills": [
+      "lorenz-gini"
+    ],
+    "difficulty": 0.55,
+    "stem": "In einer Branche mit 5 Anbietern (Marktanteile sortiert): 10, 15, 20, 25, 30 (in %). Welcher Lorenz-Kurvenwert (kumulierter Marktanteil) entspricht den unteren 60 % der Anbieter?",
+    "correct": {
+      "value": 0.45,
+      "tolerance": 0.01
+    },
+    "explanation": "Untere 60 % = 3 von 5 Anbietern. Kumuliert: 10+15+20 = 45 von 100. Anteil = 45/100 = 0,45.",
+    "solutionSteps": [
+      "60 % von 5 Anbietern = 3",
+      "Kumuliert: 10+15+20 = 45",
+      "Anteil = 45/100 = 0,45"
+    ],
+    "viz": {
+      "component": "LorenzGini",
+      "props": {
+        "values": [
+          10,
+          15,
+          20,
+          25,
+          30
+        ]
+      }
+    },
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-lorenz-gini-011",
+    "type": "mc",
+    "skills": [
+      "lorenz-gini"
+    ],
+    "difficulty": 0.5,
+    "stem": "Wann ist der unnormierte Gini-Koeffizient G GLEICH dem normierten Gini G*?",
+    "options": [
+      "Immer.",
+      "Wenn die Werte alle gleich sind.",
+      "Nur bei maximaler Konzentration.",
+      "Im Grenzfall n → ∞.",
+      "Wenn alle Werte 0 sind."
+    ],
+    "correct": 3,
+    "explanation": "G* = (n/(n−1))·G. Der Faktor n/(n−1) → 1 für n → ∞. Bei endlichem n ist G* > G (außer bei G = 0, dann sind beide 0). Die Normierung wird gerade verwendet, damit G* den Maximalwert 1 annimmt — der unnormierte G erreicht nur (n−1)/n.",
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-lagemasse-014",
+    "type": "multi-mc",
+    "skills": [
+      "lagemasse",
+      "streuung"
+    ],
+    "difficulty": 0.55,
+    "stem": "Ein Datensatz hat x̄ = 50 und s²_x = 16 (Vorfaktor 1/n). Nach der Transformation y_i = 0,5·x_i − 10 — welche Aussagen über den transformierten Datensatz sind korrekt?",
+    "options": [
+      "ȳ = 15",
+      "s²_y = 4",
+      "s_y = 2",
+      "Die Korrelation zu einem dritten Datensatz Z bleibt invariant (bis aufs Vorzeichen).",
+      "Die Spannweite halbiert sich gegenüber dem Originaldatensatz."
+    ],
+    "correct": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "explanation": "ȳ = 0,5·50 − 10 = 15 ✓; s²_y = 0,5²·16 = 4 ✓; s_y = √4 = 2 ✓; Korrelation ist invariant unter positiv-affinen Transformationen (sgn(0,5) > 0 ⇒ Vorzeichen bleibt) ✓; Spannweite skaliert mit |a| = 0,5 ✓.",
+    "source": "Eigene Aufgabe (Klausur-Stil)"
+  },
+  {
+    "id": "q-streuung-014",
+    "type": "numeric",
+    "skills": [
+      "streuung"
+    ],
+    "difficulty": 0.6,
+    "stem": "Ein Datensatz xᵢ, i = 1,…,8 hat die korrigierte Standardabweichung s = 6 (Vorfaktor 1/(n−1)). Berechne den Wert von Σ(xᵢ − x̄)².",
+    "correct": {
+      "value": 252,
+      "tolerance": 0.5
+    },
+    "explanation": "Aus s² = (1/(n−1))·Σ(xᵢ − x̄)² folgt Σ(xᵢ − x̄)² = (n−1)·s² = 7·36 = 252.",
+    "solutionSteps": [
+      "s² = Σ(xᵢ − x̄)²/(n−1)",
+      "Σ(xᵢ − x̄)² = (n−1)·s² = 7·6²",
+      "= 7·36 = 252"
+    ],
+    "source": "Eigene Aufgabe (Klausur-Stil)"
+  },
+  {
+    "id": "q-quantile-boxplot-011",
+    "type": "numeric",
+    "skills": [
+      "quantile-boxplot"
+    ],
+    "difficulty": 0.55,
+    "stem": "Für n = 12 geordnete Werte 4, 5, 6, 8, 9, 11, 12, 14, 16, 19, 22, 28 bestimme das 80-%-Quantil nach Cramer/Kamps.",
+    "correct": {
+      "value": 19,
+      "tolerance": 0.02
+    },
+    "explanation": "n·p = 12·0,8 = 9,6 (nicht ganzzahlig). Konvention: x_p = x_(⌊9,6⌋+1) = x_(10) = 19.",
+    "solutionSteps": [
+      "n·0,8 = 9,6 (nicht ganzzahlig)",
+      "x_p = x_(⌊9,6⌋+1) = x_(10)",
+      "= 19"
+    ],
+    "viz": {
+      "component": "Boxplot",
+      "props": {
+        "data": [
+          4,
+          5,
+          6,
+          8,
+          9,
+          11,
+          12,
+          14,
+          16,
+          19,
+          22,
+          28
+        ]
+      }
+    },
+    "source": "Eigene Aufgabe (Klausur-Stil)"
+  },
+  {
+    "id": "q-korrelation-011",
+    "type": "numeric",
+    "skills": [
+      "korrelation"
+    ],
+    "difficulty": 0.65,
+    "stem": "Für die Punktepaare (1, 5), (3, 4), (4, 3), (6, 2) berechne den Bravais-Pearson-Korrelationskoeffizienten.",
+    "correct": {
+      "value": -0.9923,
+      "tolerance": 0.005
+    },
+    "explanation": "x̄ = ȳ = 3,5. S_xy = (−2,5)(1,5)+(−0,5)(0,5)+(0,5)(−0,5)+(2,5)(−1,5) = −8. S_xx = 13; S_yy = 5. r = −8/√(13·5) = −8/√65 ≈ −0,9923.",
+    "solutionSteps": [
+      "x̄ = ȳ = 3,5",
+      "S_xy = −8, S_xx = 13, S_yy = 5",
+      "r = −8/√65 ≈ −0,9923"
+    ],
+    "viz": {
+      "component": "Regression",
+      "props": {
+        "points": [
+          [
+            1,
+            5
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            6,
+            2
+          ]
+        ]
+      }
+    },
+    "source": "Eigene Aufgabe (Klausur-Stil)"
+  },
+  {
+    "id": "q-regression-deskr-012",
+    "type": "numeric",
+    "skills": [
+      "regression-deskr"
+    ],
+    "difficulty": 0.6,
+    "stem": "Für eine KQ-Regression wurden â = 12 und b̂ = −0,8 berechnet. Welcher Wert wird für x = 5 vorhergesagt?",
+    "correct": {
+      "value": 8,
+      "tolerance": 0.02
+    },
+    "explanation": "ŷ(5) = â + b̂·x = 12 + (−0,8)·5 = 12 − 4 = 8.",
+    "solutionSteps": [
+      "ŷ(x) = 12 − 0,8·x",
+      "ŷ(5) = 12 − 0,8·5",
+      "= 12 − 4 = 8"
+    ],
+    "source": "Eigene Aufgabe (Klausur-Stil)"
+  },
+  {
+    "id": "q-lorenz-gini-012",
+    "type": "numeric",
+    "skills": [
+      "lorenz-gini"
+    ],
+    "difficulty": 0.55,
+    "stem": "Welcher Maximalwert kann der UNNORMIERTE Gini-Koeffizient für n = 8 Beobachtungen annehmen?",
+    "correct": {
+      "value": 0.875,
+      "tolerance": 0.005
+    },
+    "explanation": "Maximalkonzentration: G_max = (n − 1)/n = 7/8 = 0,875. Der normierte Gini G* = (n/(n−1))·G erreicht erst dann den Wert 1.",
+    "solutionSteps": [
+      "G_max = (n − 1)/n",
+      "= 7/8",
+      "= 0,875"
+    ],
+    "source": "Eigene Aufgabe (Klausur-Stil)"
+  },
+  {
+    "id": "q-mp-deskr-001",
+    "type": "multi-part",
+    "skills": [
+      "lagemasse",
+      "streuung",
+      "quantile-boxplot"
+    ],
+    "difficulty": 0.5,
+    "stem": "Sieben Studierende erzielten in einer Klausur die Punktzahlen 12, 18, 15, 20, 14, 19, 16.",
+    "parts": [
+      {
+        "type": "numeric",
+        "label": "a)",
+        "stem": "Berechne das arithmetische Mittel der Punktzahlen.",
+        "correct": {
+          "value": 16.29,
+          "tolerance": 0.02
+        },
+        "explanation": "x̄ = (12+18+15+20+14+19+16)/7 = 114/7 ≈ 16,29."
+      },
+      {
+        "type": "numeric",
+        "label": "b)",
+        "stem": "Bestimme den Median.",
+        "correct": {
+          "value": 16,
+          "tolerance": 0.01
+        },
+        "explanation": "Sortiert: 12, 14, 15, 16, 18, 19, 20. n = 7 ungerade ⇒ Median = x_(4) = 16."
+      },
+      {
+        "type": "numeric",
+        "label": "c)",
+        "stem": "Berechne die empirische Varianz s²_x (Vorfaktor 1/n).",
+        "correct": {
+          "value": 7.06,
+          "tolerance": 0.1
+        },
+        "explanation": "Mit x̄ ≈ 16,29: Σ(x_i − x̄)² ≈ 18,37+2,94+1,65+13,80+5,23+7,37+0,08 ≈ 49,43. s² = 49,43/7 ≈ 7,06."
+      },
+      {
+        "type": "mc",
+        "label": "d)",
+        "stem": "Welche Aussage über diesen Datensatz ist KORREKT?",
+        "options": [
+          "Der Datensatz ist deutlich rechtsschief.",
+          "Mittel und Median liegen sehr nah beieinander → annähernd symmetrisch.",
+          "Die Spannweite ist 16.",
+          "Der Datensatz hat einen Ausreißer."
+        ],
+        "correct": 1,
+        "explanation": "x̄ ≈ 16,29 und x̃ = 16 sind nahezu gleich → annähernd symmetrisch. Spannweite = 20 − 12 = 8, kein Ausreißer."
+      }
+    ],
+    "explanation": "Typische deskriptive Analyse: Lagemaße (Mittel & Median) und Streuungsmaß (Varianz) berechnen, dann auf Form (Symmetrie) schließen.",
+    "source": "Eigene Aufgabe (Mock-Klausur)"
+  },
+  {
+    "id": "q-mp-deskr-002",
+    "type": "multi-part",
+    "skills": [
+      "korrelation",
+      "regression-deskr"
+    ],
+    "difficulty": 0.6,
+    "stem": "Für 5 Studierende wurden Lernstunden (x) und Klausurpunkte (y) erhoben: (2, 50), (4, 60), (6, 70), (8, 80), (10, 90).",
+    "parts": [
+      {
+        "type": "numeric",
+        "label": "a)",
+        "stem": "Bestimme die Steigung b̂ der KQ-Ausgleichsgeraden ŷ = â + b̂·x.",
+        "correct": {
+          "value": 5,
+          "tolerance": 0.02
+        },
+        "explanation": "x̄ = 6, ȳ = 70. S_xy = (−4)(−20)+(−2)(−10)+(0)(0)+(2)(10)+(4)(20) = 80+20+0+20+80 = 200. S_xx = 16+4+0+4+16 = 40. b̂ = 200/40 = 5."
+      },
+      {
+        "type": "numeric",
+        "label": "b)",
+        "stem": "Bestimme den Achsenabschnitt â der KQ-Geraden.",
+        "correct": {
+          "value": 40,
+          "tolerance": 0.05
+        },
+        "explanation": "â = ȳ − b̂·x̄ = 70 − 5·6 = 40."
+      },
+      {
+        "type": "numeric",
+        "label": "c)",
+        "stem": "Welcher y-Wert (Klausurpunkte) wird für x = 7 Lernstunden prognostiziert?",
+        "correct": {
+          "value": 75,
+          "tolerance": 0.05
+        },
+        "explanation": "ŷ(7) = 40 + 5·7 = 75."
+      },
+      {
+        "type": "numeric",
+        "label": "d)",
+        "stem": "Berechne den Bravais-Pearson-Korrelationskoeffizienten r_xy.",
+        "correct": {
+          "value": 1,
+          "tolerance": 0.01
+        },
+        "explanation": "Die Punkte liegen exakt auf der Geraden y = 40 + 5x → r = +1 (perfekter linearer Zusammenhang)."
+      }
+    ],
+    "explanation": "Lernstunden und Punkte liegen perfekt auf einer Geraden. Realistisch wäre r etwas kleiner, hier dient die Aufgabe der mechanischen Übung der KQ-Formeln.",
+    "viz": {
+      "component": "Regression",
+      "props": {
+        "points": [
+          [
+            2,
+            50
+          ],
+          [
+            4,
+            60
+          ],
+          [
+            6,
+            70
+          ],
+          [
+            8,
+            80
+          ],
+          [
+            10,
+            90
+          ]
+        ]
+      }
+    },
+    "source": "Eigene Aufgabe (Mock-Klausur)"
   }
 ]

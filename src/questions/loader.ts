@@ -8,7 +8,7 @@ export function validateQuestion(raw: unknown): asserts raw is Question {
   const q = raw as Record<string, unknown>;
 
   if (typeof q.id !== "string" || q.id.length === 0) throw new Error("id must be non-empty string");
-  if (!["mc", "multi-mc", "numeric"].includes(q.type as string))
+  if (!["mc", "multi-mc", "numeric", "multi-part"].includes(q.type as string))
     throw new Error(`unknown type: ${q.type}`);
   if (!Array.isArray(q.skills) || q.skills.length === 0)
     throw new Error("skills must be non-empty array");
@@ -41,6 +41,34 @@ export function validateQuestion(raw: unknown): asserts raw is Question {
     const c = q.correct as { value?: unknown; tolerance?: unknown } | undefined;
     if (!c || typeof c.value !== "number" || typeof c.tolerance !== "number")
       throw new Error("numeric: correct must be { value, tolerance }");
+  } else if (q.type === "multi-part") {
+    if (!Array.isArray(q.parts) || q.parts.length < 2)
+      throw new Error("multi-part: parts must have ≥ 2 entries");
+    for (const partRaw of q.parts as unknown[]) {
+      const p = partRaw as Record<string, unknown>;
+      if (typeof p.label !== "string" || p.label.length === 0)
+        throw new Error("multi-part: part.label required");
+      if (typeof p.stem !== "string" || p.stem.length === 0)
+        throw new Error("multi-part: part.stem required");
+      if (typeof p.explanation !== "string")
+        throw new Error("multi-part: part.explanation required");
+      if (p.type === "mc") {
+        if (!Array.isArray(p.options) || p.options.length < 2)
+          throw new Error("multi-part mc: options must have ≥ 2 entries");
+        if (
+          typeof p.correct !== "number" ||
+          p.correct < 0 ||
+          p.correct >= (p.options as unknown[]).length
+        )
+          throw new Error("multi-part mc: correct index out of range");
+      } else if (p.type === "numeric") {
+        const c = p.correct as { value?: unknown; tolerance?: unknown } | undefined;
+        if (!c || typeof c.value !== "number" || typeof c.tolerance !== "number")
+          throw new Error("multi-part numeric: correct must be { value, tolerance }");
+      } else {
+        throw new Error(`multi-part: unknown part type ${p.type}`);
+      }
+    }
   }
 }
 

@@ -2,7 +2,9 @@
   {
     "id": "q-schaetzer-ml-001",
     "type": "mc",
-    "skills": ["schaetzer-ml"],
+    "skills": [
+      "schaetzer-ml"
+    ],
     "difficulty": 0.45,
     "stem": "Seien X₁,…,Xₙ stochastisch unabhängig und identisch N(μ,σ²)-verteilt mit unbekanntem μ ∈ ℝ und bekanntem σ² > 0. Welche der folgenden Schätzer für μ ist NICHT erwartungstreu?",
     "options": [
@@ -24,10 +26,15 @@
   {
     "id": "q-schaetzer-ml-002",
     "type": "numeric",
-    "skills": ["schaetzer-ml"],
+    "skills": [
+      "schaetzer-ml"
+    ],
     "difficulty": 0.55,
     "stem": "Seien X₁, X₂ stochastisch unabhängig und identisch N(μ,1)-verteilt. Betrachte den Schätzer μ̂ = (1/3)·(X₁ + 2·X₂). Berechne den mittleren quadratischen Fehler MSE(μ̂) = E((μ̂ − μ)²).",
-    "correct": { "value": 0.5556, "tolerance": 0.01 },
+    "correct": {
+      "value": 0.5556,
+      "tolerance": 0.01
+    },
     "explanation": "E(μ̂) = (1/3)·(μ + 2μ) = μ, also erwartungstreu, und damit MSE = Var(μ̂). Var(μ̂) = (1/9)·(Var(X₁) + 4·Var(X₂)) = (1/9)·(1 + 4) = 5/9 ≈ 0,5556. Vergleich: der Standardschätzer (X₁+X₂)/2 hätte Var = 1/2 = 0,5 < 5/9 und wäre also besser.",
     "solutionSteps": [
       "E(μ̂) = (1/3)·(E(X₁) + 2·E(X₂)) = (1/3)·(μ + 2μ) = μ",
@@ -39,23 +46,36 @@
   {
     "id": "q-schaetzer-ml-003",
     "type": "numeric",
-    "skills": ["schaetzer-ml"],
+    "skills": [
+      "schaetzer-ml"
+    ],
     "difficulty": 0.5,
     "stem": "In 52 Wochen wurden an einer Unfallstelle folgende wöchentliche Unfallzahlen erfasst: 22 Wochen mit 0 Unfällen, 12 mit 1, 10 mit 2, 6 mit 3, 2 mit 4. Modell: Xᵢ ~ Poisson(λ) iid. Berechne den Maximum-Likelihood-Schätzwert λ̂ = x̄.",
-    "correct": { "value": 1.115, "tolerance": 0.01 },
+    "correct": {
+      "value": 1.115,
+      "tolerance": 0.01
+    },
     "explanation": "Für Poisson(λ) ist der ML-Schätzer der Stichprobenmittelwert x̄. Gesamtzahl = 0·22 + 1·12 + 2·10 + 3·6 + 4·2 = 0 + 12 + 20 + 18 + 8 = 58. λ̂ = 58/52 ≈ 1,1154.",
     "solutionSteps": [
       "ML-Schätzer für Poisson(λ): λ̂_ML = X̄",
       "Σ xᵢ = 0·22 + 1·12 + 2·10 + 3·6 + 4·2 = 58",
       "λ̂ = 58/52 ≈ 1,115"
     ],
-    "viz": { "component": "BinomialPMF", "props": { "n": 10, "p": 0.11 } },
+    "viz": {
+      "component": "BinomialPMF",
+      "props": {
+        "n": 10,
+        "p": 0.11
+      }
+    },
     "source": "Cramer/Kamps Klausurtraining A.III.1 (adaptiert)"
   },
   {
     "id": "q-schaetzer-ml-004",
     "type": "multi-mc",
-    "skills": ["schaetzer-ml"],
+    "skills": [
+      "schaetzer-ml"
+    ],
     "difficulty": 0.6,
     "stem": "Seien X₁,…,Xₙ iid mit X₁ ~ Exp(λ), λ>0. Welche Aussagen über den Schätzer λ̂ = 1/X̄ sind RICHTIG?",
     "options": [
@@ -65,17 +85,27 @@
       "Die log-Likelihood lautet ℓ(λ) = n·ln(λ) − λ·Σ Xᵢ.",
       "Der ML-Schätzer für E(X₁) = 1/λ ist X̄."
     ],
-    "correct": [0, 2, 3, 4],
+    "correct": [
+      0,
+      2,
+      3,
+      4
+    ],
     "explanation": "Richtig: (A) ML aus dl/dλ = n/λ − Σxᵢ = 0 ⇒ λ̂ = 1/x̄. (C) Nach SGGZ und Stetigkeitssatz konvergiert 1/X̄ → λ. (D) log L = Σ(ln λ − λxᵢ) = n·ln λ − λ·Σxᵢ. (E) Invarianzprinzip: ML-Schätzer transformieren sich mit der Funktion. FALSCH: (B) E(1/X̄) ≠ λ im Allgemeinen; tatsächlich ist E(1/X̄) = n·λ/(n−1) für n>1, also positiv verzerrt.",
     "source": "Cramer/Kamps Klausurtraining A.III.14/A.III.23 (adaptiert)"
   },
   {
     "id": "q-konfidenz-001",
     "type": "numeric",
-    "skills": ["konfidenz"],
+    "skills": [
+      "konfidenz"
+    ],
     "difficulty": 0.4,
     "stem": "An n=10 Tetra Paks Limonade wird die Füllmenge gemessen; x̄ = 203 ml. Die Varianz σ² = 9/4 ml² ist aus einer Voruntersuchung bekannt; die Werte sind N(μ,σ²)-verteilt. Berechne die obere Grenze des symmetrischen 95%-Konfidenzintervalls für μ.",
-    "correct": { "value": 203.93, "tolerance": 0.03 },
+    "correct": {
+      "value": 203.93,
+      "tolerance": 0.03
+    },
     "explanation": "Bei bekanntem σ ist das KI = x̄ ± z_{0.975}·σ/√n. Mit σ = 1,5 ml und n=10 folgt σ/√n = 1,5/√10 ≈ 0,4743. Halbe Breite = 1,96·0,4743 ≈ 0,9296. Obere Grenze = 203 + 0,9296 ≈ 203,93.",
     "solutionSteps": [
       "σ = √(9/4) = 1,5; n = 10",
@@ -83,16 +113,28 @@
       "z_{0.975} = 1,96",
       "Obere Grenze = 203 + 1,96·0,4743 ≈ 203,93"
     ],
-    "viz": { "component": "ConfidenceInterval", "props": { "mu": 203, "sigma": 1.5, "n": 10 } },
+    "viz": {
+      "component": "ConfidenceInterval",
+      "props": {
+        "mu": 203,
+        "sigma": 1.5,
+        "n": 10
+      }
+    },
     "source": "Cramer/Kamps Klausurtraining A.III.21 (adaptiert)"
   },
   {
     "id": "q-konfidenz-002",
     "type": "numeric",
-    "skills": ["konfidenz"],
+    "skills": [
+      "konfidenz"
+    ],
     "difficulty": 0.55,
     "stem": "Aus n=400 Befragten gaben 40 an, unzufrieden zu sein. Berechne die obere Grenze des approximativen symmetrischen 95%-Konfidenzintervalls für den Anteil p der Unzufriedenen.",
-    "correct": { "value": 0.129, "tolerance": 0.003 },
+    "correct": {
+      "value": 0.129,
+      "tolerance": 0.003
+    },
     "explanation": "Approximatives KI: p̂ ± z_{0.975}·√(p̂(1−p̂)/n). Mit p̂ = 40/400 = 0,1 folgt Standardfehler = √(0,1·0,9/400) = √0,000225 = 0,015. Halbe Breite = 1,96·0,015 = 0,0294. Obere Grenze = 0,1 + 0,0294 ≈ 0,1294.",
     "solutionSteps": [
       "p̂ = 40/400 = 0,1",
@@ -104,10 +146,15 @@
   {
     "id": "q-konfidenz-003",
     "type": "numeric",
-    "skills": ["konfidenz"],
+    "skills": [
+      "konfidenz"
+    ],
     "difficulty": 0.65,
     "stem": "Eine Stichprobe vom Umfang n=10 aus N(μ,σ²) ergibt die Stichprobenvarianz s² = 4. Bestimme die UNTERE Grenze des zweiseitigen 90%-Konfidenzintervalls für σ². (Verwende χ²_{0.95,9} = 16.919, χ²_{0.05,9} = 3.325.)",
-    "correct": { "value": 2.128, "tolerance": 0.02 },
+    "correct": {
+      "value": 2.128,
+      "tolerance": 0.02
+    },
     "explanation": "KI für σ²: [(n−1)·s²/χ²_{1−α/2,n−1}, (n−1)·s²/χ²_{α/2,n−1}]. Mit n=10, s²=4 und α=0,10: untere Grenze = 9·4/16,919 = 36/16,919 ≈ 2,128. (Obere Grenze wäre 36/3,325 ≈ 10,83.)",
     "solutionSteps": [
       "(n−1)·s² = 9·4 = 36",
@@ -119,7 +166,9 @@
   {
     "id": "q-konfidenz-004",
     "type": "mc",
-    "skills": ["konfidenz"],
+    "skills": [
+      "konfidenz"
+    ],
     "difficulty": 0.5,
     "stem": "Seien X₁,…,Xₙ iid N(μ,1) und K_{α,n} das übliche zweiseitige (1−α)-Konfidenzintervall für μ. Welche der folgenden Aussagen ist FALSCH?",
     "options": [
@@ -136,42 +185,72 @@
   {
     "id": "q-konfidenz-005",
     "type": "numeric",
-    "skills": ["konfidenz"],
+    "skills": [
+      "konfidenz"
+    ],
     "difficulty": 0.7,
     "stem": "Bei bekannter Varianz σ² = 0,5 soll bei zukünftigen Erhebungen ein zweiseitiges 95%-Konfidenzintervall für μ höchstens die Breite 0,4 haben. Wie viele Beobachtungen werden mindestens benötigt? (Geben Sie die kleinste natürliche Zahl n an.)",
-    "correct": { "value": 49, "tolerance": 0.5 },
+    "correct": {
+      "value": 49,
+      "tolerance": 0.5
+    },
     "explanation": "Breite = 2·z_{0.975}·σ/√n ≤ 0,4. Daraus folgt √n ≥ 2·1,96·√0,5/0,4 = 2·1,96·0,7071/0,4 = 6,9296. Also n ≥ 48,02. Kleinste natürliche Zahl: n = 49.",
     "solutionSteps": [
       "Bedingung: 2·z_{0.975}·σ/√n ≤ 0,4",
       "√n ≥ 2·1,96·√0,5/0,4 ≈ 6,93",
       "n ≥ 48,02 ⇒ n = 49"
     ],
-    "viz": { "component": "ConfidenceInterval", "props": { "mu": 0, "sigma": 0.707, "n": 49 } },
+    "viz": {
+      "component": "ConfidenceInterval",
+      "props": {
+        "mu": 0,
+        "sigma": 0.707,
+        "n": 49
+      }
+    },
     "source": "Cramer/Kamps Klausurtraining A.III.17 (adaptiert)"
   },
   {
     "id": "q-tests-001",
     "type": "numeric",
-    "skills": ["tests"],
+    "skills": [
+      "tests"
+    ],
     "difficulty": 0.55,
     "stem": "Eine Mensa möchte überprüfen, ob der Kaloriengehalt der Mittagsmenüs unter dem Sollwert μ₀ = 1500 kcal liegt. Aus n=10 Messungen wurde x̄ = 1460 kcal berechnet, die Varianz σ² = 2410 kcal² ist bekannt. Berechne den Wert der Gauß-Teststatistik z = (x̄ − μ₀)/(σ/√n).",
-    "correct": { "value": -2.576, "tolerance": 0.02 },
+    "correct": {
+      "value": -2.576,
+      "tolerance": 0.02
+    },
     "explanation": "σ = √2410 ≈ 49,092. Standardfehler = 49,092/√10 = 49,092/3,1623 ≈ 15,524. z = (1460 − 1500)/15,524 = −40/15,524 ≈ −2,576. Da −2,576 < −z_{0.95} = −1,645 wird H₀: μ ≥ 1500 zum Niveau 5% verworfen.",
     "solutionSteps": [
       "σ = √2410 ≈ 49,09",
       "σ/√n ≈ 49,09/3,162 ≈ 15,52",
       "z = (1460−1500)/15,52 ≈ −2,576"
     ],
-    "viz": { "component": "HypothesisTest", "props": { "mu0": 1500, "mu1": 1460, "sigma": 15.52, "alpha": 0.05 } },
+    "viz": {
+      "component": "HypothesisTest",
+      "props": {
+        "mu0": 1500,
+        "mu1": 1460,
+        "sigma": 15.52,
+        "alpha": 0.05
+      }
+    },
     "source": "Cramer/Kamps Klausurtraining A.III.37 (adaptiert)"
   },
   {
     "id": "q-tests-002",
     "type": "numeric",
-    "skills": ["tests"],
+    "skills": [
+      "tests"
+    ],
     "difficulty": 0.6,
     "stem": "Restaurantbetreiber Helmut wiegt n=5 Burger und erhält x̄ = 504 g sowie eine Stichprobenvarianz s² = 7,5 g². Er möchte testen, ob das mittlere Gewicht über μ₀ = 500 g liegt (Modell: N(μ,σ²) mit unbekanntem σ²). Berechne die Teststatistik t = (x̄ − μ₀)/(s/√n).",
-    "correct": { "value": 3.266, "tolerance": 0.03 },
+    "correct": {
+      "value": 3.266,
+      "tolerance": 0.03
+    },
     "explanation": "s = √7,5 ≈ 2,7386. s/√n = 2,7386/√5 = 2,7386/2,2361 ≈ 1,2247. t = (504 − 500)/1,2247 ≈ 3,266. Vergleich mit t_{0.95,4} = 2,132: H₀: μ ≤ 500 wird zum Niveau 5% verworfen.",
     "solutionSteps": [
       "s = √7,5 ≈ 2,739",
@@ -183,7 +262,9 @@
   {
     "id": "q-tests-003",
     "type": "mc",
-    "skills": ["tests"],
+    "skills": [
+      "tests"
+    ],
     "difficulty": 0.55,
     "stem": "Seien X₁,…,Xₙ iid N(μ,1) und der zweiseitige Gauß-Test betrachte H₀: μ = μ₀ gegen H₁: μ ≠ μ₀ zum Niveau α. Welche Aussage ist FALSCH?",
     "options": [
@@ -200,7 +281,9 @@
   {
     "id": "q-tests-004",
     "type": "multi-mc",
-    "skills": ["tests"],
+    "skills": [
+      "tests"
+    ],
     "difficulty": 0.65,
     "stem": "Welche der folgenden Aussagen zu Fehlern 1. und 2. Art sowie Power sind RICHTIG?",
     "options": [
@@ -210,18 +293,35 @@
       "Bei festem α steigt die Power mit wachsendem Stichprobenumfang n.",
       "Wenn die Effektgröße |μ₁ − μ₀| zunimmt, sinkt die Power."
     ],
-    "correct": [0, 1, 3],
+    "correct": [
+      0,
+      1,
+      3
+    ],
     "explanation": "Richtig: (A) Trade-off α ↔ β bei festem n. (B) Definition der Power. (D) Mehr Information ⇒ leichter Abweichungen aufzudecken. FALSCH: (C) α und β sind antagonistisch — bei festem n nicht gleichzeitig beliebig klein. (E) Größere Effektgröße erhöht die Power (Verteilungen weiter getrennt).",
-    "viz": { "component": "HypothesisTest", "props": { "mu0": 0, "mu1": 1.5, "sigma": 1, "alpha": 0.05 } },
+    "viz": {
+      "component": "HypothesisTest",
+      "props": {
+        "mu0": 0,
+        "mu1": 1.5,
+        "sigma": 1,
+        "alpha": 0.05
+      }
+    },
     "source": "Eigene Aufgabe, klassisches Lehrbuchwissen (vgl. Steland Kap. 3)"
   },
   {
     "id": "q-tests-005",
     "type": "numeric",
-    "skills": ["tests"],
+    "skills": [
+      "tests"
+    ],
     "difficulty": 0.5,
     "stem": "Aus einer Stichprobe n=1000 Stück werden 22 als defekt befundenen. Getestet werden soll H₀: p ≤ 0,02 gegen H₁: p > 0,02. Berechne die approximative Teststatistik z = (p̂ − p₀)/√(p₀(1−p₀)/n).",
-    "correct": { "value": 0.452, "tolerance": 0.02 },
+    "correct": {
+      "value": 0.452,
+      "tolerance": 0.02
+    },
     "explanation": "p̂ = 22/1000 = 0,022. Standardfehler unter H₀: √(0,02·0,98/1000) = √0,0000196 ≈ 0,004427. z = (0,022 − 0,02)/0,004427 ≈ 0,4518. Da 0,452 < z_{0.95} = 1,645 wird H₀ NICHT verworfen — die Ware kann zum Niveau 5% nicht als zu schlecht abgelehnt werden.",
     "solutionSteps": [
       "p̂ = 22/1000 = 0,022",
@@ -233,10 +333,15 @@
   {
     "id": "q-regression-schl-001",
     "type": "numeric",
-    "skills": ["regression-schl"],
+    "skills": [
+      "regression-schl"
+    ],
     "difficulty": 0.6,
     "stem": "Für die Stichprobe (xᵢ, yᵢ): (1,2), (2,3), (3,5), (4,4), (5,6) ergibt sich aus der KQ-Schätzung β̂₁ = 0,9. Berechne das Bestimmtheitsmaß R² (auf 2 Nachkommastellen).",
-    "correct": { "value": 0.81, "tolerance": 0.01 },
+    "correct": {
+      "value": 0.81,
+      "tolerance": 0.01
+    },
     "explanation": "x̄ = 3, ȳ = 4. SST = Σ(yᵢ − ȳ)² = 4+1+1+0+4 = 10. β̂₀ = ȳ − β̂₁·x̄ = 4 − 0,9·3 = 1,3. Vorhergesagte ŷᵢ: 2,2; 3,1; 4,0; 4,9; 5,8. Residuen: −0,2; −0,1; 1,0; −0,9; 0,2. SSR = 0,04+0,01+1,00+0,81+0,04 = 1,90. R² = 1 − SSR/SST = 1 − 1,9/10 = 0,81.",
     "solutionSteps": [
       "ȳ = 4, SST = Σ(yᵢ−ȳ)² = 10",
@@ -246,17 +351,45 @@
     ],
     "viz": {
       "component": "Regression",
-      "props": { "points": [[1, 2], [2, 3], [3, 5], [4, 4], [5, 6]] }
+      "props": {
+        "points": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            6
+          ]
+        ]
+      }
     },
     "source": "Eigene Aufgabe"
   },
   {
     "id": "q-regression-schl-002",
     "type": "numeric",
-    "skills": ["regression-schl"],
+    "skills": [
+      "regression-schl"
+    ],
     "difficulty": 0.75,
     "stem": "Im Modell yᵢ = β₀ + β₁·xᵢ + εᵢ mit εᵢ ~ N(0,σ²) iid ergaben sich für die Daten (1,2), (2,3), (3,5), (4,4), (5,6): β̂₁ = 0,9, SSR = 1,9, S_{xx} = Σ(xᵢ−x̄)² = 10. Berechne die Teststatistik t = β̂₁/SE(β̂₁) zum Testen von H₀: β₁ = 0.",
-    "correct": { "value": 3.576, "tolerance": 0.05 },
+    "correct": {
+      "value": 3.576,
+      "tolerance": 0.05
+    },
     "explanation": "Schätzer der Fehlervarianz: σ̂² = SSR/(n−2) = 1,9/3 ≈ 0,6333. Standardfehler der Steigung: SE(β̂₁) = √(σ̂²/S_{xx}) = √(0,6333/10) = √0,06333 ≈ 0,2517. t = β̂₁/SE = 0,9/0,2517 ≈ 3,576. Vergleich mit t_{0.975,3} = 3,182: H₀ wird zum Niveau 5% (zweiseitig) verworfen.",
     "solutionSteps": [
       "σ̂² = SSR/(n−2) = 1,9/3 ≈ 0,633",
@@ -265,14 +398,39 @@
     ],
     "viz": {
       "component": "Regression",
-      "props": { "points": [[1, 2], [2, 3], [3, 5], [4, 4], [5, 6]] }
+      "props": {
+        "points": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            6
+          ]
+        ]
+      }
     },
     "source": "Eigene Aufgabe (vgl. Steland Kap. 3.4)"
   },
   {
     "id": "q-regression-schl-003",
     "type": "mc",
-    "skills": ["regression-schl"],
+    "skills": [
+      "regression-schl"
+    ],
     "difficulty": 0.55,
     "stem": "Im einfachen linearen Regressionsmodell yᵢ = β₀ + β₁·xᵢ + εᵢ mit εᵢ ~ N(0,σ²) iid. Welche Aussage zum t-Test für H₀: β₁ = 0 ist FALSCH?",
     "options": [
@@ -289,7 +447,9 @@
   {
     "id": "q-regression-schl-004",
     "type": "multi-mc",
-    "skills": ["regression-schl"],
+    "skills": [
+      "regression-schl"
+    ],
     "difficulty": 0.6,
     "stem": "Welche Annahmen des klassischen linearen Regressionsmodells für Inferenz über β₁ sind RICHTIG?",
     "options": [
@@ -299,12 +459,945 @@
       "Die Werte xᵢ sind selbst N(μ,σ²)-verteilt.",
       "Für klassische t-/F-Tests sind die Fehler εᵢ normalverteilt."
     ],
-    "correct": [0, 1, 2, 4],
+    "correct": [
+      0,
+      1,
+      2,
+      4
+    ],
     "explanation": "Standardannahmen des linearen Modells: E(εᵢ)=0, Var(εᵢ)=σ² (Homoskedastizität), Unabhängigkeit der εᵢ, und für klassische t-/F-Tests Normalverteilung der εᵢ. FALSCH ist (D): die Regressoren xᵢ werden als fest (deterministisch) bzw. als gegeben betrachtet — sie müssen nicht normalverteilt sein. Inferenz bezieht sich auf die Verteilung der Fehler, nicht der xᵢ.",
     "viz": {
       "component": "Regression",
-      "props": { "points": [[1, 2.1], [2, 3.8], [3, 6.1], [4, 7.9], [5, 10.4], [6, 11.7]] }
+      "props": {
+        "points": [
+          [
+            1,
+            2.1
+          ],
+          [
+            2,
+            3.8
+          ],
+          [
+            3,
+            6.1
+          ],
+          [
+            4,
+            7.9
+          ],
+          [
+            5,
+            10.4
+          ],
+          [
+            6,
+            11.7
+          ]
+        ]
+      }
     },
     "source": "Eigene Aufgabe (vgl. Steland Kap. 3.4)"
+  },
+  {
+    "id": "q-schaetzer-ml-005",
+    "type": "numeric",
+    "skills": [
+      "schaetzer-ml"
+    ],
+    "difficulty": 0.5,
+    "stem": "Bei einer Bernoulli-Stichprobe X₁, …, X₂₀ wurden 8 Erfolge beobachtet. Bestimme den ML-Schätzwert p̂ für die Erfolgswahrscheinlichkeit p.",
+    "correct": {
+      "value": 0.4,
+      "tolerance": 0.005
+    },
+    "explanation": "Der ML-Schätzer für die Bernoulli-/Binomial-Erfolgswahrscheinlichkeit ist die relative Häufigkeit: p̂ = Σx_i/n = 8/20 = 0,4.",
+    "solutionSteps": [
+      "Log-Likelihood maximieren ⇒ p̂ = X̄",
+      "p̂ = 8/20",
+      "= 0,4"
+    ],
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-schaetzer-ml-006",
+    "type": "numeric",
+    "skills": [
+      "schaetzer-ml"
+    ],
+    "difficulty": 0.55,
+    "stem": "Beobachtungen einer Poisson-Verteilung ergaben x₁, …, x₅ = 3, 5, 2, 4, 6. Bestimme den ML-Schätzwert λ̂.",
+    "correct": {
+      "value": 4,
+      "tolerance": 0.01
+    },
+    "explanation": "Für Poisson(λ) ist der ML-Schätzer das Stichprobenmittel: λ̂ = X̄ = (3+5+2+4+6)/5 = 20/5 = 4.",
+    "solutionSteps": [
+      "Log-Likelihood ableiten und 0 setzen ⇒ λ̂ = X̄",
+      "X̄ = 20/5",
+      "= 4"
+    ],
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-schaetzer-ml-007",
+    "type": "numeric",
+    "skills": [
+      "schaetzer-ml"
+    ],
+    "difficulty": 0.55,
+    "stem": "X₁, …, X₆ ~ N(μ, 4) (σ² bekannt). Beobachtungen: 8, 12, 10, 11, 9, 10. Bestimme den ML-Schätzwert μ̂.",
+    "correct": {
+      "value": 10,
+      "tolerance": 0.01
+    },
+    "explanation": "Bei bekannter Varianz ist der ML-Schätzer für μ das Stichprobenmittel: μ̂ = X̄ = 60/6 = 10.",
+    "solutionSteps": [
+      "Log-Likelihood-Ableitung nach μ Null setzen",
+      "ergibt μ̂ = X̄",
+      "= 60/6 = 10"
+    ],
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-schaetzer-ml-008",
+    "type": "mc",
+    "skills": [
+      "schaetzer-ml"
+    ],
+    "difficulty": 0.5,
+    "stem": "Welche Aussage zum Maximum-Likelihood-Schätzer ist FALSCH?",
+    "options": [
+      "Der ML-Schätzer maximiert die Likelihood-Funktion (oder äquivalent die Log-Likelihood).",
+      "Der ML-Schätzer ist im Allgemeinen invariant unter monotonen Reparametrisierungen.",
+      "Der ML-Schätzer ist im Allgemeinen erwartungstreu (unverzerrt).",
+      "Bei Normalverteilung mit unbekanntem μ ist der ML-Schätzer für μ das Stichprobenmittel.",
+      "Der ML-Schätzer ist unter Regularitätsbedingungen konsistent und asymptotisch normalverteilt."
+    ],
+    "correct": 2,
+    "explanation": "FALSCH (=Lösung): ML-Schätzer sind im Allgemeinen NICHT erwartungstreu. Bekanntestes Gegenbeispiel: der ML-Schätzer für σ² in N(μ,σ²) ist (1/n)·Σ(X_i − X̄)², der eine Verzerrung der Größe −σ²/n hat. Erwartungstreu ist erst der (1/(n−1))-Schätzer.",
+    "source": "Eigene Aufgabe — wichtige ML-Falle"
+  },
+  {
+    "id": "q-konfidenz-006",
+    "type": "numeric",
+    "skills": [
+      "konfidenz"
+    ],
+    "difficulty": 0.55,
+    "stem": "Aus einer Stichprobe vom Umfang n = 100 ergab sich X̄ = 50 bei bekannter Streuung σ = 5. Bestimme die HALBE Breite (d. h. den z-Term z₍₁₋α/₂₎·σ/√n) eines 95-%-Konfidenzintervalls für μ. (z_(0,975) = 1,96)",
+    "correct": {
+      "value": 0.98,
+      "tolerance": 0.01
+    },
+    "explanation": "Halbbreite = z_(1−α/2)·σ/√n = 1,96·5/√100 = 1,96·0,5 = 0,98. Das 95-%-KI ist also [50 − 0,98 ; 50 + 0,98] = [49,02; 50,98].",
+    "solutionSteps": [
+      "Halbbreite = z·σ/√n",
+      "= 1,96·5/10",
+      "= 0,98"
+    ],
+    "viz": {
+      "component": "ConfidenceInterval",
+      "props": {
+        "mean": 50,
+        "halfWidth": 0.98
+      }
+    },
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-konfidenz-007",
+    "type": "numeric",
+    "skills": [
+      "konfidenz"
+    ],
+    "difficulty": 0.65,
+    "stem": "Wie groß muss der Stichprobenumfang n mindestens sein, damit die Halbbreite eines 95-%-Konfidenzintervalls für μ bei bekannter Streuung σ = 10 höchstens 2 beträgt? (z_(0,975) = 1,96)",
+    "correct": {
+      "value": 97,
+      "tolerance": 0.5
+    },
+    "explanation": "Bedingung: z·σ/√n ≤ 2. ⇒ √n ≥ z·σ/2 = 1,96·10/2 = 9,8. ⇒ n ≥ 96,04 → aufrunden zu 97 (n muss ganzzahlig und mind. so groß sein, dass die Bedingung erfüllt ist).",
+    "solutionSteps": [
+      "z·σ/√n ≤ 2",
+      "√n ≥ 1,96·10/2 = 9,8",
+      "n ≥ 96,04 ⇒ n = 97 (aufrunden)"
+    ],
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-konfidenz-008",
+    "type": "numeric",
+    "skills": [
+      "konfidenz"
+    ],
+    "difficulty": 0.6,
+    "stem": "Bei einer Umfrage unter n = 400 Personen gaben k = 100 an, ein Produkt zu kennen. Bestimme die HALBE Breite eines 95-%-Konfidenzintervalls für die Bekanntheitsquote p, basierend auf der Normalapproximation. (z_(0,975) = 1,96, p̂ einsetzen)",
+    "correct": {
+      "value": 0.0424,
+      "tolerance": 0.001
+    },
+    "explanation": "p̂ = 100/400 = 0,25. Halbbreite = z·√(p̂(1−p̂)/n) = 1,96·√(0,25·0,75/400) = 1,96·√(0,000469) ≈ 1,96·0,02165 ≈ 0,0424.",
+    "solutionSteps": [
+      "p̂ = 100/400 = 0,25",
+      "SE = √(p̂(1−p̂)/n) = √(0,1875/400) ≈ 0,02165",
+      "Halbbreite = 1,96·0,02165 ≈ 0,0424"
+    ],
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-konfidenz-009",
+    "type": "mc",
+    "skills": [
+      "konfidenz"
+    ],
+    "difficulty": 0.5,
+    "stem": "Welche Aussage zu Konfidenzintervallen ist FALSCH?",
+    "options": [
+      "Bei festem n wird das KI mit höherem Konfidenzniveau breiter.",
+      "Das Stichproben-KI ist eine zufällige Größe: in (1−α)·100 % der Fälle enthält es den wahren Parameter.",
+      "Bei größerem n schrumpft das KI proportional zu 1/√n.",
+      "Aus einem konkret berechneten 95 %-KI [3, 5] folgt: P(μ ∈ [3, 5]) = 0,95.",
+      "Bei bekannter Varianz nutzt man die Standardnormalverteilung (z-Werte), bei unbekannter die t-Verteilung."
+    ],
+    "correct": 3,
+    "explanation": "Sobald die Grenzen feststehen (z. B. [3, 5]), enthält das KI den unbekannten μ entweder oder nicht — die Wahrscheinlichkeit ist 0 oder 1, nicht 0,95. Die 95 %-Aussage bezieht sich auf die Konstruktionsmethode VOR der Stichprobenziehung. Das ist die klassische Fehlinterpretation aus frequentistischer Sicht.",
+    "viz": {
+      "component": "ConfidenceInterval",
+      "props": {
+        "mean": 4,
+        "halfWidth": 1
+      }
+    },
+    "source": "Eigene Aufgabe — KI-Fehlinterpretation"
+  },
+  {
+    "id": "q-tests-006",
+    "type": "numeric",
+    "skills": [
+      "tests"
+    ],
+    "difficulty": 0.6,
+    "stem": "Bei einem einseitigen z-Test (H₀: μ = μ₀ vs. H₁: μ > μ₀) wurde die Teststatistik z = 1,80 berechnet. Bestimme den (rechtsseitigen) p-Wert. (Φ(1,80) ≈ 0,9641)",
+    "correct": {
+      "value": 0.0359,
+      "tolerance": 0.002
+    },
+    "explanation": "Der p-Wert für einen rechtsseitigen z-Test ist 1 − Φ(z) = 1 − 0,9641 = 0,0359. Da p < 0,05, wird H₀ zum 5 %-Niveau abgelehnt.",
+    "solutionSteps": [
+      "p = 1 − Φ(1,80)",
+      "= 1 − 0,9641",
+      "= 0,0359"
+    ],
+    "viz": {
+      "component": "HypothesisTest",
+      "props": {
+        "alpha": 0.05,
+        "zObs": 1.8,
+        "twoSided": false
+      }
+    },
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-tests-007",
+    "type": "numeric",
+    "skills": [
+      "tests"
+    ],
+    "difficulty": 0.45,
+    "stem": "Bei einem zweiseitigen z-Test zum Signifikanzniveau α = 0,01 liegt der kritische Wert c (für |Z| > c wird H₀ abgelehnt) im Bereich der Standardnormaltabelle. Wie groß ist c? (Quantile: z_(0,995) ≈ 2,576)",
+    "correct": {
+      "value": 2.576,
+      "tolerance": 0.005
+    },
+    "explanation": "Bei zweiseitigem Test mit α = 0,01 ist die Schwelle das (1 − α/2)-Quantil, also z_(0,995) ≈ 2,576. Werte |Z| > 2,576 führen zur Ablehnung von H₀.",
+    "solutionSteps": [
+      "Zweiseitig: c = z_(1−α/2)",
+      "α = 0,01 ⇒ 1 − α/2 = 0,995",
+      "z_(0,995) ≈ 2,576"
+    ],
+    "viz": {
+      "component": "HypothesisTest",
+      "props": {
+        "alpha": 0.01,
+        "twoSided": true
+      }
+    },
+    "source": "Klassischer Wert aus Standardnormaltabelle"
+  },
+  {
+    "id": "q-tests-008",
+    "type": "mc",
+    "skills": [
+      "tests"
+    ],
+    "difficulty": 0.5,
+    "stem": "Welche Aussage zu Hypothesentests ist FALSCH?",
+    "options": [
+      "Ein Fehler 1. Art (α) liegt vor, wenn H₀ abgelehnt wird, obwohl sie wahr ist.",
+      "Ein Fehler 2. Art (β) liegt vor, wenn H₀ nicht abgelehnt wird, obwohl sie falsch ist.",
+      "Die Macht (1 − β) eines Tests wächst mit dem Stichprobenumfang n.",
+      "Bei festem n verringert eine Senkung von α auch β.",
+      "Ein zweiseitiger Test ist gegen Alternativen in beide Richtungen empfindlich."
+    ],
+    "correct": 3,
+    "explanation": "FALSCH (= Lösung): α und β stehen in einem TRADE-OFF. Senkt man α (engerer Ablehnungsbereich), so wird β größer (geringere Macht). Beide gleichzeitig zu reduzieren geht nur durch Erhöhung von n.",
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-tests-009",
+    "type": "numeric",
+    "skills": [
+      "tests"
+    ],
+    "difficulty": 0.65,
+    "stem": "Test: H₀: μ = 100 vs. H₁: μ ≠ 100 bei bekannter σ = 12, n = 36. Beobachtet wurde X̄ = 104. Berechne die Teststatistik Z = (X̄ − μ₀)/(σ/√n).",
+    "correct": {
+      "value": 2,
+      "tolerance": 0.05
+    },
+    "explanation": "Z = (104 − 100)/(12/√36) = 4/2 = 2. |Z| = 2 < 1,96? Nein, 2 > 1,96 → H₀ wird zum 5 %-Niveau abgelehnt.",
+    "solutionSteps": [
+      "σ/√n = 12/6 = 2",
+      "Z = (104 − 100)/2",
+      "= 2"
+    ],
+    "viz": {
+      "component": "HypothesisTest",
+      "props": {
+        "alpha": 0.05,
+        "zObs": 2.0,
+        "twoSided": true
+      }
+    },
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-tests-010",
+    "type": "mc",
+    "skills": [
+      "tests"
+    ],
+    "difficulty": 0.5,
+    "stem": "Wann verwendet man den t-Test statt des z-Tests für den Mittelwert?",
+    "options": [
+      "Wenn die Stichprobe nominal skaliert ist.",
+      "Wenn die Standardabweichung σ unbekannt ist und durch s geschätzt werden muss.",
+      "Wenn n > 1 000 ist.",
+      "Wenn man gleichzeitig mehrere Mittelwerte vergleichen möchte.",
+      "Wenn die Daten exponentialverteilt sind."
+    ],
+    "correct": 1,
+    "explanation": "Der t-Test ist die korrekte Wahl bei UNBEKANNTER Varianz σ². Die Teststatistik T = (X̄ − μ₀)/(s/√n) folgt unter H₀ einer t-Verteilung mit n−1 Freiheitsgraden. Für große n nähert sich die t-Verteilung der N(0,1), darum konvergiert der t-Test zum z-Test.",
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-regression-schl-005",
+    "type": "mc",
+    "skills": [
+      "regression-schl"
+    ],
+    "difficulty": 0.6,
+    "stem": "Im klassischen linearen Modell Y_i = α + β·x_i + ε_i mit ε_i ~ N(0, σ²) u.i.v. — welche Aussage ist FALSCH?",
+    "options": [
+      "Die KQ-Schätzer α̂ und β̂ sind erwartungstreu für α und β.",
+      "Die Varianz von β̂ ist σ²/S_xx mit S_xx = Σ(x_i − x̄)².",
+      "Die Reststreuung wird mit s² = (1/(n−2))·Σ(y_i − ŷ_i)² geschätzt.",
+      "Unter H₀: β = 0 folgt T = β̂/SE(β̂) einer t-Verteilung mit n − 2 Freiheitsgraden.",
+      "α̂ und β̂ sind im Allgemeinen unabhängig voneinander."
+    ],
+    "correct": 4,
+    "explanation": "FALSCH: α̂ und β̂ sind im Allgemeinen KORRELIERT. Genauer: Cov(α̂, β̂) = −x̄·σ²/S_xx. Sie sind nur dann unkorreliert, wenn x̄ = 0 (also wenn man die x-Werte zentriert). Alle anderen Aussagen sind Standardresultate des Gauß-Markov-Modells.",
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-regression-schl-006",
+    "type": "numeric",
+    "skills": [
+      "regression-schl",
+      "konfidenz"
+    ],
+    "difficulty": 0.7,
+    "stem": "Im linearen Modell Y_i = α + β·x_i + ε_i ergab eine Stichprobe von n = 12: β̂ = 2,5, SE(β̂) = 0,4. Bestimme die HALBE Breite eines 95-%-Konfidenzintervalls für β. (t_(10; 0,975) ≈ 2,228)",
+    "correct": {
+      "value": 0.891,
+      "tolerance": 0.005
+    },
+    "explanation": "Halbbreite = t_(n−2; 1−α/2)·SE(β̂) = 2,228·0,4 = 0,8912. Das 95-%-KI für β ist [2,5 − 0,891 ; 2,5 + 0,891] = [1,609 ; 3,391].",
+    "solutionSteps": [
+      "df = n − 2 = 10, t_(10; 0,975) ≈ 2,228",
+      "Halbbreite = 2,228·0,4",
+      "≈ 0,891"
+    ],
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-regression-schl-007",
+    "type": "numeric",
+    "skills": [
+      "regression-schl",
+      "tests"
+    ],
+    "difficulty": 0.65,
+    "stem": "Im linearen Modell ergab eine Stichprobe von n = 22 die Schätzwerte β̂ = 1,8 und SE(β̂) = 0,6. Bestimme die Teststatistik T zum Test H₀: β = 0 vs. H₁: β ≠ 0.",
+    "correct": {
+      "value": 3.0,
+      "tolerance": 0.05
+    },
+    "explanation": "T = β̂/SE(β̂) = 1,8/0,6 = 3,0. Unter H₀ ist T ~ t_(n−2) = t_(20). Da |T| = 3,0 > 2,086 (t_(20;0,975)), wird H₀ zum 5 %-Niveau abgelehnt.",
+    "solutionSteps": [
+      "T = β̂/SE(β̂)",
+      "= 1,8/0,6",
+      "= 3,0"
+    ],
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-regression-schl-008",
+    "type": "mc",
+    "skills": [
+      "regression-schl"
+    ],
+    "difficulty": 0.55,
+    "stem": "Welcher Unterschied besteht zwischen einem KONFIDENZintervall für E(Y|x₀) und einem PROGNOSEintervall für eine neue Beobachtung Y₀ bei x₀?",
+    "options": [
+      "Beide haben dieselbe Breite.",
+      "Das Prognoseintervall ist breiter, weil zusätzlich die Streuung von ε_i einbezogen wird.",
+      "Das Konfidenzintervall ist breiter, weil es mehr Annahmen trifft.",
+      "Das Prognoseintervall ist symmetrisch um Ŷ(x₀), das Konfidenzintervall nicht.",
+      "Sie unterscheiden sich nur in der gewählten Verteilung der Teststatistik."
+    ],
+    "correct": 1,
+    "explanation": "Das Konfidenzintervall für E(Y|x₀) berücksichtigt nur die Unsicherheit der Schätzer α̂ und β̂. Das Prognoseintervall enthält zusätzlich die Streuung σ² der ε_i (zufälliger Rest einer neuen Beobachtung), wird daher um den Faktor √(1 + 1/n + (x₀−x̄)²/S_xx)/√(1/n + (x₀−x̄)²/S_xx) breiter — entscheidend ist die zusätzliche „+1\" unter der Wurzel.",
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-schaetzer-ml-009",
+    "type": "numeric",
+    "skills": [
+      "schaetzer-ml"
+    ],
+    "difficulty": 0.65,
+    "stem": "X₁, …, Xₙ ~ Exp(λ) u.i.v. mit Beobachtungen 1, 3, 2, 4 (n = 4). Bestimme den ML-Schätzwert für λ.",
+    "correct": {
+      "value": 0.4,
+      "tolerance": 0.005
+    },
+    "explanation": "Für Exp(λ) ist der ML-Schätzer λ̂ = 1/X̄. Hier X̄ = 10/4 = 2,5, also λ̂ = 1/2,5 = 0,4.",
+    "solutionSteps": [
+      "X̄ = (1+3+2+4)/4 = 2,5",
+      "λ̂ = 1/X̄",
+      "= 1/2,5 = 0,4"
+    ],
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-schaetzer-ml-010",
+    "type": "numeric",
+    "skills": [
+      "schaetzer-ml"
+    ],
+    "difficulty": 0.7,
+    "stem": "X₁, …, X₅ ~ N(μ, σ²) mit Beobachtungen 7, 9, 11, 8, 10. Bestimme den ML-Schätzwert für σ² (Vorfaktor 1/n).",
+    "correct": {
+      "value": 2,
+      "tolerance": 0.02
+    },
+    "explanation": "ML-Schätzer für σ²: σ̂² = (1/n)·Σ(X_i − X̄)². X̄ = 45/5 = 9. Abweichungen: −2, 0, 2, −1, 1. Quadrate: 4+0+4+1+1 = 10. σ̂² = 10/5 = 2. (Erwartungstreuer Schätzer wäre 10/4 = 2,5.)",
+    "solutionSteps": [
+      "X̄ = 9",
+      "Σ(X−X̄)² = 4+0+4+1+1 = 10",
+      "σ̂²_ML = 10/5 = 2"
+    ],
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-konfidenz-010",
+    "type": "numeric",
+    "skills": [
+      "konfidenz"
+    ],
+    "difficulty": 0.65,
+    "stem": "Berechne die HALBE Breite eines 99-%-Konfidenzintervalls für μ bei bekannter σ = 8 und n = 64. (z_(0,995) ≈ 2,576)",
+    "correct": {
+      "value": 2.576,
+      "tolerance": 0.01
+    },
+    "explanation": "Halbbreite = z_(0,995)·σ/√n = 2,576·8/8 = 2,576.",
+    "solutionSteps": [
+      "z_(0,995) ≈ 2,576",
+      "Halbbreite = 2,576·8/√64",
+      "= 2,576·1 = 2,576"
+    ],
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-konfidenz-011",
+    "type": "mc",
+    "skills": [
+      "konfidenz"
+    ],
+    "difficulty": 0.4,
+    "stem": "Vervierfacht man den Stichprobenumfang n bei sonst gleichen Bedingungen, so ändert sich die Breite des KI um den Faktor:",
+    "options": [
+      "1/4",
+      "1/2",
+      "1",
+      "2",
+      "4"
+    ],
+    "correct": 1,
+    "explanation": "Die Breite ist proportional zu 1/√n. Bei Vervierfachung von n: √(4n) = 2·√n, also wird die Breite halbiert (Faktor 1/2).",
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-tests-011",
+    "type": "numeric",
+    "skills": [
+      "tests"
+    ],
+    "difficulty": 0.6,
+    "stem": "Bei einem zweiseitigen z-Test wurde |z| = 2,33 berechnet. Bestimme den p-Wert. (Φ(2,33) ≈ 0,9901)",
+    "correct": {
+      "value": 0.0198,
+      "tolerance": 0.002
+    },
+    "explanation": "Zweiseitiger Test: p = 2·(1 − Φ(|z|)) = 2·(1 − 0,9901) = 2·0,0099 = 0,0198. Da p < 0,05, wird H₀ zum 5 %-Niveau, aber nicht zum 1 %-Niveau abgelehnt.",
+    "solutionSteps": [
+      "p = 2·(1 − Φ(|z|))",
+      "= 2·(1 − 0,9901)",
+      "= 0,0198"
+    ],
+    "viz": {
+      "component": "HypothesisTest",
+      "props": {
+        "alpha": 0.05,
+        "zObs": 2.33,
+        "twoSided": true
+      }
+    },
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-tests-012",
+    "type": "mc",
+    "skills": [
+      "tests"
+    ],
+    "difficulty": 0.55,
+    "stem": "Welche Aussage zum p-Wert ist KORREKT?",
+    "options": [
+      "Der p-Wert ist die Wahrscheinlichkeit, dass H₀ wahr ist.",
+      "Der p-Wert ist die Wahrscheinlichkeit, unter H₀ einen mindestens so extremen Wert der Teststatistik zu beobachten.",
+      "Ein kleinerer p-Wert bedeutet eine größere Effektgröße.",
+      "Wenn p > α, ist H₀ bewiesen.",
+      "Der p-Wert wird α (dem Signifikanzniveau) gewählt."
+    ],
+    "correct": 1,
+    "explanation": "Der p-Wert ist die bedingte Wahrscheinlichkeit P(Teststatistik so extrem wie beobachtet | H₀). (1) verwechselt frequentistisch mit bayesianisch. (3) p hängt von n und Effektgröße ab. (4) Nicht-Ablehnen ist KEIN Beweis. (5) α wird vorher gewählt; p ergibt sich aus den Daten.",
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-tests-013",
+    "type": "numeric",
+    "skills": [
+      "tests"
+    ],
+    "difficulty": 0.7,
+    "stem": "Beim t-Test mit n = 16 (df = 15) und beobachteter Teststatistik t = 2,5 (einseitig, H₁: μ > μ₀) — der zugehörige kritische Wert ist t_(15; 0,95) ≈ 1,753. Wird H₀ zum 5 %-Niveau abgelehnt? (Antwort 1 = Ja, 0 = Nein)",
+    "correct": {
+      "value": 1,
+      "tolerance": 0.01
+    },
+    "explanation": "Bei einseitigem t-Test wird H₀ abgelehnt, wenn t > t_(df; 1−α). Hier 2,5 > 1,753, also Ja → Ablehnung von H₀.",
+    "solutionSteps": [
+      "t_obs = 2,5, kritischer Wert = 1,753",
+      "2,5 > 1,753 → H₀ ablehnen",
+      "Antwort: 1 (Ja)"
+    ],
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-regression-schl-009",
+    "type": "numeric",
+    "skills": [
+      "regression-schl"
+    ],
+    "difficulty": 0.55,
+    "stem": "Im linearen Modell Y_i = α + β·x_i + ε_i mit n = 50 wurde s² = 4 (Schätzer für σ²) und S_xx = 200 berechnet. Bestimme den Standardfehler SE(β̂) des Steigungsschätzers.",
+    "correct": {
+      "value": 0.1414,
+      "tolerance": 0.005
+    },
+    "explanation": "SE(β̂) = √(s²/S_xx) = √(4/200) = √0,02 ≈ 0,1414.",
+    "solutionSteps": [
+      "Var(β̂) = σ²/S_xx, geschätzt durch s²/S_xx",
+      "= 4/200 = 0,02",
+      "SE(β̂) = √0,02 ≈ 0,1414"
+    ],
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-regression-schl-010",
+    "type": "numeric",
+    "skills": [
+      "regression-schl"
+    ],
+    "difficulty": 0.65,
+    "stem": "Im linearen Modell ergab eine Stichprobe von n = 10 die Residuen-Quadratsumme SQ_R = 24. Bestimme den Schätzer s² für σ².",
+    "correct": {
+      "value": 3,
+      "tolerance": 0.02
+    },
+    "explanation": "Der erwartungstreue Schätzer ist s² = SQ_R/(n−2) = 24/8 = 3. Die n−2 Freiheitsgrade kommen daher, dass für α und β jeweils ein Freiheitsgrad „verbraucht\" wird.",
+    "solutionSteps": [
+      "s² = SQ_R/(n − 2)",
+      "= 24/(10 − 2)",
+      "= 24/8 = 3"
+    ],
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-schaetzer-ml-011",
+    "type": "mc",
+    "skills": [
+      "schaetzer-ml"
+    ],
+    "difficulty": 0.6,
+    "stem": "Sei X̄ das Stichprobenmittel einer u.i.v.-Stichprobe X₁, …, Xₙ mit E(X_i) = μ und Var(X_i) = σ². Welche Aussage zu X̄ als Schätzer für μ ist FALSCH?",
+    "options": [
+      "X̄ ist erwartungstreu: E(X̄) = μ.",
+      "Var(X̄) = σ²/n (Wurzel-n-Gesetz für Standardfehler).",
+      "X̄ ist konsistent: X̄ → μ in Wahrscheinlichkeit.",
+      "X̄ ist stets der ML-Schätzer für μ, unabhängig von der Verteilung.",
+      "X̄ erreicht die Cramér-Rao-Schranke bei Normalverteilung mit bekannter Varianz."
+    ],
+    "correct": 3,
+    "explanation": "X̄ ist NICHT immer der ML-Schätzer. Beispiel: Bei der gleichverteilten X ~ U[0, θ] ist der ML-Schätzer für θ das Maximum max(X_i), NICHT 2·X̄ (das wäre der Momentenschätzer). Bei vielen anderen Verteilungen (Cauchy etc.) ist X̄ auch nicht ML-optimal.",
+    "source": "Eigene Aufgabe"
+  },
+  {
+    "id": "q-konfidenz-012",
+    "type": "numeric",
+    "skills": [
+      "konfidenz"
+    ],
+    "difficulty": 0.65,
+    "stem": "Aus einer Stichprobe vom Umfang n = 25 (Normalverteilung mit unbekannter Varianz) wurden X̄ = 105 und s = 10 (korrigierte Standardabweichung) berechnet. Bestimme die HALBE Breite eines 95-%-Konfidenzintervalls für μ. (t_(24; 0,975) ≈ 2,064)",
+    "correct": {
+      "value": 4.128,
+      "tolerance": 0.02
+    },
+    "explanation": "Bei unbekannter Varianz: Halbbreite = t_(n−1; 1−α/2)·s/√n = 2,064·10/5 = 2,064·2 = 4,128.",
+    "solutionSteps": [
+      "df = 24, t_(24; 0,975) ≈ 2,064",
+      "Halbbreite = 2,064·10/√25",
+      "= 2,064·2 = 4,128"
+    ],
+    "source": "Eigene Aufgabe — t-KI"
+  },
+  {
+    "id": "q-tests-014",
+    "type": "multi-mc",
+    "skills": [
+      "tests"
+    ],
+    "difficulty": 0.65,
+    "stem": "Welche Maßnahmen erhöhen die Macht (1 − β) eines Tests?",
+    "options": [
+      "Erhöhung des Stichprobenumfangs n.",
+      "Erhöhung des Signifikanzniveaus α.",
+      "Verringerung der Streuung σ.",
+      "Größerer Effekt (|μ − μ₀| größer).",
+      "Wechsel von zweiseitigem zu einseitigem Test (bei zur Alternative passender Seite)."
+    ],
+    "correct": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "explanation": "Alle fünf Maßnahmen erhöhen die Power. (1) reduziert den SE. (2) erweitert den Ablehnungsbereich — aber mit erhöhtem Risiko eines Fehlers 1. Art. (3) reduziert die Überlappung der Verteilungen unter H₀ und H₁. (4) macht die Verteilungen unter H₀ und H₁ besser unterscheidbar. (5) konzentriert α auf einer Seite und erkennt einseitige Effekte besser.",
+    "source": "Eigene Aufgabe — Power-Analyse"
+  },
+  {
+    "id": "q-regression-schl-011",
+    "type": "mc",
+    "skills": [
+      "regression-schl"
+    ],
+    "difficulty": 0.6,
+    "stem": "Welche Voraussetzung ist KEIN Bestandteil der klassischen Annahmen des linearen Modells (Gauß-Markov)?",
+    "options": [
+      "Linearer Zusammenhang zwischen x und Y.",
+      "E(ε_i) = 0 für alle i.",
+      "Homoskedastizität: Var(ε_i) = σ² konstant.",
+      "Unkorreliertheit der ε_i.",
+      "Normalverteilung der Fehler ε_i."
+    ],
+    "correct": 4,
+    "explanation": "Gauß-Markov erfordert NUR: Linearität, E(ε)=0, Homoskedastizität und Unkorreliertheit. Unter diesen Voraussetzungen ist KQ BLUE (Best Linear Unbiased Estimator). Normalverteilung ist erst nötig für exakte t- und F-Tests sowie KIs, NICHT für die Optimalität von KQ.",
+    "source": "Eigene Aufgabe — Gauß-Markov"
+  },
+  {
+    "id": "q-schaetzer-ml-012",
+    "type": "numeric",
+    "skills": [
+      "schaetzer-ml"
+    ],
+    "difficulty": 0.7,
+    "stem": "X₁, …, Xₙ ~ U[0, θ] u.i.v. (gleichverteilt auf [0, θ]) mit unbekanntem θ > 0. Beobachtungen: 2,1; 0,8; 3,7; 1,5; 2,9. Bestimme den ML-Schätzwert für θ.",
+    "correct": {
+      "value": 3.7,
+      "tolerance": 0.005
+    },
+    "explanation": "Bei U[0, θ] ist der ML-Schätzer das Maximum der Stichprobe: θ̂_ML = max(X_i) = 3,7. (Erwartungstreuer Schätzer wäre ((n+1)/n)·max = (6/5)·3,7 = 4,44.)",
+    "solutionSteps": [
+      "L(θ) ∝ (1/θ)^n für θ ≥ max(X_i)",
+      "Maximierung ⇒ θ̂ = max(X_i)",
+      "= 3,7"
+    ],
+    "source": "Eigene Aufgabe (Klausur-Stil) — wichtige ML-Falle"
+  },
+  {
+    "id": "q-konfidenz-013",
+    "type": "numeric",
+    "skills": [
+      "konfidenz"
+    ],
+    "difficulty": 0.65,
+    "stem": "Aus einer Stichprobe von n = 1 000 wählten 480 Befragte Option A. Bestimme die HALBE Breite eines 95-%-Konfidenzintervalls für die zugrundeliegende Wahlquote p (Normalapproximation, p̂ einsetzen). (z = 1,96)",
+    "correct": {
+      "value": 0.031,
+      "tolerance": 0.002
+    },
+    "explanation": "p̂ = 480/1000 = 0,48. Halbbreite = 1,96·√(0,48·0,52/1000) = 1,96·√(0,2496/1000) ≈ 1,96·0,01580 ≈ 0,031.",
+    "solutionSteps": [
+      "p̂ = 0,48",
+      "SE = √(0,48·0,52/1000) ≈ 0,01580",
+      "Halbbreite = 1,96·0,01580 ≈ 0,031"
+    ],
+    "source": "Eigene Aufgabe (Klausur-Stil) — Wahlumfrage"
+  },
+  {
+    "id": "q-konfidenz-014",
+    "type": "mc",
+    "skills": [
+      "konfidenz"
+    ],
+    "difficulty": 0.55,
+    "stem": "Ein 95-%-KI für μ ist [102, 108]. Welche Aussage ist KORREKT?",
+    "options": [
+      "Der wahre Mittelwert μ liegt zu 95 % im Intervall [102, 108].",
+      "Die Wahrscheinlichkeit, dass eine neue Beobachtung im Intervall liegt, ist 95 %.",
+      "Die verwendete Schätzmethode liefert in 95 % aller Stichproben Intervalle, die μ enthalten.",
+      "Genau 95 % der Beobachtungen aus der Stichprobe liegen im Intervall.",
+      "Das Intervall enthält 95 % aller möglichen Stichprobenmittel."
+    ],
+    "correct": 2,
+    "explanation": "Korrekte frequentistische Interpretation: Die KONSTRUKTIONSMETHODE liefert auf lange Sicht in 95 % der Wiederholungen ein Intervall, das den wahren Parameter enthält. Über das KONKRETE Intervall [102, 108] kann frequentistisch keine probabilistische Aussage gemacht werden — es enthält μ entweder oder nicht.",
+    "source": "Eigene Aufgabe (Klausur-Stil) — KI-Interpretation"
+  },
+  {
+    "id": "q-tests-015",
+    "type": "numeric",
+    "skills": [
+      "tests"
+    ],
+    "difficulty": 0.65,
+    "stem": "Test: H₀: μ = 250 vs. H₁: μ ≠ 250 bei bekannter σ = 30. Stichprobe n = 36, beobachtet X̄ = 244. Bestimme den (zweiseitigen) p-Wert. (Φ(1,2) ≈ 0,8849)",
+    "correct": {
+      "value": 0.2302,
+      "tolerance": 0.005
+    },
+    "explanation": "Z = (244 − 250)/(30/√36) = −6/5 = −1,2. |Z| = 1,2. Zweiseitig: p = 2·(1 − Φ(1,2)) = 2·0,1151 = 0,2302. Da p > 0,05, wird H₀ nicht abgelehnt.",
+    "solutionSteps": [
+      "Z = (244 − 250)/5 = −1,2",
+      "p = 2·(1 − Φ(1,2)) = 2·0,1151",
+      "= 0,2302"
+    ],
+    "viz": {
+      "component": "HypothesisTest",
+      "props": {
+        "alpha": 0.05,
+        "zObs": -1.2,
+        "twoSided": true
+      }
+    },
+    "source": "Eigene Aufgabe (Klausur-Stil)"
+  },
+  {
+    "id": "q-tests-016",
+    "type": "multi-mc",
+    "skills": [
+      "tests"
+    ],
+    "difficulty": 0.6,
+    "stem": "Welche Faktoren beeinflussen die Wahl zwischen einem ein- und einem zweiseitigen Test?",
+    "options": [
+      "Die Forschungsfrage gibt eine Richtung vor (z. B. „besser als …\").",
+      "Der zweiseitige Test ist konservativer für ungerichtete Alternativen.",
+      "Bei zur Hypothese passender Richtung hat der einseitige Test bei gleichem α mehr Power.",
+      "Die Wahl darf NICHT nach Sichtung der Daten erfolgen.",
+      "Zweiseitige Tests werden generell vorgezogen, wenn die Richtung des Effekts a priori unklar ist."
+    ],
+    "correct": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "explanation": "Alle fünf Aussagen sind richtig. (1) Wissenschaftliche Vorab-Hypothese mit Richtung legt einseitigen Test nahe. (2) Zweiseitig ist konservativ ohne Vorab-Richtung. (3) Bei zur Alternative passender Seite konzentriert der einseitige Test sein α dort, gewinnt Power. (4) Die Wahl post-hoc nach Daten ist „p-hacking\". (5) Standard ohne klare Vorab-Richtung.",
+    "source": "Eigene Aufgabe (Klausur-Stil)"
+  },
+  {
+    "id": "q-regression-schl-012",
+    "type": "numeric",
+    "skills": [
+      "regression-schl",
+      "tests"
+    ],
+    "difficulty": 0.7,
+    "stem": "Im linearen Modell wurden β̂ = 0,75, SE(β̂) = 0,3 bei n = 22 berechnet. Bestimme die Teststatistik T zum Test H₀: β = 0 vs. H₁: β ≠ 0 und vergleiche mit dem kritischen Wert t_(20; 0,975) ≈ 2,086. (Gib T an.)",
+    "correct": {
+      "value": 2.5,
+      "tolerance": 0.02
+    },
+    "explanation": "T = β̂/SE(β̂) = 0,75/0,3 = 2,5. Da |T| = 2,5 > 2,086, wird H₀ zum 5 %-Niveau abgelehnt — der Steigungsparameter ist signifikant von 0 verschieden.",
+    "solutionSteps": [
+      "T = β̂/SE(β̂)",
+      "= 0,75/0,3",
+      "= 2,5 (> 2,086 → H₀ ablehnen)"
+    ],
+    "source": "Eigene Aufgabe (Klausur-Stil)"
+  },
+  {
+    "id": "q-mp-schliess-001",
+    "type": "multi-part",
+    "skills": [
+      "konfidenz",
+      "tests"
+    ],
+    "difficulty": 0.7,
+    "stem": "Eine Stichprobe vom Umfang n = 64 ergab X̄ = 510 bei bekannter Streuung σ = 16. Es soll geprüft werden, ob der zugrundeliegende Mittelwert mit dem Sollwert μ₀ = 500 vereinbar ist. (Verwende z_(0,975) = 1,96 und z_(0,995) = 2,576.)",
+    "parts": [
+      {
+        "type": "numeric",
+        "label": "a)",
+        "stem": "Berechne den Standardfehler σ/√n des Stichprobenmittels.",
+        "correct": {
+          "value": 2,
+          "tolerance": 0.01
+        },
+        "explanation": "σ/√n = 16/√64 = 16/8 = 2."
+      },
+      {
+        "type": "numeric",
+        "label": "b)",
+        "stem": "Bestimme die HALBE Breite des 95-%-Konfidenzintervalls für μ.",
+        "correct": {
+          "value": 3.92,
+          "tolerance": 0.02
+        },
+        "explanation": "Halbbreite = z_(0,975)·σ/√n = 1,96·2 = 3,92. Das KI ist also [506,08 ; 513,92]."
+      },
+      {
+        "type": "numeric",
+        "label": "c)",
+        "stem": "Berechne die Teststatistik z des zweiseitigen z-Tests H₀: μ = 500 vs. H₁: μ ≠ 500.",
+        "correct": {
+          "value": 5,
+          "tolerance": 0.05
+        },
+        "explanation": "z = (X̄ − μ₀)/(σ/√n) = (510 − 500)/2 = 5."
+      },
+      {
+        "type": "mc",
+        "label": "d)",
+        "stem": "Zu welchen der folgenden Signifikanzniveaus wird H₀ abgelehnt?",
+        "options": [
+          "Nur zu α = 0,05",
+          "Sowohl zu α = 0,05 als auch α = 0,01",
+          "Weder zu α = 0,05 noch α = 0,01",
+          "Nur zu α = 0,01"
+        ],
+        "correct": 1,
+        "explanation": "|z| = 5 ist größer als sowohl 1,96 (α=0,05) als auch 2,576 (α=0,01). H₀ wird sehr deutlich abgelehnt — passend zum KI, das μ₀ = 500 nicht enthält (KI = [506,08 ; 513,92])."
+      }
+    ],
+    "explanation": "Konfidenzintervall und Hypothesentest hängen eng zusammen: μ₀ liegt genau dann im (1−α)-KI, wenn H₀ zum Niveau α nicht abgelehnt wird. Hier ist die Abweichung extrem (5 Standardfehler) — entsprechend wird in beiden Niveaus abgelehnt.",
+    "viz": {
+      "component": "ConfidenceInterval",
+      "props": {
+        "mean": 510,
+        "halfWidth": 3.92
+      }
+    },
+    "source": "Eigene Aufgabe (Mock-Klausur)"
+  },
+  {
+    "id": "q-mp-schliess-002",
+    "type": "multi-part",
+    "skills": [
+      "schaetzer-ml"
+    ],
+    "difficulty": 0.7,
+    "stem": "X₁, …, X₆ ~ Poisson(λ) u.i.v. Beobachtungen: 2, 4, 1, 3, 5, 3.",
+    "parts": [
+      {
+        "type": "numeric",
+        "label": "a)",
+        "stem": "Berechne das Stichprobenmittel X̄.",
+        "correct": {
+          "value": 3,
+          "tolerance": 0.01
+        },
+        "explanation": "X̄ = (2+4+1+3+5+3)/6 = 18/6 = 3."
+      },
+      {
+        "type": "numeric",
+        "label": "b)",
+        "stem": "Bestimme den ML-Schätzwert λ̂.",
+        "correct": {
+          "value": 3,
+          "tolerance": 0.01
+        },
+        "explanation": "Für Poisson ist der ML-Schätzer für λ das Stichprobenmittel: λ̂_ML = X̄ = 3."
+      },
+      {
+        "type": "numeric",
+        "label": "c)",
+        "stem": "Mit dem ML-Schätzwert: Welche Wahrscheinlichkeit P(X = 2) ergibt sich für eine künftige Beobachtung? (3 Nachkommastellen)",
+        "correct": {
+          "value": 0.224,
+          "tolerance": 0.005
+        },
+        "explanation": "P(X = 2) = 3²·e⁻³/2! = 9·0,04979/2 ≈ 0,2240."
+      },
+      {
+        "type": "mc",
+        "label": "d)",
+        "stem": "Welche Eigenschaft hat der ML-Schätzer λ̂ = X̄ für Poisson?",
+        "options": [
+          "Erwartungstreu, aber nicht konsistent",
+          "Erwartungstreu UND konsistent",
+          "Verzerrt, aber konsistent",
+          "Weder erwartungstreu noch konsistent"
+        ],
+        "correct": 1,
+        "explanation": "E(X̄) = λ ⇒ erwartungstreu. Var(X̄) = λ/n → 0 ⇒ konsistent (im quadratischen Mittel). Beides gilt für das Stichprobenmittel als Schätzer des Erwartungswerts der zugrundeliegenden Verteilung."
+      }
+    ],
+    "explanation": "ML-Schätzung für Poisson: Log-Likelihood-Maximierung ergibt λ̂ = X̄. Für künftige Vorhersagen wird der Schätzwert in die Verteilungsformel eingesetzt („Plug-in\").",
+    "viz": {
+      "component": "PoissonProcess",
+      "props": {
+        "lambda": 3
+      }
+    },
+    "source": "Eigene Aufgabe (Mock-Klausur)"
   }
 ]

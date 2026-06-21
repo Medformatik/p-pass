@@ -72,8 +72,8 @@ export function Inspector() {
         ) : (
           <ol className="space-y-2">
             {rows.map((h, i) => {
-              const before = h.pLBefore[selected] ?? 0;
-              const after = h.pLAfter[selected] ?? 0;
+              const before = h.pLBefore?.[selected] ?? 0;
+              const after = h.pLAfter?.[selected] ?? 0;
               const delta = after - before;
               return (
                 <motion.li

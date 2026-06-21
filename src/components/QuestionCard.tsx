@@ -6,6 +6,7 @@ import { VizSlot } from "@/viz/VizSlot";
 import { cn } from "@/lib/cn";
 import { SolutionReveal } from "./SolutionReveal";
 import { InkUnderline } from "./InkUnderline";
+import { MultiPartCard } from "./MultiPartCard";
 import { burstConfetti } from "@/lib/confetti";
 import { playCorrectChime } from "@/lib/sound";
 import { useStore } from "@/store";
@@ -26,6 +27,25 @@ function shuffledIndices(n: number): number[] {
 }
 
 export function QuestionCard({ question, onAnswered, onNext }: QuestionCardProps) {
+  if (question.type === "multi-part") {
+    return <MultiPartCard question={question} onAnswered={onAnswered} onNext={onNext} />;
+  }
+  return (
+    <SingleQuestionCard question={question} onAnswered={onAnswered} onNext={onNext} />
+  );
+}
+
+type SingleQuestion = Exclude<Question, { type: "multi-part" }>;
+
+function SingleQuestionCard({
+  question,
+  onAnswered,
+  onNext,
+}: {
+  question: SingleQuestion;
+  onAnswered: (correct: boolean) => void;
+  onNext?: () => void;
+}) {
   const [selected, setSelected] = useState<number | null>(null);
   const [selectedMulti, setSelectedMulti] = useState<number[]>([]);
   const [submitted, setSubmitted] = useState(false);
